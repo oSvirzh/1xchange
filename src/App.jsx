@@ -1,23 +1,17 @@
 import React from 'react';
-import './App.css';
+import { Container, Row } from 'react-bootstrap';
+import { Button } from './components/elements/buttons/Button';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Row>
+        <h1>Buttons</h1>
+      </Row>
+      <Row>
+        <Button>Hello world</Button>
+      </Row>
+    </Container>
   );
 }
 
