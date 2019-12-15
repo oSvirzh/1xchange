@@ -4,21 +4,7 @@ import { Button } from './components/elements/buttons/Button';
 import { Link } from './components/elements/links/Link';
 import { Input, Label } from './components/elements/inputs/Input';
 import styled from 'styled-components';
-import logo from './images/logo.svg';
-import { colors } from './styles/const';
-
-const Sidebar = styled.div`
-  background: linear-gradient(
-    325.95deg,
-    #101728 -143.03%,
-    #11192b -3.81%,
-    #15213d 58.69%,
-    #0c1834 131.65%
-  );
-  max-width: 500px;
-  width: 100%;
-  padding: 40px;
-`;
+import { Sidebar } from './components/layout/Sidebar';
 
 const Main = styled.div`
   position: relative;
@@ -27,32 +13,11 @@ const Main = styled.div`
   background-color: #22305a;
 `;
 
-function App() {
+const App = () => {
   return (
     <Container fluid>
       <Row>
-        <Sidebar>
-          <img src={logo} alt="1xchange logo" />
-          <ul className="steps">
-            <li className="steps__item">
-              <span
-                className="steps__count steps__count_active"
-                data-count="1"
-              />
-              <span className="steps__name steps__name_active">
-                Create an acсount
-              </span>
-            </li>
-            <li className="steps__item">
-              <span className="steps__count" data-count="2" />
-              <span className="steps__name">Profile information</span>
-            </li>
-            <li className="steps__item">
-              <span className="steps__count" data-count="3" />
-              <span className="steps__name">ID Identification</span>
-            </li>
-          </ul>
-        </Sidebar>
+        <Sidebar activeStep={1} />
         <Main>
           <a className="home-button" href="/" />
           <h1 className="title">Create an account</h1>
@@ -90,6 +55,6 @@ function App() {
       </Row>
     </Container>
   );
-}
+};
 
 export default App;
