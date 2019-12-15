@@ -1,0 +1,17 @@
+@import '../helpers/vars';
+
+body {
+  font-family: 'Muli', sans-serif;
+  font-weight: 300;
+}
+
+.title {
+  font-size: 30px;
+  color: $white;
+  font-weight: 300;
+}
+
+.paragraph {
+  font-size: 14px;
+  color: $white;
+}

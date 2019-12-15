@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import bootstrap from './bootstap.scss';
-//import { fonts } from './fonts';
+import bootstrap from './libs/bootstrap.scss';
+import fonts from './base/_fonts.scss';
 import { colors, transition } from './const';
 
 const base = {
@@ -28,9 +28,13 @@ const base = {
       outline: 'none',
     },
   },
+  form: {
+    marginTop: '30px',
+  },
 };
-// TODO font should be exported here
+
 export const GlobalStyles = createGlobalStyle`
   ${bootstrap}
   ${base}
+  ${fonts}
 `;
