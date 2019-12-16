@@ -4,7 +4,7 @@ import { Button } from './components/elements/buttons/Button';
 import { Link } from './components/elements/links/Link';
 import { Input, Label } from './components/elements/inputs/Input';
 import styled from 'styled-components';
-import { Sidebar } from './components/layout/Sidebar';
+import { SidebarCmp } from './components/layout/Sidebar';
 
 const Main = styled.div`
   position: relative;
@@ -17,7 +17,7 @@ const App = () => {
   return (
     <Container fluid>
       <Row>
-        <Sidebar activeStep={1} />
+        <SidebarCmp activeStep={1} />
         <Main>
           <a className="home-button" href="/" />
           <h1 className="title">Create an account</h1>
