@@ -3,13 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/runtime": "^7.7.6",
     "bootstrap": "^4.4.1",
+    "formik": "^2.0.8",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "yarn": "^1.21.1",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "./node_modules/.bin/react-scripts start",
@@ -51,6 +55,11 @@
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "prettier": "1.17.1"
+  },
+  "babelMacros": {
+    "styledComponents": {
+      "pure": true
+    }
   },
   "husky": {
     "hooks": {
