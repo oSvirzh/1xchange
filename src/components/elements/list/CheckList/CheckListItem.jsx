@@ -14,7 +14,7 @@ const CheckListItem = styled.span`
     position: absolute;
     width: 16px;
     height: 16px;
-    background-image: ${`url('${icon}')`};
+    background-image: url(${icon});
   }
 
   &:not(:first-child) {

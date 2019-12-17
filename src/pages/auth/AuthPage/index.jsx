@@ -9,14 +9,7 @@ const AuthPage = ({ children, activeStep }) => {
     <Container fluid>
       <Row>
         <SidebarCmp activeStep={activeStep} />
-        <AuthBody>
-          <a className="home-button" href="/" />
-          <h1 className="title">Create an account</h1>
-          <p className="paragraph">
-            Already have an account? <Link href="#">Log in</Link>
-          </p>
-          <Form>{children}</Form>
-        </AuthBody>
+        <AuthBody>{children}</AuthBody>
       </Row>
     </Container>
   );
