@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Number from '../Sidebar/Number';
+import Number from './Number';
 
 const Item = styled.li`
   display: flex;
