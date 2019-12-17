@@ -6,6 +6,8 @@ import PhoneInput from '../../components/form/PhoneInput';
 import { Button } from '../../components/elements/buttons/Button';
 import AuthPage from './AuthPage';
 import CheckList from '../../components/elements/list/CheckList';
+import PasswordInput from '../../components/form/PasswordInput';
+import { Dropdown } from '../../components/form/Dropdown';
 
 const CreateAccount = () => {
   const passwordCheckArray = [
@@ -27,10 +29,16 @@ const CreateAccount = () => {
           label="Email address"
           placeholder="Please enter your email address"
         />
-        <Input label="Password" placeholder="Please enter your password" />
+        <PasswordInput
+          label="Password"
+          placeholder="Please enter your password"
+        />
         <CheckList columns={2} list={passwordCheckArray} />
-        <Input label="Confirm password" placeholder="Confirm password" />
-
+        <PasswordInput
+          label="Confirm password"
+          placeholder="Confirm password"
+        />
+        <Dropdown />
         <PhoneInput
           label="Phone number"
           countryCode="+380"

@@ -1,15 +1,22 @@
 import React from 'react';
-import { Container, Form, Row } from 'react-bootstrap';
+import styled from 'styled-components';
+import { Container, Row } from 'react-bootstrap';
 import { SidebarCmp } from '../Components/Sidebar';
-import { Link } from '../../../components/elements/links/Link';
 import AuthBody from './AuthBody';
+
+const FormWrapper = styled.div`
+  max-width: 460px;
+`;
 
 const AuthPage = ({ children, activeStep }) => {
   return (
     <Container fluid>
       <Row>
         <SidebarCmp activeStep={activeStep} />
-        <AuthBody>{children}</AuthBody>
+
+        <AuthBody>
+          <FormWrapper>{children} </FormWrapper>
+        </AuthBody>
       </Row>
     </Container>
   );
