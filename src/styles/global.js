@@ -6,6 +6,7 @@ import { colors, transition } from './const';
 const base = {
   '*': {
     boxSizing: 'border-box',
+    outline: 'none',
   },
   body: {
     margin: 0,

@@ -1,4 +1,4 @@
-import { FormControl, Form } from 'react-bootstrap';
+import { InputGroup, FormControl, Form } from 'react-bootstrap';
 import styled from 'styled-components';
 import { colors } from '../../styles/const';
 import React from 'react';
@@ -9,7 +9,6 @@ export const InputStyled = styled(FormControl)`
   color: ${colors.blue};
   border-radius: 3px;
   border: 0.5px solid ${colors.gray};
-  max-width: 460px;
   width: 100%;
   height: 56px;
 `;
