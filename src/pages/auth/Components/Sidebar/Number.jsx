@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors } from '../../../styles/const';
+import { colors } from '../../../../styles/const';
 import { applyStyleModifiers } from 'styled-components-modifiers';
 
 const modifierConfig = {

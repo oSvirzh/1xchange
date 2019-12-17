@@ -1,0 +1,18 @@
+import React from 'react';
+import { Container, Form, Row } from 'react-bootstrap';
+import { SidebarCmp } from '../Components/Sidebar';
+import { Link } from '../../../components/elements/links/Link';
+import AuthBody from './AuthBody';
+
+const AuthPage = ({ children, activeStep }) => {
+  return (
+    <Container fluid>
+      <Row>
+        <SidebarCmp activeStep={activeStep} />
+        <AuthBody>{children}</AuthBody>
+      </Row>
+    </Container>
+  );
+};
+
+export default AuthPage;
