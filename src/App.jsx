@@ -3,6 +3,7 @@ import { Container, Row, Form, InputGroup } from 'react-bootstrap';
 import { Button } from './components/elements/buttons/Button';
 import { Link } from './components/elements/links/Link';
 import { Input, Label } from './components/elements/inputs/Input';
+import { Check } from './components/elements/checks/Check';
 import styled from 'styled-components';
 import { SidebarCmp } from './components/layout/Sidebar';
 
@@ -32,6 +33,14 @@ const App = () => {
             <Form.Group controlId="">
               <Label>Password</Label>
               <Input placeholder="Please enter your password" />
+            </Form.Group>
+            <Form.Group>
+              <Check>At least 8 symbols</Check>
+              <Check>At least 1 UPPERCASE letter</Check>
+            </Form.Group>
+            <Form.Group>
+              <Check>At least 1 number</Check>
+              <Check>At least 1 special character</Check>
             </Form.Group>
             <Form.Group controlId="">
               <Label>Confirm password</Label>
