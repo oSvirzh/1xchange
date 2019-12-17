@@ -5,8 +5,16 @@ import Input from '../../components/form/Input';
 import PhoneInput from '../../components/form/PhoneInput';
 import { Button } from '../../components/elements/buttons/Button';
 import AuthPage from './AuthPage';
+import CheckList from '../../components/elements/list/CheckList';
 
 const Registration = () => {
+  const passwordCheckArray = [
+    'At least 8 symbols',
+    'At least 1 UPPERCASE letter',
+    'At least 1 number',
+    'At least 1 special character',
+  ];
+
   return (
     <AuthPage activeStep="1">
       <a className="home-button" href="/" />
@@ -20,6 +28,7 @@ const Registration = () => {
           placeholder="Please enter your email address"
         />
         <Input label="Password" placeholder="Please enter your password" />
+        <CheckList columtn={2} list={passwordCheckArray} />
         <Input label="Confirm password" placeholder="Confirm password" />
 
         <PhoneInput
