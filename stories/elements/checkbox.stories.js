@@ -18,7 +18,10 @@ storiesOf('Elements', module).add('Checkbox', () => (
       <CheckboxContainer>
         <HiddenCheckbox />
         <StyledCheckbox />
-        <CheckboxLabel>I accept 1xchange's <Link href="#">Terms of Use</Link> and <Link href="#">Privacy policy</Link></CheckboxLabel>
+        <CheckboxLabel>
+          I accept 1xchange&#39;s <Link href="#">Terms of Use</Link> and
+          <Link href="#">Privacy policy</Link>
+        </CheckboxLabel>
       </CheckboxContainer>
     </Row>
   </Container>

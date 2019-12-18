@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors } from '../../../styles/const';
 import icon from '../../../assets/images/checked.svg';
 
-const CheckStyled = styled.span`
+const CheckListItem = styled.span`
   position: relative;
   display: inline-block;
   padding-left: 26px;
@@ -23,4 +23,4 @@ const CheckStyled = styled.span`
   }
 `;
 
-export { CheckStyled as Check };
+export default CheckListItem;
