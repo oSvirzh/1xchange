@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { InputStyled, LabelStyled } from './Input';
 import { colors } from '../../styles/const';
+import AuthPage from '../../pages/auth/AuthPage';
+import PropTypes from 'prop-types';
 
 const ButtonStyled = styled(Button)`
   font-size: 14px; // TODO should be 12
@@ -36,6 +38,12 @@ const PasswordInput = ({ label, placeholder, subText }) => {
       <Form.Text className="text-muted">{subText}</Form.Text>
     </Form.Group>
   );
+};
+
+PasswordInput.propType = {
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  subText: PropTypes.string,
 };
 
 export default PasswordInput;

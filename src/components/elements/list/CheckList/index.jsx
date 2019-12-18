@@ -5,10 +5,10 @@ import { chunk } from 'lodash';
 const CheckList = ({ columns = 1, list }) => {
   const chunkedList = chunk(list, columns);
 
-  console.log('chunkedList', chunkedList);
-
-  return chunkedList.map((row) => {
-    const rowMapped = row.map((item) => <CheckListItem>{item}</CheckListItem>);
+  return chunkedList.map((row, index) => {
+    const rowMapped = row.map((item) => (
+      <CheckListItem key={index}>{item}</CheckListItem>
+    ));
 
     return <ul>{rowMapped}</ul>;
   });

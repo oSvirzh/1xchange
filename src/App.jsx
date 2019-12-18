@@ -1,12 +1,12 @@
 import React from 'react';
-import Registration from './pages/auth/CreateAccount';
+import CreateAccount from './pages/auth/CreateAccount';
 import { GlobalStyles } from './styles/global';
 
 const App = () => {
   return (
     <div>
       <GlobalStyles />
-      <Registration />
+      <CreateAccount />
     </div>
   );
 };

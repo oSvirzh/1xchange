@@ -10,7 +10,6 @@
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
-      "modules": true,
       "experimentalObjectRestSpread": true,
       "jsx": true
     }
@@ -26,7 +25,8 @@
   },
   "globals": {
     "window": true,
-    "Promise": true
+    "Promise": true,
+    "fetch": true
   },
   "rules": {
     "no-console": [
@@ -78,7 +78,7 @@
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "quote-props": "off",
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": ["error", "always"],
     "max-len": [
       "error",
       {
@@ -92,5 +92,6 @@
       "always",
       { "ignoreClassFields": true }
     ]
-  }
+  },
+  "ignorePatterns": ["node_modules/", "build"]
 }

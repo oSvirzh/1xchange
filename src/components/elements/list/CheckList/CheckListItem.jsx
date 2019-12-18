@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { colors } from '../../../../styles/const';
-import icon from '../../../../assets/images/logo.svg';
+import { colors } from '../../../styles/const';
+import icon from '../../../assets/images/checked.svg';
 
 const CheckListItem = styled.span`
   position: relative;
@@ -12,9 +12,10 @@ const CheckListItem = styled.span`
   &:before {
     content: '';
     position: absolute;
-    width: 16px;
-    height: 16px;
-    background-image: url(${icon});
+    width: 20px;
+    height: 20px;
+    background: url("${icon}") no-repeat;
+    left: 0;
   }
 
   &:not(:first-child) {

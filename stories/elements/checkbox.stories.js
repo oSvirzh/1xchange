@@ -1,18 +1,28 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Container, Row } from 'react-bootstrap';
-import { Check } from '../../src/components/elements/checks/Check';
+import {
+  CheckboxContainer,
+  HiddenCheckbox,
+  StyledCheckbox,
+  CheckboxLabel,
+} from '../../src/components/elements/checkbox/Checkbox';
+import { Link } from '../../src/components/elements/links/Link';
 
-storiesOf('Elements', module).add('Checks', () => (
+storiesOf('Elements', module).add('Checkbox', () => (
   <Container>
     <Row>
       <h1>Сруслі</h1>
     </Row>
     <Row>
-        <label className="container">Two
-            <input type="checkbox">
-                <span className="checkmark"></span>
-        </label>
+      <CheckboxContainer>
+        <HiddenCheckbox />
+        <StyledCheckbox />
+        <CheckboxLabel>
+          I accept 1xchange&#39;s <Link href="#">Terms of Use</Link> and
+          <Link href="#">Privacy policy</Link>
+        </CheckboxLabel>
+      </CheckboxContainer>
     </Row>
   </Container>
 ));

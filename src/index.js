@@ -11,13 +11,11 @@ import App from './App';
 
 const store = configureStore();
 
-console.log('store', store);
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root')
+  window.document.getElementById('root')
 );

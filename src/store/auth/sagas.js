@@ -26,7 +26,7 @@ function endpoint(s) {
 }
 
 const getSession = (cognitoUser) =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     cognitoUser.getSession((err, result) => {
       if (result) {
         cognitoUser.getUserAttributes((err, attrs) => {
@@ -47,7 +47,7 @@ const getSession = (cognitoUser) =>
   });
 
 const cognitoSignIn = (params) =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     const { email, password } = params;
     const authenticationDetails = new AWSCognito.AuthenticationDetails({
       Username: email,
@@ -75,7 +75,7 @@ const cognitoSignIn = (params) =>
   });
 
 const getAccessToken = (cognitoUser) =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     cognitoUser.getSession((err, result) => {
       if (result) {
         const token = result.getAccessToken().getJwtToken();
@@ -87,7 +87,7 @@ const getAccessToken = (cognitoUser) =>
   });
 
 const globalSignOut = (cognitoUser) =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     cognitoUser.globalSignOut({
       onSuccess: (result) => {
         resolve({ result });
