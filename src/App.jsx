@@ -4,6 +4,12 @@ import { Button } from './components/elements/buttons/Button';
 import { Link } from './components/elements/links/Link';
 import { Input, Label } from './components/elements/inputs/Input';
 import { Check } from './components/elements/checks/Check';
+import {
+    CheckboxContainer,
+    HiddenCheckbox,
+    StyledCheckbox,
+    CheckboxLabel,
+} from './components/elements/checkbox/Checkbox';
 import styled from 'styled-components';
 import { SidebarCmp } from './components/layout/Sidebar';
 
@@ -58,6 +64,11 @@ const App = () => {
             <p className="paragraph">
               The security code will be sent to the number filled above
             </p>
+              <CheckboxContainer>
+                  <HiddenCheckbox />
+                  <StyledCheckbox />
+                  <CheckboxLabel>I accept 1xchange's <Link href="#">Terms of Use</Link> and <Link href="#">Privacy policy</Link></CheckboxLabel>
+            </CheckboxContainer>
             <Button>Continue</Button>
           </Form>
         </Main>
