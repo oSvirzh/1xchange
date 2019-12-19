@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import { Container, Row } from 'react-bootstrap';
 import { SidebarCmp } from '../Components/Sidebar';
 import AuthBody from './AuthBody';
+import VerifyEmail from '../VerifyEmail';
 import PropTypes from 'prop-types';
-
-const FormWrapper = styled.div`
-  max-width: 460px;
-`;
 
 const AuthPage = ({ children, activeStep }) => {
   return (
@@ -16,7 +13,7 @@ const AuthPage = ({ children, activeStep }) => {
         <SidebarCmp activeStep={activeStep} />
 
         <AuthBody>
-          <FormWrapper>{children} </FormWrapper>
+          <VerifyEmail />
         </AuthBody>
       </Row>
     </Container>

@@ -17,4 +17,9 @@ const ButtonStyled = styled(Button)`
   color: ${colors.white};
 `;
 
+const ButtonGroupStyled = styled.div`
+  margin-top: 30px;
+`;
+
 export { ButtonStyled as Button };
+export { ButtonGroupStyled as ButtonGroup };

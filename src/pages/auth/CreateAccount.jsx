@@ -3,7 +3,15 @@ import { Form } from 'react-bootstrap';
 import { Link } from '../../components/elements/links/Link';
 import Input from '../../components/form/Input';
 import PhoneInput from '../../components/form/PhoneInput';
-import { Button } from '../../components/elements/buttons/Button';
+import Modal from '../../components/modal/Modal';
+import { Button, ButtonGroup } from '../../components/elements/buttons/Button';
+import { ButtonHome } from '../../components/elements/buttons/ButtonHome';
+import {
+  HiddenCheckbox,
+  StyledCheckbox,
+  CheckboxContainer,
+  CheckboxLabel,
+} from '../../components/elements/checkbox/Checkbox';
 import AuthPage from './AuthPage';
 import CheckList from '../../components/elements/list/CheckList';
 import PasswordInput from '../../components/form/PasswordInput';
@@ -19,7 +27,8 @@ const CreateAccount = () => {
 
   return (
     <AuthPage activeStep="1">
-      <a className="home-button" href="/" />
+      <ButtonHome />
+      <Modal />
       <h1 className="title">Create an account</h1>
       <p className="paragraph">
         Already have an account? <Link href="#">Log in</Link>
@@ -44,11 +53,20 @@ const CreateAccount = () => {
           countryCode="+380"
           placeholder="Number"
         />
-
         <p className="paragraph">
           The security code will be sent to the number filled above
         </p>
-        <Button>Continue</Button>
+        <CheckboxContainer>
+          <HiddenCheckbox />
+          <StyledCheckbox />
+          <CheckboxLabel>
+            I accept 1xchange's <Link href="#">Terms of Use</Link> and{' '}
+            <Link href="#">Privacy policy</Link>
+          </CheckboxLabel>
+        </CheckboxContainer>
+        <ButtonGroup>
+          <Button>Continue</Button>
+        </ButtonGroup>
       </Form>
     </AuthPage>
   );

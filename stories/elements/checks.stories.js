@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Container, Row } from 'react-bootstrap';
-import { Check } from '../../src/components/elements/checks/Check';
+import { Check } from '../../src/components/elements/list/CheckList/index';
 
 storiesOf('Elements', module).add('Checks', () => (
   <Container>
