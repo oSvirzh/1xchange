@@ -5,7 +5,9 @@
   "dependencies": {
     "@babel/runtime": "^7.7.6",
     "amazon-cognito-identity-js": "^3.2.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "bootstrap": "^4.4.1",
+    "eslint-plugin-react-hooks": "^0.0.0-b53ea6ca0",
     "formik": "^2.0.8",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.0",
@@ -29,7 +31,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
+    "lint": "eslint src --ext .js,.jsx",
     "storybook": "start-storybook"
   },
   "eslintConfig": {
@@ -51,6 +53,7 @@
     "@babel/core": "^7.7.5",
     "@storybook/addon-storysource": "^5.1.10",
     "@storybook/react": "^5.1.9",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.0.0",

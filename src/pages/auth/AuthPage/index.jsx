@@ -20,7 +20,7 @@ const AuthPage = ({ children, activeStep }) => {
   );
 };
 
-AuthPage.propType = {
+AuthPage.propTypes = {
   children: PropTypes.any,
   activeStep: PropTypes.string,
 };

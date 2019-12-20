@@ -1,9 +1,8 @@
-import { InputGroup, FormControl, Form } from 'react-bootstrap';
+import { FormControl, Form } from 'react-bootstrap';
 import styled from 'styled-components';
 import { colors } from '../../styles/const';
 import React from 'react';
 import PropTypes from 'prop-types';
-import PasswordInput from './PasswordInput';
 
 export const InputStyled = styled(FormControl)`
   padding: 18px 20px;
@@ -31,7 +30,7 @@ const Input = ({ label, placeholder, subText }) => {
   );
 };
 
-Input.propType = {
+Input.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   subText: PropTypes.string,

@@ -1,14 +1,17 @@
-import React from 'react';
-import CreateAccount from './pages/auth/CreateAccount';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { AuthSection } from './pages/auth';
 import { GlobalStyles } from './styles/global';
 
-const App = () => {
-  return (
-    <div>
-      <GlobalStyles />
-      <CreateAccount />
-    </div>
-  );
-};
+class AppShell extends Component {
+  render() {
+    return (
+      <div>
+        <GlobalStyles />
+        <AuthSection />
+      </div>
+    );
+  }
+}
 
-export default App;
+export const App = withRouter(AppShell);

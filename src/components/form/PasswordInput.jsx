@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { InputStyled, LabelStyled } from './Input';
 import { colors } from '../../styles/const';
-import AuthPage from '../../pages/auth/AuthPage';
 import PropTypes from 'prop-types';
 
 const ButtonStyled = styled(Button)`
@@ -40,7 +39,7 @@ const PasswordInput = ({ label, placeholder, subText }) => {
   );
 };
 
-PasswordInput.propType = {
+PasswordInput.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   subText: PropTypes.string,
