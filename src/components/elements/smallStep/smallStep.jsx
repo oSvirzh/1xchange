@@ -1,7 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../styles/const';
-import Item from '../../../pages/auth/Components/Sidebar/Item';
 
 const Step = styled.p`
   position: relative;

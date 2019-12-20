@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Modal, ModalBody, ModalFooter, ModalTitle } from 'react-bootstrap';
-import { Button, ButtonGroup } from '../../components/elements/buttons/Button';
+import { Button } from '../../components/elements/buttons/Button';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import { colors } from '../../styles/const';
-import PropTypes from 'prop-types';
 
 const ModalTitleStyled = styled(ModalTitle)`
   font-size: 30px;
@@ -37,7 +36,7 @@ const ModalFooterStyled = styled(ModalFooter)`
   border-top: none;
 `;
 
-const ModalWindow = ({ label, placeholder, subText }) => {
+const ModalWindow = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -88,12 +87,6 @@ const ModalWindow = ({ label, placeholder, subText }) => {
       </Modal>
     </>
   );
-};
-
-ModalWindow.propType = {
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
-  subText: PropTypes.string,
 };
 
 export default ModalWindow;

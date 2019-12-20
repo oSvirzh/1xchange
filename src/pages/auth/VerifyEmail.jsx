@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
 import { SmallStep } from '../../components/elements/smallStep/index.jsx';
-import { Button, ButtonGroup } from '../../components/elements/buttons/Button';
+import { ButtonGroup } from '../../components/elements/buttons/Button';
 import { ButtonBack } from '../../components/elements/buttons/ButtonBack';
 import spinIcon from '../../../src/assets/images/spin.svg';
 import styled from 'styled-components';
@@ -25,8 +24,8 @@ const VerifyEmail = () => {
           A verification email has been sent to test@test.com.
         </h2>
         <p className="paragraph">
-          Please open the email and click on the "Verify" button to confirm that
-          the email address belongs to you.
+          Please open the email and click on the &quot;Verify&quot; button to
+          confirm that the email address belongs to you.
         </p>
       </VerifyWrapper>
       <StepsWrapper>

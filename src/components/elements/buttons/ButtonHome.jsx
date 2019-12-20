@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from '../../../styles/const';
 import homeIcon from '../../../assets/images/home.svg';
 
 const ButtonHomeStyled = styled.a`
