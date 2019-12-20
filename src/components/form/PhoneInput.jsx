@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { InputStyled, LabelStyled } from './Input';
 import { colors } from '../../styles/const';
 import PropTypes from 'prop-types';
-import AuthPage from '../../pages/auth/AuthPage';
 
 const PhoneLabelStyled = styled(LabelStyled)``;
 
@@ -31,7 +30,7 @@ const PhoneInput = ({ label, placeholder, countryCode }) => {
   );
 };
 
-PhoneInput.propType = {
+PhoneInput.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   countryCode: PropTypes.string,

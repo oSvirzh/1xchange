@@ -6,11 +6,13 @@ const CheckList = ({ columns = 1, list }) => {
   const chunkedList = chunk(list, columns);
 
   return chunkedList.map((row, index) => {
-    const rowMapped = row.map((item) => (
-      <CheckListItem key={index}>{item}</CheckListItem>
-    ));
-
-    return <ul>{rowMapped}</ul>;
+    return (
+      <ul key={index}>
+        {row.map((item, itemIndex) => (
+          <CheckListItem key={itemIndex}>{item}</CheckListItem>
+        ))}{' '}
+      </ul>
+    );
   });
 };
 
