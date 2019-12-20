@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { colors } from '../../../styles/const';
-import icon from '../../../assets/images/checked.svg';
+import { colors } from '../../../../styles/const';
+import icon from '../../../../assets/images/checked.svg';
 
 const CheckListItem = styled.span`
   position: relative;

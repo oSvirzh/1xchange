@@ -7,7 +7,7 @@
     "plugin:prettier/recommended",
     "prettier/react"
   ],
-  "plugins": ["jest", "prettier", "react", "import"],
+  "plugins": ["jest", "prettier", "react", "import", "react-hooks"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
@@ -92,8 +92,9 @@
       "error",
       "always",
       { "ignoreClassFields": true }
-    ]
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
-  "ignorePatterns": ["node_modules/", "build"],
-  "react-hooks/exhaustive-deps": "warn"
+  "ignorePatterns": ["node_modules/", "build"]
 }

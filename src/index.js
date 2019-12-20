@@ -7,15 +7,15 @@ import { BrowserRouter } from 'react-router-dom';
 
 import configureStore from './store/configureStore';
 
-import App from './App';
+import { App } from './App';
 
 const store = configureStore();
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </Provider>,
+    </Provider>
+  </BrowserRouter>,
   window.document.getElementById('root')
 );

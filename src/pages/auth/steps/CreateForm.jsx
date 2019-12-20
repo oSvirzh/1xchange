@@ -1,15 +1,17 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import { Link } from '../../components/elements/links/Link';
-import Input from '../../components/form/Input';
-import PhoneInput from '../../components/form/PhoneInput';
-import { Button } from '../../components/elements/buttons/Button';
-import AuthPage from './AuthPage';
-import CheckList from '../../components/elements/list/CheckList';
-import PasswordInput from '../../components/form/PasswordInput';
-import { Dropdown } from '../../components/form/Dropdown';
+import { Link } from '../../../components/elements/links/Link';
+import Input from '../../../components/form/Input';
+import PhoneInput from '../../../components/form/PhoneInput';
+import CheckList from '../../../components/elements/list/CheckList';
+import PasswordInput from '../../../components/form/PasswordInput';
+import { Dropdown } from '../../../components/form/Dropdown';
+import FormWrapper from '../components/FormWrapper';
+import { withStepForm } from '../../../components/flows/withStepForm';
+import { NextButton } from '../../../components/flows/NextButton';
+import { formikProps } from '../../../utils/prop-types';
 
-const CreateAccount = () => {
+const CreateFormLayout = () => {
   const passwordCheckArray = [
     'At least 8 symbols',
     'At least 1 UPPERCASE letter',
@@ -18,7 +20,7 @@ const CreateAccount = () => {
   ];
 
   return (
-    <AuthPage activeStep="1">
+    <FormWrapper>
       <a className="home-button" href="/" />
       <h1 className="title">Create an account</h1>
       <p className="paragraph">
@@ -48,10 +50,14 @@ const CreateAccount = () => {
         <p className="paragraph">
           The security code will be sent to the number filled above
         </p>
-        <Button>Continue</Button>
+        <NextButton text="Continue" />
       </Form>
-    </AuthPage>
+    </FormWrapper>
   );
 };
 
-export default CreateAccount;
+CreateFormLayout.propTypes = {
+  ...formikProps,
+};
+
+export const CreateForm = withStepForm(CreateFormLayout);
