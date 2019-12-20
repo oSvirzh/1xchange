@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Container, Row } from 'react-bootstrap';
-import { Input, Label } from '../../src/components/elements/inputs/Input';
+import { Input, Label } from '../../src/components/form/Input';
 
 storiesOf('Elements', module).add('Inputs', () => (
   <Container>

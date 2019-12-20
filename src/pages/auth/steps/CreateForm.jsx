@@ -6,7 +6,7 @@ import PhoneInput from '../../../components/form/PhoneInput';
 import CheckList from '../../../components/elements/list/CheckList';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { Dropdown } from '../../../components/form/Dropdown';
-import FormWrapper from '../components/FormWrapper';
+import FormWrapper from '../сomponents/FormWrapper';
 import { withStepForm } from '../../../components/flows/withStepForm';
 import { NextButton } from '../../../components/flows/NextButton';
 import { formikProps } from '../../../utils/prop-types';
@@ -46,7 +46,6 @@ const CreateFormLayout = () => {
           countryCode="+380"
           placeholder="Number"
         />
-
         <p className="paragraph">
           The security code will be sent to the number filled above
         </p>
