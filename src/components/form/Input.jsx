@@ -1,32 +1,15 @@
-import { FormControl, Form } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
 import { colors } from '../../styles/const';
 import React from 'react';
 import PropTypes from 'prop-types';
-
-export const InputStyled = styled(FormControl)`
-  padding: 18px 20px;
-  font-size: 16px;
-  color: ${colors.blue};
-  border-radius: 3px;
-  border: 0.5px solid ${colors.gray};
-  width: 100%;
-  height: 56px;
-`;
-
-export const LabelStyled = styled(Form.Label)`
-  font-size: 14px;
-  color: ${colors.white};
-  margin-bottom: 7px;
-`;
+import FormItem from './FormItem';
 
 const Input = ({ label, placeholder, subText }) => {
   return (
-    <Form.Group controlId="">
-      <LabelStyled>{label}</LabelStyled>
-      <InputStyled placeholder={placeholder} />
-      <Form.Text className="text-muted">{subText}</Form.Text>
-    </Form.Group>
+    <FormItem label={label} subText={subText}>
+      <StyledInput placeholder={placeholder} />
+    </FormItem>
   );
 };
 
@@ -35,5 +18,15 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   subText: PropTypes.string,
 };
+
+export const StyledInput = styled(FormControl)`
+  padding: 18px 20px;
+  font-size: 16px;
+  color: ${colors.blue};
+  border-radius: 3px;
+  border: 0.5px solid ${colors.gray};
+  width: 100%;
+  height: 56px;
+`;
 
 export default Input;

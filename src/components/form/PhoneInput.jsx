@@ -1,13 +1,10 @@
 import React from 'react';
-import { Form, InputGroup } from 'react-bootstrap';
+import { InputGroup } from 'react-bootstrap';
 import styled from 'styled-components';
-import { InputStyled, LabelStyled } from './Input';
+import { StyledInput } from './Input';
 import { colors } from '../../styles/const';
 import PropTypes from 'prop-types';
-
-const PhoneLabelStyled = styled(LabelStyled)``;
-
-const PhoneInputStyled = styled(InputStyled)``;
+import FormItem from './FormItem';
 
 const CodeStyled = styled(InputGroup.Text)`
   font-size: 16px;
@@ -18,15 +15,14 @@ const CodeStyled = styled(InputGroup.Text)`
 
 const PhoneInput = ({ label, placeholder, countryCode }) => {
   return (
-    <Form.Group controlId="">
-      <PhoneLabelStyled>{label}</PhoneLabelStyled>
+    <FormItem label={label}>
       <InputGroup>
         <InputGroup.Prepend>
           <CodeStyled>{countryCode}</CodeStyled>
         </InputGroup.Prepend>
-        <PhoneInputStyled placeholder={placeholder} />
+        <StyledInput placeholder={placeholder} />
       </InputGroup>
-    </Form.Group>
+    </FormItem>
   );
 };
 
