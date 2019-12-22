@@ -35,7 +35,6 @@ const VerifyEmail = () => {
         <SmallStep />
       </StepsWrapper>
       <ButtonGroup>
-        <img src="" alt="" />
         <ButtonBack>Go Back</ButtonBack>
       </ButtonGroup>
     </>
