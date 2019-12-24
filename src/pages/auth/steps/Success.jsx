@@ -1,19 +1,17 @@
 import React from 'react';
-import { withStepForm } from '../../../components/flows/withStepForm';
-import { formikProps } from '../../../utils/prop-types';
-import { NextButton } from '../../../components/flows/NextButton';
+import PropTypes from 'prop-types';
+import { Button } from '../../../components/elements/buttons/Button';
 
-const SuccessLayout = ({ message }) => {
+export const Success = ({ message, to }) => {
   return (
     <>
       <h1>{message}</h1>
-      <NextButton text="Continue" />
+      <Button to={to}>Continue</Button>
     </>
   );
 };
 
-SuccessLayout.propTypes = {
-  ...formikProps,
+Success.propTypes = {
+  message: PropTypes.string,
+  to: PropTypes.string,
 };
-
-export const Success = withStepForm(SuccessLayout);

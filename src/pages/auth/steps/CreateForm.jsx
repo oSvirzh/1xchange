@@ -7,11 +7,11 @@ import CheckList from '../../../components/elements/list/CheckList';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { Dropdown } from '../../../components/form/Dropdown';
 import FormWrapper from '../сomponents/FormWrapper';
-import { withStepForm } from '../../../components/flows/withStepForm';
-import { NextButton } from '../../../components/flows/NextButton';
-import { formikProps } from '../../../utils/prop-types';
+import { Button } from '../../../components/elements/buttons/Button';
 
-const CreateFormLayout = () => {
+import { RouteConfig } from '../../../config/routeConfig';
+
+export const CreateForm = () => {
   const passwordCheckArray = [
     'At least 8 symbols',
     'At least 1 UPPERCASE letter',
@@ -49,14 +49,8 @@ const CreateFormLayout = () => {
         <p className="paragraph">
           The security code will be sent to the number filled above
         </p>
-        <NextButton text="Continue" />
+        <Button to={RouteConfig.verifyEmail}>Continue</Button>
       </Form>
     </FormWrapper>
   );
 };
-
-CreateFormLayout.propTypes = {
-  ...formikProps,
-};
-
-export const CreateForm = withStepForm(CreateFormLayout);

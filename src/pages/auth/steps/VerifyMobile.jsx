@@ -1,9 +1,7 @@
 import React from 'react';
-import { withStepForm } from '../../../components/flows/withStepForm';
-import { formikProps } from '../../../utils/prop-types';
 import { NextButton } from '../../../components/flows/NextButton';
 
-const VerifyMobileLayout = () => {
+export const VerifyMobile = () => {
   return (
     <>
       <h1>Verify mobile</h1>
@@ -11,9 +9,3 @@ const VerifyMobileLayout = () => {
     </>
   );
 };
-
-VerifyMobileLayout.propTypes = {
-  ...formikProps,
-};
-
-export const VerifyMobile = withStepForm(VerifyMobileLayout);
