@@ -1,16 +1,21 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import styled from 'styled-components';
 import AuthBody from './AuthBody';
 import PropTypes from 'prop-types';
 
+const Styled = {
+  Container: styled.div`
+    display: flex;
+    min-height: 100vh;
+  `,
+};
+
 const LayoutAuth = ({ children, renderLeft }) => {
   return (
-    <Container fluid>
-      <Row>
-        {renderLeft}
-        <AuthBody>{children}</AuthBody>
-      </Row>
-    </Container>
+    <Styled.Container fluid>
+      {renderLeft}
+      <AuthBody>{children}</AuthBody>
+    </Styled.Container>
   );
 };
 
