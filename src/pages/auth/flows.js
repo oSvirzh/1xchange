@@ -1,4 +1,4 @@
-import { CreateForm, Success, VerifyEmail, VerifyMobile } from './steps';
+import { CreateForm, Success, VerifyEmail, AuthCode } from './steps';
 import { RouteConfig } from '../../config/routeConfig';
 
 const registerFlow = {
@@ -37,7 +37,7 @@ const registerFlow = {
     steps: [
       {
         name: 'verifyMobile',
-        component: VerifyMobile,
+        component: AuthCode,
       },
       {
         name: 'successMobileVerified',

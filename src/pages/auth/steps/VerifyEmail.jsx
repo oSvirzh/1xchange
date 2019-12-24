@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import { NextButton } from '../../../components/flows/NextButton';
 import spinIcon from '../../../assets/images/spin.svg';
-import { SmallStep } from '../../../components/elements/smallStep';
+import { NumerableList } from '../../../components/elements/list/NumerableList';
 import { ButtonGroup } from '../../../components/elements/buttons/Button';
 import { ButtonBack } from '../../../components/elements/buttons/ButtonBack';
 
@@ -36,7 +36,7 @@ export const VerifyEmail = () => {
         <h2 className="subtitle">
           Did not receive the email within 5 minutes?
         </h2>
-        <SmallStep />
+        <NumerableList />
       </StepsWrapper>
       <NextButton text="Continue" />
       <ButtonGroup>

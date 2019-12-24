@@ -1,9 +1,8 @@
-import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import repeatIcon from '../../../assets/images/repeat.svg';
 import { colors } from '../../../styles/const';
 
-const ButtonStyled = styled(Button)`
+const ButtonTransparent = styled.div`
   position: relative;
   padding-left: 22px;
   font-size: 16px;
@@ -25,8 +24,4 @@ const ButtonStyled = styled(Button)`
   }
 `;
 
-const ButtonGroupStyled = styled.div`
-  margin-top: 30px;
-`;
-
-export { ButtonStyled as ButtonTransparent };
+export { ButtonTransparent };

@@ -4,7 +4,40 @@ import { Link as LinkComponent } from 'react-router-dom';
 import { colors } from '../../../styles/const';
 import PropTypes from 'prop-types';
 
+const Link = ({ to, children }) => (
+  <ButtonStyled>
+    <LinkComponent to={to}>{children}</LinkComponent>
+  </ButtonStyled>
+);
+
+Link.propTypes = {
+  children: PropTypes.any,
+  to: PropTypes.string,
+};
+
+const Button = ({ to, children, onClick }) => {
+  return (
+    <ButtonGroup>
+      <ButtonStyled
+        as={to ? (to.startsWith('http') ? 'a' : Link) : 'button'}
+        to={to && to.startsWith('http') ? undefined : to}
+        href={to && to.startsWith('http') ? to : undefined}
+        onClick={onClick}
+      >
+        {children}
+      </ButtonStyled>
+    </ButtonGroup>
+  );
+};
+
+Button.propTypes = {
+  children: PropTypes.any,
+  to: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
 const ButtonStyled = styled.div`
+  display: block;
   padding: 18px 30px;
   font-size: 16px;
   line-height: 20px;
@@ -19,39 +52,9 @@ const ButtonStyled = styled.div`
   color: ${colors.white};
 `;
 
-const ButtonGroupStyled = styled.div`
+const ButtonGroup = styled.div`
+  display: flex;
   margin-top: 30px;
 `;
 
-const Link = ({ to, children }) => (
-  <LinkComponent to={to}>{children}</LinkComponent>
-);
-
-Link.propTypes = {
-  children: PropTypes.any,
-  to: PropTypes.string,
-};
-
-const ButtonCmp = ({ to, children, onClick }) => {
-  return (
-    <ButtonGroupStyled>
-      <ButtonStyled
-        as={to ? (to.startsWith('http') ? 'a' : Link) : 'button'}
-        to={to && to.startsWith('http') ? undefined : to}
-        href={to && to.startsWith('http') ? to : undefined}
-        onClick={onClick}
-      >
-        {children}
-      </ButtonStyled>
-    </ButtonGroupStyled>
-  );
-};
-
-ButtonCmp.propTypes = {
-  children: PropTypes.any,
-  to: PropTypes.string,
-  onClick: PropTypes.func,
-};
-
-export { ButtonCmp as Button };
-export { ButtonGroupStyled as ButtonGroup };
+export { Button, ButtonGroup };
