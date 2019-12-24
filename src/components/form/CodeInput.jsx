@@ -4,24 +4,26 @@ import { colors } from '../../styles/const';
 import React from 'react';
 import PropTypes from 'prop-types';
 import FormItem from './FormItem';
+import { ButtonTransparent } from '../elements/buttons/ButtonTransparent';
 
-const Input = ({ label, placeholder, subText }) => {
+const CodeInput = ({ label, placeholder, subText }) => {
   return (
     <FormItem label={label} subText={subText}>
       <InputGroup>
-        <StyledInput placeholder={placeholder} />
+        <StyledCodeInput placeholder={placeholder} />
+        <StyledButton>Send code again</StyledButton>
       </InputGroup>
     </FormItem>
   );
 };
 
-Input.propTypes = {
+CodeInput.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   subText: PropTypes.string,
 };
 
-export const StyledInput = styled(FormControl)`
+export const StyledCodeInput = styled(FormControl)`
   padding: 18px 20px;
   font-size: 16px;
   color: ${colors.blue};
@@ -29,6 +31,12 @@ export const StyledInput = styled(FormControl)`
   border: 0.5px solid ${colors.gray};
   width: 100%;
   height: 56px;
+  max-width: 208px;
+  letter-spacing: 16px;
 `;
 
-export default Input;
+export const StyledButton = styled(ButtonTransparent)`
+  margin-left: 30px;
+`;
+
+export default CodeInput;

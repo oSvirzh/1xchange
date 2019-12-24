@@ -24,7 +24,7 @@ export const CreateForm = () => {
       <a className="home-button" href="/" />
       <h1 className="title">Create an account</h1>
       <p className="paragraph">
-        Already have an account? <Link href="#">Log in</Link>
+        Already have an account? <Link to={RouteConfig.login}>Log in</Link>
       </p>
       <Form>
         <Input
