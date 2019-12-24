@@ -1,23 +1,24 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import styled from 'styled-components';
 import AuthBody from './AuthBody';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const LayoutAuth = ({ children, renderLeft }) => {
-  return (
-    <Container fluid>
-      <RowStyled>
-        {renderLeft}
-        <AuthBody>{children}</AuthBody>
-      </RowStyled>
-    </Container>
-  );
+const Styled = {
+  Container: styled.div`
+    display: flex;
+    min-height: 100vh;
+  `,
 };
 
-const RowStyled = styled(Row)`
-  min-height: 100vh;
-`;
+const LayoutAuth = ({ children, renderLeft }) => {
+  return (
+    <Styled.Container fluid>
+      {renderLeft}
+      <AuthBody>{children}</AuthBody>
+    </Styled.Container>
+  );
+};
 
 LayoutAuth.propTypes = {
   children: PropTypes.any,

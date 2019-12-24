@@ -1,23 +1,15 @@
-import React from 'react';
-import { useFormikContext } from 'formik';
+import React, { useContext } from 'react';
 import { Button } from '../elements/buttons/Button';
+import { StepNavContext } from './StepNavFlow';
+import PropTypes from 'prop-types';
 
-const NextButton = ({ disabled, loading, text, ...props }) => {
-  const { isSubmitting } = useFormikContext();
-
-  return (
-    <Button
-      round
-      type="submit"
-      disabled={isSubmitting || disabled}
-      loading={isSubmitting || loading}
-      {...props}
-    >
-      {text}
-    </Button>
-  );
+const NextButton = ({ text }) => {
+  const { onNextStep } = useContext(StepNavContext);
+  return <Button onClick={onNextStep}>{text}</Button>;
 };
 
-NextButton.propTypes = Button.propTypes;
+NextButton.propTypes = {
+  text: PropTypes.any,
+};
 
 export { NextButton };

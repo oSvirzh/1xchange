@@ -6,10 +6,10 @@ import { GlobalStyles } from './styles/global';
 class AppShell extends Component {
   render() {
     return (
-      <div>
+      <>
         <GlobalStyles />
         <AuthSection />
-      </div>
+      </>
     );
   }
 }
