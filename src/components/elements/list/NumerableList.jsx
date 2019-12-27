@@ -1,18 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../styles/const';
+import PropTypes from 'prop-types';
 
-const NumerableList = () => {
+const NumerableItem = ({ number, text }) => {
   return (
     <>
-      <Styled.Step data-count="1">
-        Make sure you provided the correct email address.
-      </Styled.Step>
-      <Styled.Step data-count="2">
-        Check your email spam/junk folder.
-      </Styled.Step>
+      <Styled.Step data-count={number}>{text}</Styled.Step>
+      {/*<Styled.Step data-count="1">*/}
+      {/*  Make sure you provided the correct email address.*/}
+      {/*</Styled.Step>*/}
+      {/*<Styled.Step data-count="2">*/}
+      {/*  Check your email spam/junk folder.*/}
+      {/*</Styled.Step>*/}
     </>
   );
+};
+
+NumerableItem.propTypes = {
+  number: PropTypes.number,
+  text: PropTypes.string,
 };
 
 const Styled = {
@@ -43,4 +50,4 @@ const Styled = {
   `,
 };
 
-export { NumerableList };
+export { NumerableItem };
