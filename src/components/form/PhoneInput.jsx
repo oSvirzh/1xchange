@@ -6,24 +6,25 @@ import { colors } from '../../styles/const';
 import PropTypes from 'prop-types';
 import FormItem from './FormItem';
 
-const CodeStyled = styled(InputGroup.Text)`
-  font-size: 16px;
-  color: ${colors.blue};
-  background: ${colors.white};
-  border: 0.5px solid ${colors.gray};
-`;
-
-const PhoneInput = ({ label, placeholder, countryCode }) => {
+const PhoneInput = ({ label, placeholder, countryCode, ...props }) => {
   return (
-    <FormItem label={label}>
-      <InputGroup>
-        <InputGroup.Prepend>
-          <CodeStyled>{countryCode}</CodeStyled>
-        </InputGroup.Prepend>
-        <StyledInput placeholder={placeholder} />
-      </InputGroup>
-    </FormItem>
+    <FormItem
+      {...props}
+      label={label}
+      placeholder={placeholder}
+      pretend={<Styled.Code>{countryCode}</Styled.Code>}
+      input
+    />
   );
+};
+
+const Styled = {
+  Code: styled(InputGroup.Text)`
+    font-size: 16px;
+    color: ${colors.blue};
+    background: ${colors.white};
+    border: 0.5px solid ${colors.gray};
+  `,
 };
 
 PhoneInput.propTypes = {

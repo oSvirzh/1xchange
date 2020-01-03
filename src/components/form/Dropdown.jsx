@@ -1,43 +1,48 @@
-import { Dropdown, InputGroup } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
 import styled from 'styled-components';
 import { colors } from '../../styles/const';
-import React from 'react';
 import FormItem from './FormItem';
 
-const DropdownCmp = () => {
-  return (
-    <FormItem label="Country">
-      <Styled.DropdownInput>
-        <InputGroup.Prepend>
-          <InputGroup.Text>UA</InputGroup.Text>
-        </InputGroup.Prepend>
-        <Styled.Append>
-          <Styled.Dropdown>
-            <Styled.DropdownButton variant="success" id="dropdown-basic">
-              Ukraine
-            </Styled.DropdownButton>
+const DropdownCmp = ({ options, value = {}, ...props }) => {
+  const [selected, setSelected] = useState(value);
 
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Ukraine</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Singapur</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">UAE</Dropdown.Item>
-            </Dropdown.Menu>
-          </Styled.Dropdown>
-        </Styled.Append>
-      </Styled.DropdownInput>
-    </FormItem>
+  const Options = () =>
+    options.map(({ label, value }) => (
+      <Dropdown.Item
+        onClick={() =>
+          setSelected({
+            value,
+            label,
+          })
+        }
+      >
+        {label}
+      </Dropdown.Item>
+    ));
+  // TODO create specify dropdown for Country list
+  return (
+    <FormItem
+      {...props}
+      append={
+        <Styled.Dropdown>
+          <Styled.DropdownButton id="dropdown-basic">
+            {selected.label}
+          </Styled.DropdownButton>
+
+          <Dropdown.Menu>
+            <Options />
+          </Dropdown.Menu>
+        </Styled.Dropdown>
+      }
+    />
   );
 };
 
 const Styled = {
-  Append: styled(InputGroup.Append)`
-    width: 100%;
-  `,
-
   Dropdown: styled(Dropdown)`
     width: 100%;
   `,
-
   DropdownButton: styled(Dropdown.Toggle)`
     display: flex;
     align-items: center;
@@ -51,12 +56,6 @@ const Styled = {
     box-sizing: border-box;
     border-radius: 3px;
     padding: 18px 17px;
-  `,
-
-  DropdownInput: styled(InputGroup)`
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
   `,
 };
 

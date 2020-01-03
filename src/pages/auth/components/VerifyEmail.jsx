@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
-import { NextButton } from '../../../components/flows/NextButton';
 import spinIcon from '../../../assets/images/spin.svg';
 import { NumerableList } from '../../../components/elements/list/NumerableList';
-import { ButtonGroup } from '../../../components/elements/buttons/Button';
+import {
+  Button,
+  ButtonGroup,
+} from '../../../components/elements/buttons/Button';
 import { ButtonBack } from '../../../components/elements/buttons/ButtonBack';
 
 const VerifyWrapper = styled.div`
@@ -38,7 +40,7 @@ export const VerifyEmail = () => {
         </h2>
         <NumerableList />
       </StepsWrapper>
-      <NextButton text="Continue" />
+      <Button text="Continue" />
       <ButtonGroup>
         <img src="" alt="" />
         <ButtonBack onClick={() => goBack()}>Go Back</ButtonBack>

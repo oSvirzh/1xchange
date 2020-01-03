@@ -1,23 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { RouteConfig } from '../../config/routeConfig';
-import { registerFlow } from './flows';
 import LayoutAuth from '../../components/layout/auth/LayoutAuth';
 import { Sidebar } from '../../components/layout/auth/Sidebar';
-import AuthStep from './AuthStep';
+import { CreateAccount } from './components';
 
 export const Register = () => (
   <LayoutAuth renderLeft={<Sidebar />}>
     <Switch>
-      <Route exact path={RouteConfig.createAccount}>
-        <AuthStep {...registerFlow.createAccount} />
-      </Route>
-      <Route exact path={RouteConfig.verifyEmail}>
-        <AuthStep {...registerFlow.verifyEmail} />
-      </Route>
-      <Route exact path={RouteConfig.verifyMobile}>
-        <AuthStep {...registerFlow.verifyMobile} />
-      </Route>
+      <Route exact path={RouteConfig.register} component={CreateAccount} />
+      <Route exact path={RouteConfig.verifyEmail} />
+      <Route exact path={RouteConfig.verifyMobile} />
     </Switch>
   </LayoutAuth>
 );
