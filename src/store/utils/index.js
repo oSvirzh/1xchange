@@ -5,5 +5,3 @@ export const createAsyncActionTypes = (serviceName) => ({
   SUCCESS: createAction(`${serviceName} SUCCESS`),
   FAILURE: createAction(`${serviceName} FAILURE`),
 });
-
-export default superFetch;
