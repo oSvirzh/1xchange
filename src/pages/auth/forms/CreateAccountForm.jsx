@@ -1,7 +1,9 @@
-import React from 'react';
-import { Form } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import compose from 'lodash/flowRight';
 import * as yup from 'yup';
-import { withFormik } from 'formik';
+import { Form, withFormik } from 'formik';
+import { findIndex } from 'lodash';
 
 import Input from '../../../components/form/Input';
 import PhoneInput from '../../../components/form/PhoneInput';
@@ -9,19 +11,22 @@ import CheckList from '../../../components/elements/list/CheckList';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { Dropdown } from '../../../components/form/Dropdown';
 import { Button } from '../../../components/elements/buttons/Button';
+import { actions } from '../../../store/auth/actions';
 
 const CreateAccountFormComponent = ({
-  className,
   values,
   touched,
   errors,
-  isValid,
   handleSubmit,
   handleChange,
   handleBlur,
   isLoading,
   isSubmitting,
   error,
+  auth,
+  setErrors,
+  registerAction,
+  setFieldValue,
 }) => {
   const passwordCheckArray = [
     'At least 8 symbols',
@@ -31,13 +36,22 @@ const CreateAccountFormComponent = ({
   ];
 
   const countries = [
-    { label: 'Ukraine', value: 'UA' },
-    { label: 'UAE', value: 'UAE' },
-    { label: 'Singapur', value: 'SG' },
+    { label: 'Ukraine', value: 'UA', code: '+380' },
+    { label: 'UAE', value: 'UAE', code: '+971' },
+    { label: 'Singapur', value: 'SG', code: '+65' },
   ];
 
+  const getCurrentCountryCode = (value) => {
+    const currentCountry = findIndex(countries, { value });
+    return currentCountry !== -1 ? countries[currentCountry].code : '';
+  };
+
+  useEffect(() => {
+    setErrors(auth.errors);
+  }, [auth.errors]);
+
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Input
         label="Email address"
         placeholder="Please enter your email address"
@@ -45,7 +59,10 @@ const CreateAccountFormComponent = ({
         name="email"
         onChange={handleChange}
         onBlur={handleBlur}
-        error={touched.email && (errors.email ? errors.email : error)}
+        error={
+          (touched.email || auth.errors.email) &&
+          (errors.email ? errors.email : error)
+        }
       />
       <PasswordInput
         label="Password"
@@ -54,7 +71,10 @@ const CreateAccountFormComponent = ({
         name="password"
         onChange={handleChange}
         onBlur={handleBlur}
-        error={touched.password && (errors.password ? errors.password : error)}
+        error={
+          (touched.password || auth.errors.password) &&
+          (errors.password ? errors.password : error)
+        }
       />
       <CheckList columns={2} list={passwordCheckArray} />
       <PasswordInput
@@ -69,16 +89,22 @@ const CreateAccountFormComponent = ({
           (errors.confirmPassword ? errors.confirmPassword : error)
         }
       />
-      <Dropdown label="Country" options={countries} value={countries[0]} />
+      <Dropdown
+        label="Country"
+        name="country"
+        options={countries}
+        value={values.country}
+        setFieldValue={setFieldValue}
+      />
       <PhoneInput
         label="Phone number"
-        countryCode="+380"
+        countryCode={getCurrentCountryCode(values.country.value)}
         placeholder="Number"
-        value={values.number}
-        name="number"
+        value={values.phoneNumber}
+        name="phoneNumber"
         onChange={handleChange}
         onBlur={handleBlur}
-        error={touched.number && (errors.number ? errors.number : error)}
+        error={touched.phoneNumber && (errors.phoneNumber ? errors.phoneNumber : error)}
       />
       <p className="paragraph">
         The security code will be sent to the number filled above
@@ -90,39 +116,60 @@ const CreateAccountFormComponent = ({
       >
         Continue
       </Button>
-    </form>
+    </Form>
   );
 };
 
-const CreateAccountForm = withFormik({
-  mapPropsToValues: () => ({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    //country = '',
-    number: '',
+const CreateAccountForm = compose([
+  connect(
+    ({ auth }) => ({
+      auth,
+    }),
+    { registerAction: actions.register }
+  ),
+  withFormik({
+    mapPropsToValues: () => ({
+      email: '',
+      password: '',
+      confirmPassword: '',
+      country: { label: 'Choose country', value: '' },
+      phoneNumber: '',
+    }),
+    validationSchema: yup.object().shape({
+      email: yup
+        .string()
+        .email()
+        .required(),
+      password: yup
+        .string()
+        .min(8, 'Password should be minimum 8 characters')
+        // .matches(
+        //   /^[a-z0-9]+$/i,
+        //   'Password should be a combination of alphabets and numbers.'
+        // )
+        .required(),
+      confirmPassword: yup
+        .string()
+        .required('Confirm password is a required field')
+        .test('match-password', 'Should match Password', function(value) {
+          return value === this.parent.password;
+        }),
+      country: yup.object().required(),
+      phoneNumber: yup.string().required('Phone number is a required field'),
+      // consent: yup
+      //   .bool()
+      //   .test(
+      //     'consent',
+      //     'You have to agree with our Terms and Conditions!',
+      //     (value) => value === true
+      //   )
+      //   .required('You have to agree with our Terms and Conditions!'),
+    }),
+    handleSubmit: (values, { setSubmitting, props }) => {
+      props.registerAction(values);
+      setSubmitting(false);
+    },
   }),
-  validationSchema: yup.object().shape({
-    email: yup.string().required(),
-    password: yup
-      .string()
-      .min(8, 'Password should be minimum 8 characters')
-      .matches(
-        /^[a-z0-9]+$/i,
-        'Password should be a combination of alphabets and numbers.'
-      )
-      .required(),
-    confirmPassword: yup
-      .string()
-      .required()
-      .test('match-password', 'Should match Password', function(value) {
-        return value === this.parent.password;
-      }),
-    number: yup.string().required(),
-  }),
-  handleSubmit: (values) => {
-    console.log('Submit');
-  },
-})(CreateAccountFormComponent);
+])(CreateAccountFormComponent);
 
 export { CreateAccountForm };

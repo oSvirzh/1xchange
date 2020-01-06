@@ -1,17 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 import { RouteConfig } from '../../../config/routeConfig';
 import { Link } from '../../../components/elements/links/Link';
 import FormWrapper from '../сomponents/FormWrapper';
 import { CreateAccountForm } from '../forms/CreateAccountForm';
-import { register } from '../../../store/auth/actions';
 
-const CreateAccountLayout = ({ registerAction }) => {
-  // registerAction({
-  //   email: 'svirzh22@gmail.com',
-  //   password: 'Dniwe123.',
-  //   phoneNumber: '+380687358904',
-  // });
+export const CreateAccount = () => {
   return (
     <FormWrapper>
       <a className="home-button" href="/" />
@@ -23,12 +17,3 @@ const CreateAccountLayout = ({ registerAction }) => {
     </FormWrapper>
   );
 };
-
-const mapStateToProps = (state) => {};
-
-const mapDispatchToProps = { registerAction: register };
-
-export const CreateAccount = connect(
-  null,
-  mapDispatchToProps
-)(CreateAccountLayout);

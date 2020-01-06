@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import styled from 'styled-components';
 import { colors } from '../../styles/const';
 import FormItem from './FormItem';
 
-const DropdownCmp = ({ options, value = {}, ...props }) => {
+const DropdownCmp = ({
+  options,
+  value = {},
+  name,
+  setFieldValue,
+  ...props
+}) => {
   const [selected, setSelected] = useState(value);
 
+  useEffect(() => {
+    setFieldValue(name, selected);
+  }, [selected]);
+
   const Options = () =>
-    options.map(({ label, value }) => (
-      <Dropdown.Item
-        onClick={() =>
-          setSelected({
-            value,
-            label,
-          })
-        }
-      >
-        {label}
+    options.map((item) => (
+      <Dropdown.Item key={item.value} onClick={() => setSelected(item)}>
+        {item.label}
       </Dropdown.Item>
     ));
   // TODO create specify dropdown for Country list
@@ -29,7 +32,6 @@ const DropdownCmp = ({ options, value = {}, ...props }) => {
           <Styled.DropdownButton id="dropdown-basic">
             {selected.label}
           </Styled.DropdownButton>
-
           <Dropdown.Menu>
             <Options />
           </Dropdown.Menu>

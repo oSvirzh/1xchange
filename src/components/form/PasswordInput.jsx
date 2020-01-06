@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { InputGroup, Button } from 'react-bootstrap';
-import { StyledInput } from './Input';
+import { Button } from 'react-bootstrap';
 import { colors } from '../../styles/const';
 import PropTypes from 'prop-types';
 import FormItem from './FormItem';
