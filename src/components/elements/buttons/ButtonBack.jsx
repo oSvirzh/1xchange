@@ -1,9 +1,8 @@
-import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import arrowLeftIcon from '../../../assets/images/arrot-left.svg';
 import { colors } from '../../../styles/const';
 
-const ButtonBackStyled = styled(Button)`
+const ButtonBackStyled = styled.button`
   position: relative;
   padding-left: 22px;
   font-size: 16px;
@@ -22,6 +21,10 @@ const ButtonBackStyled = styled(Button)`
     left: 0;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  &::hover {
+    background-color: transparent;
   }
 `;
 

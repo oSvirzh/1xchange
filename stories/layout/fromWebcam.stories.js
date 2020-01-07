@@ -14,7 +14,9 @@ storiesOf('Layout', module).add('From Web Cam', () => (
   <LayoutAuth renderLeft={<Sidebar activeStep={0} />}>
     <h1 className="title">Upload from webcam</h1>
     <WebCamFlow />
-    <Button>Take photo</Button>
+    <ButtonGroup>
+      <Button>Take photo</Button>
+    </ButtonGroup>
     <ButtonGroup>
       <ButtonBack>Go back</ButtonBack>
     </ButtonGroup>

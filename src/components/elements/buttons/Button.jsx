@@ -17,17 +17,15 @@ Link.propTypes = {
 
 const Button = ({ to, children, onClick, ...props }) => {
   return (
-    <ButtonGroup>
-      <ButtonStyled
-        {...props}
-        as={to ? (to.startsWith('http') ? 'a' : Link) : 'button'}
-        to={to && to.startsWith('http') ? undefined : to}
-        href={to && to.startsWith('http') ? to : undefined}
-        onClick={onClick}
-      >
-        {children}
-      </ButtonStyled>
-    </ButtonGroup>
+    <ButtonStyled
+      {...props}
+      as={to ? (to.startsWith('http') ? 'a' : Link) : 'button'}
+      to={to && to.startsWith('http') ? undefined : to}
+      href={to && to.startsWith('http') ? to : undefined}
+      onClick={onClick}
+    >
+      {children}
+    </ButtonStyled>
   );
 };
 
@@ -37,7 +35,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
 };
 
-const ButtonStyled = styled.div`
+const ButtonStyled = styled.button`
   display: block;
   padding: 18px 30px;
   font-size: 16px;
