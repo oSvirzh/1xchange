@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import spinIcon from '../../../assets/images/spin.svg';
-import { NumerableList } from '../../../components/elements/list/NumerableList';
+import { NumerableItem } from '../../../components/elements/list/NumerableList';
 import {
   Button,
   ButtonGroup,
