@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
-import { NextButton } from '../../../components/flows/NextButton';
 import spinIcon from '../../../assets/images/spin.svg';
-import { NumerableItem } from '../../../components/elements/list/NumerableList';
-import { ButtonGroup } from '../../../components/elements/buttons/Button';
+import { NumerableList } from '../../../components/elements/list/NumerableList';
+import {
+  Button,
+  ButtonGroup,
+} from '../../../components/elements/buttons/Button';
 import { ButtonBack } from '../../../components/elements/buttons/ButtonBack';
 
 const VerifyWrapper = styled.div`
@@ -42,7 +44,7 @@ export const VerifyEmail = () => {
         />
         <NumerableItem text="Check your email spam/junk folder." number="2" />
       </StepsWrapper>
-      <NextButton text="Continue" />
+      <Button text="Continue" />
       <ButtonGroup>
         <img src="" alt="" />
         <ButtonBack onClick={() => goBack()}>Go Back</ButtonBack>

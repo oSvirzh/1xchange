@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const Link = ({ to, children }) => (
   <ButtonStyled>
-    <LinkComponent to={to}>{children}</LinkComponent>
+    <LinkStyled to={to}>{children}</LinkStyled>
   </ButtonStyled>
 );
 
@@ -15,10 +15,11 @@ Link.propTypes = {
   to: PropTypes.string,
 };
 
-const Button = ({ to, children, onClick }) => {
+const Button = ({ to, children, onClick, ...props }) => {
   return (
     <ButtonGroup>
       <ButtonStyled
+        {...props}
         as={to ? (to.startsWith('http') ? 'a' : Link) : 'button'}
         to={to && to.startsWith('http') ? undefined : to}
         href={to && to.startsWith('http') ? to : undefined}
@@ -50,6 +51,14 @@ const ButtonStyled = styled.div`
   border-radius: 4px;
   border: none;
   color: ${colors.white};
+`;
+
+const LinkStyled = styled(LinkComponent)`
+  text-decoration: none;
+  color: ${colors.white};
+  :hover {
+    text-decoration: none;
+  }
 `;
 
 const ButtonGroup = styled.div`

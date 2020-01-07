@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { InputGroup, Button } from 'react-bootstrap';
-import { StyledInput } from './Input';
+import { Button } from 'react-bootstrap';
 import { colors } from '../../styles/const';
 import PropTypes from 'prop-types';
 import FormItem from './FormItem';
 
-const PasswordInput = ({ label, placeholder, subText }) => {
+const PasswordInput = ({ label, placeholder, subText, ...props }) => {
   const [visible, setVisibility] = useState(false);
   return (
-    <FormItem label={label} subText={subText}>
-      <InputGroup>
-        <StyledInput
-          type={visible ? 'text' : 'password'}
-          placeholder={placeholder}
-        />
-        <InputGroup.Append>
-          <Styled.Button
-            variant="outline-secondary"
-            onClick={() => setVisibility(!visible)}
-          >
-            {visible ? 'Hide' : 'Show'}
-          </Styled.Button>
-        </InputGroup.Append>
-      </InputGroup>
-    </FormItem>
+    <FormItem
+      {...props}
+      label={label}
+      subText={subText}
+      append={
+        <Styled.Button
+          variant="outline-secondary"
+          onClick={() => setVisibility(!visible)}
+        >
+          {visible ? 'Hide' : 'Show'}
+        </Styled.Button>
+      }
+      type={visible ? 'text' : 'password'}
+      placeholder={placeholder}
+      input
+    />
   );
 };
 

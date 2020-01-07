@@ -1,18 +1,14 @@
-import { FormControl, InputGroup } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
 import { colors } from '../../styles/const';
 import React from 'react';
 import PropTypes from 'prop-types';
 import FormItem from './FormItem';
-import { ButtonTransparent } from '../elements/buttons/ButtonTransparent';
 
 const CodeInput = ({ label, placeholder, subText }) => {
   return (
     <FormItem label={label} subText={subText}>
-      <InputGroup>
-        <StyledCodeInput placeholder={placeholder} />
-        <StyledButton>Send code again</StyledButton>
-      </InputGroup>
+      <StyledCodeInput placeholder={placeholder} />
     </FormItem>
   );
 };
@@ -33,10 +29,6 @@ export const StyledCodeInput = styled(FormControl)`
   height: 56px;
   max-width: 208px;
   letter-spacing: 16px;
-`;
-
-export const StyledButton = styled(ButtonTransparent)`
-  margin-left: 30px;
 `;
 
 export default CodeInput;

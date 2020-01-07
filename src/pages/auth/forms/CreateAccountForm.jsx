@@ -1,0 +1,178 @@
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import compose from 'lodash/flowRight';
+import * as yup from 'yup';
+import { Form, withFormik } from 'formik';
+import { findIndex } from 'lodash';
+
+import Input from '../../../components/form/Input';
+import PhoneInput from '../../../components/form/PhoneInput';
+import CheckList from '../../../components/elements/list/CheckList';
+import PasswordInput from '../../../components/form/PasswordInput';
+import { Dropdown } from '../../../components/form/Dropdown';
+import { Button } from '../../../components/elements/buttons/Button';
+import { actions } from '../../../store/auth/actions';
+
+const CreateAccountFormComponent = ({
+  values,
+  touched,
+  errors,
+  handleSubmit,
+  handleChange,
+  handleBlur,
+  isLoading,
+  isSubmitting,
+  error,
+  auth,
+  setErrors,
+  registerAction,
+  setFieldValue,
+}) => {
+  const passwordCheckArray = [
+    'At least 8 symbols',
+    'At least 1 UPPERCASE letter',
+    'At least 1 number',
+    'At least 1 special character',
+  ];
+
+  const countries = [
+    { label: 'Ukraine', value: 'UA', code: '+380' },
+    { label: 'UAE', value: 'UAE', code: '+971' },
+    { label: 'Singapur', value: 'SG', code: '+65' },
+  ];
+
+  const getCurrentCountryCode = (value) => {
+    const currentCountry = findIndex(countries, { value });
+    return currentCountry !== -1 ? countries[currentCountry].code : '';
+  };
+
+  useEffect(() => {
+    setErrors(auth.errors);
+  }, [auth.errors]);
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Input
+        label="Email address"
+        placeholder="Please enter your email address"
+        value={values.email}
+        name="email"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={
+          (touched.email || auth.errors.email) &&
+          (errors.email ? errors.email : error)
+        }
+      />
+      <PasswordInput
+        label="Password"
+        placeholder="Please enter your password"
+        value={values.password}
+        name="password"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={
+          (touched.password || auth.errors.password) &&
+          (errors.password ? errors.password : error)
+        }
+      />
+      <CheckList columns={2} list={passwordCheckArray} />
+      <PasswordInput
+        label="Confirm password"
+        placeholder="Confirm password"
+        value={values.confirmPassword}
+        name="confirmPassword"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={
+          touched.confirmPassword &&
+          (errors.confirmPassword ? errors.confirmPassword : error)
+        }
+      />
+      <Dropdown
+        label="Country"
+        name="country"
+        options={countries}
+        value={values.country}
+        setFieldValue={setFieldValue}
+      />
+      <PhoneInput
+        label="Phone number"
+        countryCode={getCurrentCountryCode(values.country.value)}
+        placeholder="Number"
+        value={values.phoneNumber}
+        name="phoneNumber"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={
+          touched.phoneNumber &&
+          (errors.phoneNumber ? errors.phoneNumber : error)
+        }
+      />
+      <p className="paragraph">
+        The security code will be sent to the number filled above
+      </p>
+      <Button
+        type="submit"
+        loading={isLoading}
+        disabled={isSubmitting || isLoading}
+      >
+        Continue
+      </Button>
+    </Form>
+  );
+};
+
+const CreateAccountForm = compose([
+  connect(
+    ({ auth }) => ({
+      auth,
+    }),
+    { registerAction: actions.register }
+  ),
+  withFormik({
+    mapPropsToValues: () => ({
+      email: '',
+      password: '',
+      confirmPassword: '',
+      country: { label: 'Choose country', value: '' },
+      phoneNumber: '',
+    }),
+    validationSchema: yup.object().shape({
+      email: yup
+        .string()
+        .email()
+        .required(),
+      password: yup
+        .string()
+        .min(8, 'Password should be minimum 8 characters')
+        // .matches(
+        //   /^[a-z0-9]+$/i,
+        //   'Password should be a combination of alphabets and numbers.'
+        // )
+        .required(),
+      confirmPassword: yup
+        .string()
+        .required('Confirm password is a required field')
+        .test('match-password', 'Should match Password', function(value) {
+          return value === this.parent.password;
+        }),
+      country: yup.object().required(),
+      phoneNumber: yup.string().required('Phone number is a required field'),
+      // consent: yup
+      //   .bool()
+      //   .test(
+      //     'consent',
+      //     'You have to agree with our Terms and Conditions!',
+      //     (value) => value === true
+      //   )
+      //   .required('You have to agree with our Terms and Conditions!'),
+    }),
+    handleSubmit: (values, { setSubmitting, props }) => {
+      props.registerAction(values);
+      setSubmitting(false);
+    },
+  }),
+])(CreateAccountFormComponent);
+
+export { CreateAccountForm };
