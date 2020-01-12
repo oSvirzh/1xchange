@@ -104,7 +104,10 @@ const CreateAccountFormComponent = ({
         name="phoneNumber"
         onChange={handleChange}
         onBlur={handleBlur}
-        error={touched.phoneNumber && (errors.phoneNumber ? errors.phoneNumber : error)}
+        error={
+          touched.phoneNumber &&
+          (errors.phoneNumber ? errors.phoneNumber : error)
+        }
       />
       <p className="paragraph">
         The security code will be sent to the number filled above

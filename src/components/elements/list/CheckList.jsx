@@ -9,16 +9,20 @@ const CheckList = ({ columns = 1, list }) => {
 
   return chunkedList.map((row, index) => {
     return (
-      <ul key={index}>
+      <Styled.CheckListWrapper key={index}>
         {row.map((item, itemIndex) => (
           <Styled.CheckListItem key={itemIndex}>{item}</Styled.CheckListItem>
         ))}{' '}
-      </ul>
+      </Styled.CheckListWrapper>
     );
   });
 };
 
 const Styled = {
+  CheckListWrapper: styled.ul`
+    padding: 0;
+  `,
+
   CheckListItem: styled.span`
   position: relative;
   display: inline-block;

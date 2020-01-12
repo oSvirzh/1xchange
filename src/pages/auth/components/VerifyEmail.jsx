@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import spinIcon from '../../../assets/images/spin.svg';
-import { NumerableList } from '../../../components/elements/list/NumerableList';
+import { NumerableItem } from '../../../components/elements/list/NumerableList';
 import {
   Button,
   ButtonGroup,
@@ -38,7 +38,11 @@ export const VerifyEmail = () => {
         <h2 className="subtitle">
           Did not receive the email within 5 minutes?
         </h2>
-        <NumerableList />
+        <NumerableItem
+          text="Make sure you provided the correct email address."
+          number="1"
+        />
+        <NumerableItem text="Check your email spam/junk folder." number="2" />
       </StepsWrapper>
       <Button text="Continue" />
       <ButtonGroup>
