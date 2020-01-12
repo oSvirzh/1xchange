@@ -45,4 +45,4 @@ const Styled = {
 `,
 };
 
-export default CheckList;
+export { CheckList };

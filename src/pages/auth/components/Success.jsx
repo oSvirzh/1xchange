@@ -5,7 +5,11 @@ import styled from 'styled-components';
 import okIcon from '../../../assets/images/OK.svg';
 
 const VerifyWrapper = styled.div`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
 
   h1 {
     margin-top: 50px;

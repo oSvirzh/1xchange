@@ -1,17 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import compose from 'lodash/flowRight';
 import * as yup from 'yup';
 import { Form, withFormik } from 'formik';
-import { findIndex } from 'lodash';
+import { findIndex, has } from 'lodash';
 
 import Input from '../../../components/form/Input';
 import PhoneInput from '../../../components/form/PhoneInput';
-import CheckList from '../../../components/elements/list/CheckList';
+import { CheckList } from '../../../components/elements/list/CheckList';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { Dropdown } from '../../../components/form/Dropdown';
 import { Button } from '../../../components/elements/buttons/Button';
 import { actions } from '../../../store/auth/actions';
+import { Checkbox } from '../../../components/form/Checkbox';
+import { Link } from '../../../components/elements/links/Link';
+import ModalWindow from '../../../components/elements/modal/ModalWindow';
+import { useHistory } from 'react-router-dom';
+import { RouteConfig } from '../../../config/routeConfig';
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
 
 const CreateAccountFormComponent = ({
   values,
@@ -25,9 +34,10 @@ const CreateAccountFormComponent = ({
   error,
   auth,
   setErrors,
-  registerAction,
   setFieldValue,
 }) => {
+  const history = useHistory();
+
   const passwordCheckArray = [
     'At least 8 symbols',
     'At least 1 UPPERCASE letter',
@@ -46,80 +56,112 @@ const CreateAccountFormComponent = ({
     return currentCountry !== -1 ? countries[currentCountry].code : '';
   };
 
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
-    setErrors(auth.errors);
-  }, [auth.errors]);
+    if (auth.error) setErrors({ [auth.error.type]: auth.error });
+  }, [auth.error]);
+
+  useEffect(() => {
+    if (auth.isSuccess) {
+      history.push('/register/verify-mobile');
+    }
+  }, [auth.isSuccess]);
+
+  useEffect(() => {
+    if (auth.error.message)
+      NotificationManager.error(auth.error.message, 'ERROR', 5000);
+  }, [auth.error]);
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input
-        label="Email address"
-        placeholder="Please enter your email address"
-        value={values.email}
-        name="email"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        error={
-          (touched.email || auth.errors.email) &&
-          (errors.email ? errors.email : error)
-        }
-      />
-      <PasswordInput
-        label="Password"
-        placeholder="Please enter your password"
-        value={values.password}
-        name="password"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        error={
-          (touched.password || auth.errors.password) &&
-          (errors.password ? errors.password : error)
-        }
-      />
-      <CheckList columns={2} list={passwordCheckArray} />
-      <PasswordInput
-        label="Confirm password"
-        placeholder="Confirm password"
-        value={values.confirmPassword}
-        name="confirmPassword"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        error={
-          touched.confirmPassword &&
-          (errors.confirmPassword ? errors.confirmPassword : error)
-        }
-      />
-      <Dropdown
-        label="Country"
-        name="country"
-        options={countries}
-        value={values.country}
-        setFieldValue={setFieldValue}
-      />
-      <PhoneInput
-        label="Phone number"
-        countryCode={getCurrentCountryCode(values.country.value)}
-        placeholder="Number"
-        value={values.phoneNumber}
-        name="phoneNumber"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        error={
-          touched.phoneNumber &&
-          (errors.phoneNumber ? errors.phoneNumber : error)
-        }
-      />
-      <p className="paragraph">
-        The security code will be sent to the number filled above
-      </p>
-      <Button
-        type="submit"
-        loading={isLoading}
-        disabled={isSubmitting || isLoading}
-      >
-        Continue
-      </Button>
-    </Form>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          label="Email address"
+          placeholder="Please enter your email address"
+          value={values.email}
+          name="email"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={
+            (touched.email || auth.error.type === 'email') &&
+            (errors.email ? errors.email : error)
+          }
+        />
+        <PasswordInput
+          label="Password"
+          placeholder="Please enter your password"
+          value={values.password}
+          name="password"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={
+            (touched.password || auth.error.type === 'password') &&
+            (errors.password ? errors.password : error)
+          }
+        />
+        <CheckList columns={2} list={passwordCheckArray} />
+        <PasswordInput
+          label="Confirm password"
+          placeholder="Confirm password"
+          value={values.confirmPassword}
+          name="confirmPassword"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={
+            touched.confirmPassword &&
+            (errors.confirmPassword ? errors.confirmPassword : error)
+          }
+        />
+        <Dropdown
+          label="Country"
+          name="country"
+          options={countries}
+          value={values.country}
+          setFieldValue={setFieldValue}
+        />
+        <PhoneInput
+          label="Phone number"
+          countryCode={getCurrentCountryCode(values.country.value) || '+380'}
+          placeholder="Number"
+          value={values.phoneNumber}
+          name="phoneNumber"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={
+            touched.phoneNumber &&
+            (errors.phoneNumber ? errors.phoneNumber : error)
+          }
+        />
+        <p className="paragraph">
+          The security code will be sent to the number filled above
+        </p>
+        <Checkbox
+          setFieldValue={setFieldValue}
+          name={'consent'}
+          error={errors.consent}
+        >
+          I accept 1xchange&#39;s{' '}
+          <Link as="span" onClick={() => setShowModal(true)}>
+            Terms of Use
+          </Link>{' '}
+          and
+          <Link as="span" onClick={() => setShowModal(true)}>
+            {' '}
+            Privacy policy
+          </Link>
+        </Checkbox>
+        <Button
+          type="submit"
+          loading={isLoading}
+          disabled={isSubmitting || isLoading}
+        >
+          Continue
+        </Button>
+        <ModalWindow isShowed={showModal} />
+      </Form>
+      <NotificationContainer />
+    </>
   );
 };
 

@@ -1,17 +1,27 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { AuthSection } from './pages/auth';
 import { GlobalStyles } from './styles/global';
+import { Main } from './pages/Main';
+import { actions } from './store/auth/actions';
 
-class AppShell extends Component {
-  render() {
-    return (
-      <>
-        <GlobalStyles />
-        <AuthSection />
-      </>
-    );
-  }
-}
+const AppShell = ({ isAuthenticated, getCurrentSession }) => {
+  useEffect(() => {
+    getCurrentSession();
+  }, []);
 
-export const App = withRouter(AppShell);
+  return (
+    <>
+      <GlobalStyles />
+      {isAuthenticated ? <Main /> : <AuthSection />}
+    </>
+  );
+};
+
+export const App = withRouter(
+  connect(
+    (state) => ({ isAuthenticated: state.auth.isAuthenticated }),
+    { getCurrentSession: actions.getCurrentSession }
+  )(AppShell)
+);

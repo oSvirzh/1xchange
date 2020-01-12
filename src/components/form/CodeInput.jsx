@@ -5,10 +5,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FormItem from './FormItem';
 
-const CodeInput = ({ label, placeholder, subText }) => {
+const CodeInput = ({ label, placeholder, subText, ...props }) => {
   return (
     <FormItem label={label} subText={subText}>
-      <StyledCodeInput placeholder={placeholder} />
+      <StyledCodeInput {...props} placeholder={placeholder} />
     </FormItem>
   );
 };

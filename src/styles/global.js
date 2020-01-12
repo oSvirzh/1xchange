@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import bootstrap from './libs/bootstrap.scss';
 import fonts from './base/_fonts.scss';
 import { colors, transition } from './const';
+import notifications from 'react-notifications/src/notifications.scss';
 
 const base = {
   '*': {
@@ -38,4 +39,5 @@ export const GlobalStyles = createGlobalStyle`
   ${bootstrap}
   ${base}
   ${fonts}
+  ${notifications}
 `;

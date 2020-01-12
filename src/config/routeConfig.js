@@ -1,10 +1,12 @@
 const RouteConfig = {
   root: '/',
 
-  register: '/register/create-account',
+  register: '/register',
   verifyEmail: '/register/verify-email',
   verifyMobile: '/register/verify-mobile',
   login: '/login',
+
+  dashboard: '/dashboard',
 };
 
 /**

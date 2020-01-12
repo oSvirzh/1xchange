@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import repeatIcon from '../../../assets/images/repeat.svg';
 import { colors } from '../../../styles/const';
 
-const ButtonTransparent = styled.div`
+const ButtonTransparent = styled.button`
   position: relative;
   padding: 18px 30px;
   font-size: 16px;

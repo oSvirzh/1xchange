@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import spinIcon from '../../../assets/images/spin.svg';
@@ -8,6 +8,10 @@ import {
   ButtonGroup,
 } from '../../../components/elements/buttons/Button';
 import { ButtonBack } from '../../../components/elements/buttons/ButtonBack';
+import { connect } from 'react-redux';
+import { Success } from './Success';
+import { RouteConfig } from '../../../config/routeConfig';
+import { actions } from '../../../store/auth/actions';
 
 const VerifyWrapper = styled.div`
   margin-top: 50px;
@@ -18,8 +22,21 @@ const StepsWrapper = styled.div`
   margin-top: 60px;
 `;
 
-export const VerifyEmail = () => {
+export const VerifyEmailLayout = ({ emailConfirmed, confirmEmail, user }) => {
   const { goBack } = useHistory();
+
+  useEffect(() => {
+    confirmEmail(user);
+  }, []);
+
+  if (emailConfirmed) {
+    return (
+      <Success
+        message="Your email verified successfully!"
+        to={RouteConfig.verifyEmail}
+      />
+    );
+  }
 
   return (
     <>
@@ -44,7 +61,7 @@ export const VerifyEmail = () => {
         />
         <NumerableItem text="Check your email spam/junk folder." number="2" />
       </StepsWrapper>
-      <Button text="Continue" />
+      <Button> Continue</Button>
       <ButtonGroup>
         <img src="" alt="" />
         <ButtonBack onClick={() => goBack()}>Go Back</ButtonBack>
@@ -52,3 +69,11 @@ export const VerifyEmail = () => {
     </>
   );
 };
+
+export const VerifyEmail = connect(
+  (state) => ({
+    emailConfirmed: state.auth.emailConfirmed,
+    user: state.auth.register.user,
+  }),
+  { confirmEmail: actions.confirmEmail }
+)(VerifyEmailLayout);

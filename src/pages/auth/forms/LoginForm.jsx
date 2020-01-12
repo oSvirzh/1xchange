@@ -1,0 +1,114 @@
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import compose from 'lodash/flowRight';
+import { has } from 'lodash';
+import * as yup from 'yup';
+import { Form, withFormik } from 'formik';
+import styled from 'styled-components';
+import { InputGroup } from 'react-bootstrap';
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
+
+import { Button } from '../../../components/elements/buttons/Button';
+import { actions } from '../../../store/auth/actions';
+import Input from '../../../components/form/Input';
+import PasswordInput from '../../../components/form/PasswordInput';
+import { Checkbox } from '../../../components/form/Checkbox';
+import { LinkWhite } from '../../../components/elements/links/Link';
+
+const LoginFormLayout = ({
+  values,
+  touched,
+  errors,
+  handleSubmit,
+  handleChange,
+  handleBlur,
+  error,
+  auth,
+}) => {
+  useEffect(() => {
+    if (auth.error.message)
+      NotificationManager.error(auth.error.message, 'ERROR', 5000);
+  }, [auth.error]);
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Input
+        label="Email address"
+        placeholder="Please enter your email address"
+        value={values.email}
+        name="email"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={
+          (touched.email || auth.error.type === 'email') &&
+          (errors.email ? errors.email : error)
+        }
+      />
+      <PasswordInput
+        label="Password"
+        placeholder="Please enter your password"
+        value={values.password}
+        name="password"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={
+          (touched.password || auth.error.type === 'password') &&
+          (errors.password ? errors.password : error)
+        }
+      />
+      <InputGroupStyled>
+        <Checkbox>Keep me signed in on this computer</Checkbox>
+        <LinkWhite href="#">Forgot Password</LinkWhite>
+      </InputGroupStyled>
+      <Button type="submit">Sign in</Button>
+      <NotificationContainer />
+    </Form>
+  );
+};
+
+const InputGroupStyled = styled(InputGroup)`
+  justify-content: space-between;
+`;
+
+const LoginForm = compose([
+  connect(
+    ({ auth }) => ({
+      auth,
+    }),
+    {
+      login: actions.login,
+    }
+  ),
+  withFormik({
+    mapPropsToValues: () => ({
+      email: '',
+      password: '',
+    }),
+    validationSchema: yup.object().shape({
+      email: yup
+        .string()
+        .email()
+        .required(),
+      password: yup
+        .string()
+        .min(8, 'Password should be minimum 8 characters')
+        // .matches(
+        //   /^[a-z0-9]+$/i,
+        //   'Password should be a combination of alphabets and numbers.'
+        // )
+        .required(),
+    }),
+    handleSubmit: (values, { setSubmitting, props }) => {
+      props.login({
+        ...values,
+      });
+
+      setSubmitting(false);
+    },
+  }),
+])(LoginFormLayout);
+
+export { LoginForm };

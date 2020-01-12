@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Modal, ModalBody, ModalFooter, ModalTitle } from 'react-bootstrap';
+import { Modal} from 'react-bootstrap';
 import { Button } from '../buttons/Button';
-import { ButtonTransparent } from '../buttons/ButtonTransparent';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import { colors } from '../../../styles/const';
 
-const ModalWindow = () => {
-  const [show, setShow] = useState(false);
+const ModalWindow = ({isShowed}) => {
+  const [show, setShow] = useState(isShowed);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        МОДАЛКА
-      </Button>
       <Modal
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -52,7 +48,6 @@ const ModalWindow = () => {
           </p>
         </Styled.ModalBody>
         <Styled.ModalFooter>
-          <ButtonTransparent onClick={handleClose}>Close</ButtonTransparent>
           <Button variant="primary" onClick={handleClose}>
             Agree
           </Button>
@@ -63,11 +58,11 @@ const ModalWindow = () => {
 };
 
 const Styled = {
-  ModalTitle: styled(ModalTitle)`
+  ModalTitle: styled(Modal.Title)`
     font-size: 30px;
     line-height: 38px;
   `,
-  ModalBody: styled(ModalBody)`
+  ModalBody: styled(Modal.Body)`
     padding: 13px 30px 30px 40px;
     margin-right: 30px;
     color: ${colors.white};
@@ -83,7 +78,7 @@ const Styled = {
     line-height: 20px;
     border-bottom: none;
   `,
-  ModalFooter: styled(ModalFooter)`
+  ModalFooter: styled(Modal.Footer)`
     padding: 30px 40px 13px 40px;
     color: ${colors.white};
     font-size: 10px;
