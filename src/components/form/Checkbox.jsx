@@ -4,8 +4,12 @@ import styled, { css } from 'styled-components';
 import { applyStyleModifiers } from 'styled-components-modifiers';
 import { colors } from '../../styles/const';
 
-const Checkbox = ({ children, name, setFieldValue, error }) => {
-  const [checked, setChecked] = useState(false);
+const Checkbox = ({ children, name, setFieldValue, error, value = false }) => {
+  const [checked, setChecked] = useState(value);
+
+  useEffect(() => {
+    setChecked(value);
+  }, [value]);
 
   useEffect(() => {
     setFieldValue && setFieldValue(name, checked);
@@ -79,7 +83,7 @@ const Styled = {
     margin-left: 10px;
     color: ${colors.white};
     font-size: 14px;
-    
+
     ${applyStyleModifiers(StyleModifiers.CheckboxLabel)};
   `,
 };

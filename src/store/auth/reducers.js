@@ -7,10 +7,13 @@ const initial = {
     error: {},
     register: { user: {} },
     isSuccess: false,
-    phoneNumberConfirmed: true,
+    phoneNumberConfirmed: false,
     emailConfirmed: false,
     isLoading: false,
     isAuthenticated: false,
+    passwordReset: false,
+    isRegister: false,
+    isDataUpdated: false,
   },
 };
 
@@ -29,36 +32,32 @@ const authReducer = createReducer(
     [ActionTypes.register.FAILURE]: (state, { code, message }) => {
       return Object.assign({}, state, {
         error: {
-          errorType: errorCodes[code] || 'global',
+          type: errorCodes[code] || 'global',
           message,
         },
-        isSuccess: false,
-        isLoading: false,
       });
     },
     [ActionTypes.register.SUCCESS]: (state, payload) => {
       return Object.assign({}, state, {
         register: payload,
-        isSuccess: true,
+        isRegister: true,
         isLoading: false,
       });
     },
     [ActionTypes.singIn.FAILURE]: (state, { code, message }) => {
       return Object.assign({}, state, {
         error: {
-          errorType: [errorCodes[code] || 'global'],
+          errorType: errorCodes[code] || 'global',
           message,
         },
         isAuthenticated: false,
-        isSuccess: false,
         loading: false,
       });
     },
     [ActionTypes.singIn.SUCCESS]: (state, payload) => {
       return Object.assign({}, state, {
-        user: { ...payload },
+        user: { ...payload.attributes, country: JSON.parse(payload.attributes['custom:country']) },
         isAuthenticated: payload.nonLogin ? false : true,
-        isSuccess: true,
         loading: false,
       });
     },
@@ -66,15 +65,13 @@ const authReducer = createReducer(
       return Object.assign({}, state, {
         user: {},
         isAuthenticated: false,
-        isSuccess: false,
         isLoading: true,
       });
     },
     [ActionTypes.getCurrentSession.SUCCESS]: (state, payload) => {
       return Object.assign({}, state, {
-        user: { ...payload },
+        user: { ...payload.idToken.payload,  country: JSON.parse(payload.idToken.payload['custom:country']) },
         isAuthenticated: true,
-        isSuccess: true,
         isLoading: false,
       });
     },
@@ -85,11 +82,42 @@ const authReducer = createReducer(
         isLoading: false,
       });
     },
+    [ActionTypes.confirmPhoneNumber.FAILURE]: (state, { code, message }) => {
+      return Object.assign({}, state, {
+        error: {
+          errorType: errorCodes[code] || 'global',
+          message,
+        },
+        loading: false,
+      });
+    },
     [ActionTypes.confirmEmail.SUCCESS]: (state, payload) => {
       return Object.assign({}, state, {
-        phoneNumber: payload,
+        isLoading: false,
+      });
+    },
+    [ActionTypes.confirmEmail.FAILURE]: (state, { code, message }) => {
+      return Object.assign({}, state, {
+        error: {
+          errorType: errorCodes[code] || 'global',
+          message,
+        },
+        loading: false,
+      });
+    },
+    [ActionTypes.confirmEmailSubmit.SUCCESS]: (state, payload) => {
+      return Object.assign({}, state, {
         emailConfirmed: true,
         isLoading: false,
+      });
+    },
+    [ActionTypes.confirmEmailSubmit.FAILURE]: (state, { code, message }) => {
+      return Object.assign({}, state, {
+        error: {
+          errorType: errorCodes[code] || 'global',
+          message,
+        },
+        loading: false,
       });
     },
     [ActionTypes.confirmEmail.SUCCESS]: (state, payload) => {
@@ -97,6 +125,32 @@ const authReducer = createReducer(
         phoneNumber: payload,
         emailConfirmed: false,
         isLoading: false,
+      });
+    },
+    [ActionTypes.signOut.SUCCESS]: (state, payload) => {
+      return Object.assign({}, state, {
+        isAuthenticated: false,
+      });
+    },
+    [ActionTypes.resetPassword.SUCCESS]: (state, payload) => {
+      return Object.assign({}, state, {
+        passwordReset: true,
+      });
+    },
+    [ActionTypes.updateUserAttributes.FAILURE]: (state, { code, message }) => {
+      return Object.assign({}, state, {
+        error: {
+          errorType: errorCodes[code] || 'global',
+          message,
+        },
+        isAuthenticated: false,
+        loading: false,
+      });
+    },
+    [ActionTypes.updateUserAttributes.SUCCESS]: (state, payload) => {
+      return Object.assign({}, state, {
+        isDataUpdated: true,
+        loading: false,
       });
     },
   },

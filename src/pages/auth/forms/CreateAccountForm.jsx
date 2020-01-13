@@ -59,19 +59,14 @@ const CreateAccountFormComponent = ({
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (auth.error) setErrors({ [auth.error.type]: auth.error });
+    if (auth.error) setErrors({ [auth.error.type]: auth.error.message });
   }, [auth.error]);
 
   useEffect(() => {
-    if (auth.isSuccess) {
-      history.push('/register/verify-mobile');
+    if (auth.isRegister) {
+      history.push(RouteConfig.verifyMobile);
     }
-  }, [auth.isSuccess]);
-
-  useEffect(() => {
-    if (auth.error.message)
-      NotificationManager.error(auth.error.message, 'ERROR', 5000);
-  }, [auth.error]);
+  }, [auth.isRegister]);
 
   return (
     <>
@@ -137,8 +132,9 @@ const CreateAccountFormComponent = ({
           The security code will be sent to the number filled above
         </p>
         <Checkbox
+          value={values.consent}
           setFieldValue={setFieldValue}
-          name={'consent'}
+          name="consent"
           error={errors.consent}
         >
           I accept 1xchange&#39;s{' '}
@@ -158,9 +154,13 @@ const CreateAccountFormComponent = ({
         >
           Continue
         </Button>
-        <ModalWindow isShowed={showModal} />
+        <ModalWindow
+          isShowed={showModal}
+          onAgree={() => {
+            setFieldValue('consent', true);
+          }}
+        />
       </Form>
-      <NotificationContainer />
     </>
   );
 };
@@ -201,14 +201,14 @@ const CreateAccountForm = compose([
         }),
       country: yup.object().required(),
       phoneNumber: yup.string().required('Phone number is a required field'),
-      // consent: yup
-      //   .bool()
-      //   .test(
-      //     'consent',
-      //     'You have to agree with our Terms and Conditions!',
-      //     (value) => value === true
-      //   )
-      //   .required('You have to agree with our Terms and Conditions!'),
+      consent: yup
+        .bool()
+        .test(
+          'consent',
+          'You have to agree with our Terms and Conditions!',
+          (value) => value === true
+        )
+        .required('You have to agree with our Terms and Conditions!'),
     }),
     handleSubmit: (values, { setSubmitting, props }) => {
       props.registerAction(values);

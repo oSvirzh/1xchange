@@ -16,10 +16,10 @@ const Sidebar = () => (
         <Styled.Number number="2" />
         <Styled.Name>Profile information</Styled.Name>
       </Styled.Item>
-      <Styled.Item>
-        <Styled.Number number="3" />
-        <Styled.Name>ID Identification</Styled.Name>
-      </Styled.Item>
+      {/*<Styled.Item>*/}
+      {/*  <Styled.Number number="3" />*/}
+      {/*  <Styled.Name>ID Identification</Styled.Name>*/}
+      {/*</Styled.Item>*/}
     </Styled.Steps>
   </Styled.Sidebar>
 );

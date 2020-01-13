@@ -4,7 +4,9 @@ const RouteConfig = {
   register: '/register',
   verifyEmail: '/register/verify-email',
   verifyMobile: '/register/verify-mobile',
+  updateProfile: '/register/update-profile',
   login: '/login',
+  forgotPassword: '/forgot-password',
 
   dashboard: '/dashboard',
 };

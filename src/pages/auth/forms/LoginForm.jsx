@@ -17,6 +17,7 @@ import Input from '../../../components/form/Input';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { Checkbox } from '../../../components/form/Checkbox';
 import { LinkWhite } from '../../../components/elements/links/Link';
+import { RouteConfig } from '../../../config/routeConfig';
 
 const LoginFormLayout = ({
   values,
@@ -28,11 +29,6 @@ const LoginFormLayout = ({
   error,
   auth,
 }) => {
-  useEffect(() => {
-    if (auth.error.message)
-      NotificationManager.error(auth.error.message, 'ERROR', 5000);
-  }, [auth.error]);
-
   return (
     <Form onSubmit={handleSubmit}>
       <Input
@@ -61,10 +57,9 @@ const LoginFormLayout = ({
       />
       <InputGroupStyled>
         <Checkbox>Keep me signed in on this computer</Checkbox>
-        <LinkWhite href="#">Forgot Password</LinkWhite>
+        <LinkWhite to={RouteConfig.forgotPassword}>Forgot Password</LinkWhite>
       </InputGroupStyled>
       <Button type="submit">Sign in</Button>
-      <NotificationContainer />
     </Form>
   );
 };

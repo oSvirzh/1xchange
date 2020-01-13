@@ -6,8 +6,6 @@ import { ButtonGroup } from '../../../components/elements/buttons/Button';
 import { ButtonBack } from '../../../components/elements/buttons/ButtonBack';
 import { AuthForm } from '../forms/AuthForm';
 import { Success } from './Success';
-import { RouteConfig } from '../../../config/routeConfig';
-import { actions } from '../../../store/auth/actions';
 
 const VerifyWrapper = styled.div`
   h1 {
@@ -16,32 +14,25 @@ const VerifyWrapper = styled.div`
   }
 `;
 
-const AuthCodeLayout = ({ phoneNumberConfirmed, login, authData }) => {
+const AuthCodeLayout = ({
+  success,
+  to,
+  successMessage,
+  title,
+  resend,
+  confirm,
+}) => {
   const history = useHistory();
 
-  useEffect(() => {
-    if (phoneNumberConfirmed)
-      login({
-        email: authData.email,
-        password: authData.password,
-        nonLogin: true,
-      });
-  }, [phoneNumberConfirmed]);
-
-  if (phoneNumberConfirmed) {
-    return (
-      <Success
-        message="Your number verified successfully!"
-        to={RouteConfig.verifyEmail}
-      />
-    );
+  if (success) {
+    return <Success message={successMessage} to={to} />;
   }
 
   return (
     <>
       <VerifyWrapper>
-        <h1 className="title">Enter verification code</h1>
-        <AuthForm />
+        <h1 className="title">{title}</h1>
+        <AuthForm resend={resend} confirm={confirm} />
         <ButtonGroup>
           <ButtonBack onClick={history.goBack}>Go Back</ButtonBack>
         </ButtonGroup>
@@ -50,10 +41,6 @@ const AuthCodeLayout = ({ phoneNumberConfirmed, login, authData }) => {
   );
 };
 
-export const AuthCode = connect(
-  (state) => ({
-    phoneNumberConfirmed: state.auth.phoneNumberConfirmed,
-    authData: state.auth.register,
-  }),
-  { login: actions.login }
-)(AuthCodeLayout);
+export const AuthCode = connect((state) => ({
+  authData: state.auth.register,
+}))(AuthCodeLayout);

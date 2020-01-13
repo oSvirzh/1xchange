@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { RouteConfig } from '../../../config/routeConfig';
 import { Link } from '../../../components/elements/links/Link';
 import FormWrapper from '../сomponents/FormWrapper';

@@ -9,12 +9,14 @@ const DropdownCmp = ({
   value = {},
   name,
   setFieldValue,
+  onChange,
   ...props
 }) => {
   const [selected, setSelected] = useState(value);
 
   useEffect(() => {
-    setFieldValue(name, selected);
+    onChange && onChange(selected);
+    setFieldValue && setFieldValue(name, selected);
   }, [selected]);
 
   const Options = () =>

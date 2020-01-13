@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Modal} from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { Button } from '../buttons/Button';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import { colors } from '../../../styles/const';
 
-const ModalWindow = ({isShowed}) => {
+const ModalWindow = ({ isShowed, onAgree }) => {
   const [show, setShow] = useState(isShowed);
 
+  useEffect(() => {
+    setShow(isShowed);
+  }, [isShowed]);
+
   const handleClose = () => setShow(false);
+
+  const handleAgree = () => {
+    onAgree();
+    handleClose();
+  };
 
   return (
     <>
@@ -48,7 +57,7 @@ const ModalWindow = ({isShowed}) => {
           </p>
         </Styled.ModalBody>
         <Styled.ModalFooter>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleAgree}>
             Agree
           </Button>
         </Styled.ModalFooter>

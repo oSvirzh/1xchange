@@ -17,7 +17,7 @@ const AuthFormLayout = ({
   handleBlur,
   error,
   auth,
-  resendSMS,
+  resend,
 }) => {
   return (
     <Form onSubmit={handleSubmit}>
@@ -29,28 +29,24 @@ const AuthFormLayout = ({
         onChange={handleChange}
         onBlur={handleBlur}
         error={
-          (touched.code || auth.errors.code) &&
+          (touched.code || auth.error.type === 'code') &&
           (errors.code ? errors.code : error)
         }
       />
-      <ButtonTransparent onClick={() => resendSMS(auth.register.email)}>
-        Send code again
-      </ButtonTransparent>
+      {resend && (
+        <ButtonTransparent onClick={() => resend(auth.register.user.username)}>
+          Send code again
+        </ButtonTransparent>
+      )}
       <Button type="submit">Continue</Button>
     </Form>
   );
 };
 
 const AuthForm = compose([
-  connect(
-    ({ auth }) => ({
-      auth,
-    }),
-    {
-      confirmPhoneNumber: actions.confirmPhoneNumber,
-      resendSMS: actions.resendSMS,
-    }
-  ),
+  connect(({ auth }) => ({
+    auth,
+  })),
   withFormik({
     mapPropsToValues: () => ({
       code: '',
@@ -59,9 +55,9 @@ const AuthForm = compose([
       code: yup.string().required(),
     }),
     handleSubmit: (values, { setSubmitting, props }) => {
-      props.confirmPhoneNumber({
+      props.confirm({
         ...values,
-        username: 'alexserzhov@gmail.com',
+        username: props.auth.register.user.username,
       });
 
       setSubmitting(false);

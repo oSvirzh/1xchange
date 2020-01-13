@@ -1,4 +1,5 @@
 import { createAction } from 'redux-act';
+import { mapKeys } from 'lodash';
 
 export const createAsyncActionTypes = (serviceName) => ({
   REQUEST: createAction(`${serviceName} REQUEST`),
@@ -100,4 +101,10 @@ export const reduxHelper = (actionName, fn) => {
     },
     reducer,
   };
+};
+
+export const mapCustomUserAttr = (attributes) => {
+  return mapKeys(attributes, (value, key) => {
+    return 'custom:' + key;
+  });
 };

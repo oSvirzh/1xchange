@@ -27,7 +27,7 @@ export const StyledCodeInput = styled(FormControl)`
   border: 0.5px solid ${colors.gray};
   width: 100%;
   height: 56px;
-  max-width: 208px;
+  max-width: 180px;
   letter-spacing: 16px;
 `;
 
