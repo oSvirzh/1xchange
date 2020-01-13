@@ -14,6 +14,7 @@ const initial = {
     passwordReset: false,
     isRegister: false,
     isDataUpdated: false,
+    passwordResetSubmit: false,
   },
 };
 
@@ -56,7 +57,10 @@ const authReducer = createReducer(
     },
     [ActionTypes.singIn.SUCCESS]: (state, payload) => {
       return Object.assign({}, state, {
-        user: { ...payload.attributes, country: JSON.parse(payload.attributes['custom:country']) },
+        user: {
+          ...payload.attributes,
+          country: JSON.parse(payload.attributes['custom:country']),
+        },
         isAuthenticated: payload.nonLogin ? false : true,
         loading: false,
       });
@@ -70,7 +74,10 @@ const authReducer = createReducer(
     },
     [ActionTypes.getCurrentSession.SUCCESS]: (state, payload) => {
       return Object.assign({}, state, {
-        user: { ...payload.idToken.payload,  country: JSON.parse(payload.idToken.payload['custom:country']) },
+        user: {
+          ...payload.idToken.payload,
+          country: JSON.parse(payload.idToken.payload['custom:country']),
+        },
         isAuthenticated: true,
         isLoading: false,
       });
@@ -134,7 +141,30 @@ const authReducer = createReducer(
     },
     [ActionTypes.resetPassword.SUCCESS]: (state, payload) => {
       return Object.assign({}, state, {
-        passwordReset: true,
+        passwordReset: payload.username,
+      });
+    },
+    [ActionTypes.resetPassword.FAILURE]: (state, { code, message }) => {
+      return Object.assign({}, state, {
+        error: {
+          errorType: errorCodes[code] || 'global',
+          message,
+        },
+        loading: false,
+      });
+    },
+    [ActionTypes.resetPasswordSubmit.SUCCESS]: (state, payload) => {
+      return Object.assign({}, state, {
+        passwordResetSubmit: true,
+      });
+    },
+    [ActionTypes.resetPasswordSubmit.FAILURE]: (state, { code, message }) => {
+      return Object.assign({}, state, {
+        error: {
+          errorType: errorCodes[code] || 'global',
+          message,
+        },
+        loading: false,
       });
     },
     [ActionTypes.updateUserAttributes.FAILURE]: (state, { code, message }) => {
@@ -143,7 +173,6 @@ const authReducer = createReducer(
           errorType: errorCodes[code] || 'global',
           message,
         },
-        isAuthenticated: false,
         loading: false,
       });
     },

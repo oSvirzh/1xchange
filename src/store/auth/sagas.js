@@ -46,6 +46,9 @@ const cognitoSignOut = (payload) => Auth.signOut(payload);
 
 const cognitoResetPassword = (payload) => Auth.forgotPassword(payload);
 
+const cognitoResetPasswordSubmit = ({ username, code, password }) =>
+  Auth.forgotPasswordSubmit(username, code, password);
+
 export function* handleRegister() {
   while (true) {
     try {
@@ -171,9 +174,25 @@ export function* handleResetPassword() {
     try {
       const { payload } = yield take(`${ActionTypes.resetPassword.REQUEST}`);
       const result = yield call(cognitoResetPassword, payload);
-      yield put(ActionTypes.resetPassword.SUCCESS(result));
+      yield put(
+        ActionTypes.resetPassword.SUCCESS({ ...result, username: payload })
+      );
     } catch (error) {
       yield put(ActionTypes.resetPassword.FAILURE(error));
+    }
+  }
+}
+
+export function* handleResetPasswordSubmit() {
+  while (true) {
+    try {
+      const { payload } = yield take(
+        `${ActionTypes.resetPasswordSubmit.REQUEST}`
+      );
+      const result = yield call(cognitoResetPasswordSubmit, payload);
+      yield put(ActionTypes.resetPasswordSubmit.SUCCESS(result));
+    } catch (error) {
+      yield put(ActionTypes.resetPasswordSubmit.FAILURE(error));
     }
   }
 }
@@ -189,4 +208,5 @@ export default function* rootSaga() {
   yield fork(handleUpdateUserAttribute);
   yield fork(handleSignOut);
   yield fork(handleResetPassword);
+  yield fork(handleResetPasswordSubmit);
 }

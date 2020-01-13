@@ -7,6 +7,7 @@ const RouteConfig = {
   updateProfile: '/register/update-profile',
   login: '/login',
   forgotPassword: '/forgot-password',
+  forgotPasswordConfirm: '/enter-new-password',
 
   dashboard: '/dashboard',
 };

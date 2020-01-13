@@ -27,7 +27,7 @@ const ResetPasswordLayout = ({
         onBlur={handleBlur}
         error={touched.email && (errors.email ? errors.email : error)}
       />
-      <Button type="submit">Reset password</Button>
+      <Button type="submit">Continue</Button>
     </Form>
   );
 };

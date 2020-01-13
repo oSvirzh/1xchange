@@ -18,7 +18,7 @@ import { colors } from '../../../styles/const';
 
 const VerifyWrapper = styled.div`
   color: ${colors.white};
-  
+
   h1 {
     margin-top: 50px;
     margin-bottom: 20px;
@@ -28,31 +28,21 @@ const VerifyWrapper = styled.div`
 const ResetPasswordLayout = ({ reseted }) => {
   const history = useHistory();
 
+  useEffect(() => {
+    if (reseted) history.push(RouteConfig.forgotPasswordConfirmZ);
+  }, [reseted]);
+
   return (
     <LayoutAuth renderLeft={<LoginSidebar />}>
-      {reseted ? (
+      <FormWrapper>
         <VerifyWrapper>
-          <h1 className="title">
-            The link for password recovery was successfully sent to your email
-            address
-          </h1>
-          <p>
-            The link for password recovery was successfully sent to your email
-            address. Please,check your email box.
-          </p>
-          <Button to={RouteConfig.root}>Back to Home page</Button>
+          <h1 className="title">Reset password</h1>
+          <ResetPasswordForm />
+          <ButtonGroup>
+            <ButtonBack onClick={history.goBack}>Go Back</ButtonBack>
+          </ButtonGroup>
         </VerifyWrapper>
-      ) : (
-        <FormWrapper>
-          <VerifyWrapper>
-            <h1 className="title">Reset password</h1>
-            <ResetPasswordForm />
-            <ButtonGroup>
-              <ButtonBack onClick={history.goBack}>Go Back</ButtonBack>
-            </ButtonGroup>
-          </VerifyWrapper>
-        </FormWrapper>
-      )}
+      </FormWrapper>
     </LayoutAuth>
   );
 };
