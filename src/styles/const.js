@@ -6,6 +6,7 @@ const colors = {
   pink: '#DE1F73',
   gray: '#C1C1C1',
   blue: '#1D1D29',
+  lightblue: '#22305A',
 };
 
 const transition = 0.3;
