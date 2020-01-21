@@ -11,6 +11,7 @@ import {
 } from 'react-notifications';
 import { connect } from 'react-redux';
 import { EnterNewPassword } from './components/EnterNewPassword';
+import LandingLayout from '../../components/layout/landing/LandingLayout';
 
 const AuthSectionLayout = ({ error }) => {
   useEffect(() => {
@@ -27,7 +28,8 @@ const AuthSectionLayout = ({ error }) => {
           path={RouteConfig.forgotPasswordConfirm}
           component={EnterNewPassword}
         />
-        <Redirect to={RouteConfig.login} />
+        <Route path={RouteConfig.root} component={LandingLayout} />
+        <Redirect to={RouteConfig.root} />
       </Switch>
       <NotificationContainer />
     </>
