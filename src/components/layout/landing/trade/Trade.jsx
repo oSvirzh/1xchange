@@ -1,39 +1,65 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../styles/const';
-import {
-    Button,
-    ButtonGroup,
-} from '../../../../components/elements/buttons/Button';
-import tradeGeneral from '../../../../assets/images/landing/trade-two-markets.png';
+import tradeTwoMarkets from '../../../../assets/images/landing/trade-twomarkets.png';
+import tradeGeneral from '../../../../assets/images/landing/trade-general.png';
+import tradeFourMarkets from '../../../../assets/images/landing/trade-fourmarkets.png';
 // import '../../../src/styles/styles.scss';
 
 const Trade = () => {
   return (
     <Styled.TradeWrapper>
-      <Styled.ImageGeneral src={tradeGeneral} alt="" />
+      <Styled.ImagesWrapper>
+        <Styled.ImageGeneral src={tradeGeneral} alt="" />
+        <Styled.ImageTwomarkets src={tradeTwoMarkets} alt="" />
+        <Styled.ImageFourmarkets src={tradeFourMarkets} alt="" />
+      </Styled.ImagesWrapper>
     </Styled.TradeWrapper>
   );
 };
 
 const Styled = {
   TradeWrapper: styled.section`
-    margin: 50px 128px 45px;
-    height: 500px;
+    display: flex;
+    justify-content: center;
+    padding: 50px 128px 45px;
+    height: 783px;
     position: relative;
     color: ${colors.white};
+    background: linear-gradient(170deg, transparent 70%, #22305a 22%);
   `,
-    ImageGeneral: styled.img`
+  ImageGeneral: styled.img`
     position: absolute;
     left: 0;
     top: 0;
+    width: 746px;
+    height: auto;
   `,
-    IntroSubTitle: styled.p`
-margin-top: 30px;
-margin-bottom: 0;
+  ImageTwomarkets: styled.img`
+    position: absolute;
+    left: 158px;
+    top: 182px;
+    width: 746px;
+    height: auto;
+  `,
+  ImageFourmarkets: styled.img`
+    position: absolute;
+    left: 364px;
+    top: 258px;
+    width: 746px;
+    height: auto;
+  `,
+
+  IntroSubTitle: styled.p`
+    margin-top: 30px;
+    margin-bottom: 0;
     max-width: 530px;
     font-size: 14px;
     line-height: 24px;
+  `,
+  ImagesWrapper: styled.div`
+    position: relative;
+    width: 1110px;
   `,
 };
 

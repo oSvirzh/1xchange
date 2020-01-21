@@ -1,23 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../styles/const';
-import {
-    Button,
-    ButtonGroup,
-} from '../../../../components/elements/buttons/Button';
+import { Button } from '../../../../components/elements/buttons/Button';
 import logo from '../../../../assets/images/logo.svg';
+import { RouteConfig } from '../../../../config/routeConfig';
 // import '../../../src/styles/styles.scss';
 
 const Header = () => {
   return (
     <Styled.Header>
-        <img src={logo} alt="logo"/>
-        <Styled.Menu>
-            <Styled.MenuItem>Markets</Styled.MenuItem>
-            <Styled.MenuItem>View Exchange</Styled.MenuItem>
-            <Styled.MenuItem>Help</Styled.MenuItem>
-            <Styled.MenuItem>Fees</Styled.MenuItem>
-        </Styled.Menu>
+      <img src={logo} alt="logo" />
+      <Styled.Menu>
+        <Styled.MenuItem>Markets</Styled.MenuItem>
+        <Styled.MenuItem>View Exchange</Styled.MenuItem>
+        <Styled.MenuItem>Help</Styled.MenuItem>
+        <Styled.MenuItem>Fees</Styled.MenuItem>
+      </Styled.Menu>
+      <Styled.ButtonGroup>
+        <Button cleanTopMargin reverted to={RouteConfig.login}>
+          Log In
+        </Button>
+        <Button cleanTopMargin to={RouteConfig.register}>
+          Sign Up
+        </Button>
+      </Styled.ButtonGroup>
     </Styled.Header>
   );
 };
@@ -29,19 +35,22 @@ const Styled = {
     justify-content: space-between;
     align-items: center;
   `,
-    Menu: styled.ul`
+  Menu: styled.ul`
     display: flex;
     color: ${colors.white};
     margin-bottom: 0;
     list-style: none;
   `,
-    MenuItem: styled.li`
+  MenuItem: styled.li`
     font-size: 18px;
     line-height: 23px;
-    
+
     &:not(:first-child) {
-    margin-left: 50px;
+      margin-left: 50px;
     }
+  `,
+  ButtonGroup: styled.div`
+    display: flex;
   `,
 };
 
