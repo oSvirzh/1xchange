@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { colors } from '../../../../styles/const';
 import {
   Button,
-  ButtonGroup,
 } from '../../../../components/elements/buttons/Button';
 import logo from '../../../../assets/images/logo.svg';
 // import '../../../src/styles/styles.scss';
