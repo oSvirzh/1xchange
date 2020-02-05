@@ -2,6 +2,7 @@ import { createAsyncActionTypes } from '../utils';
 
 export const ActionTypes = {
   register: createAsyncActionTypes('REGISTER'),
+
   singIn: createAsyncActionTypes('SIGN_IN'),
   confirmPhoneNumber: createAsyncActionTypes('CONFIRM_PHONE_NUMBER'),
   resendSMS: createAsyncActionTypes('RESEND_SMS'),

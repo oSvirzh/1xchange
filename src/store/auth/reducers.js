@@ -12,7 +12,7 @@ const initial = {
     isLoading: false,
     isAuthenticated: false,
     passwordReset: false,
-    isRegister: false,
+    isRegister: true,
     isDataUpdated: false,
     passwordResetSubmit: false,
   },

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import compose from 'lodash/flowRight';
 import * as yup from 'yup';
 import { Form, withFormik } from 'formik';
-import { findIndex, has } from 'lodash';
+import { findIndex } from 'lodash';
+import { useHistory } from 'react-router-dom';
 
 import Input from '../../../components/form/Input';
 import PhoneInput from '../../../components/form/PhoneInput';
@@ -15,12 +16,7 @@ import { actions } from '../../../store/auth/actions';
 import { Checkbox } from '../../../components/form/Checkbox';
 import { Link } from '../../../components/elements/links/Link';
 import ModalWindow from '../../../components/elements/modal/ModalWindow';
-import { useHistory } from 'react-router-dom';
 import { RouteConfig } from '../../../config/routeConfig';
-import {
-  NotificationContainer,
-  NotificationManager,
-} from 'react-notifications';
 
 const CreateAccountFormComponent = ({
   values,

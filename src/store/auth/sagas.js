@@ -5,10 +5,10 @@ import { mapCustomUserAttr } from '../utils';
 
 Amplify.configure({
   Auth: {
-    userPoolId: process.env.REACT_APP_USER_POOL_ID, //us-east-1_ZaTGWgiz8
-    userPoolWebClientId: process.env.REACT_APP_CLIENT_ID, //4hudkmk15t7d2hpntbfusurq7u
+    userPoolId: process.env.REACT_APP_USER_POOL_ID,
+    userPoolWebClientId: process.env.REACT_APP_CLIENT_ID,
     cookieStorage: {
-      domain: 'localhost',
+      domain: process.env.REACT_APP_DOMAIN,
       secure: false,
     },
   },

@@ -4,7 +4,6 @@ import { colors } from '../../../../styles/const';
 import { Button } from '../../../../components/elements/buttons/Button';
 import logo from '../../../../assets/images/logo.svg';
 import { RouteConfig } from '../../../../config/routeConfig';
-// import '../../../src/styles/styles.scss';
 
 const Header = () => {
   return (

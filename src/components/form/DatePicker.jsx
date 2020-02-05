@@ -3,7 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Dropdown } from './Dropdown';
-import FormItem from "./FormItem";
+import FormItem from './FormItem';
 
 export class DatePicker extends Component {
   constructor(props) {
@@ -24,7 +24,8 @@ export class DatePicker extends Component {
     return (
       this.state.selectDay !== nextState.selectDay ||
       this.state.selectMonth !== nextState.selectMonth ||
-      this.state.selectYear !== nextState.selectYear
+      this.state.selectYear !== nextState.selectYear ||
+      this.props.error !== nextProps.error
     );
   }
 
