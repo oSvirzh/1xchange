@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react';
-import HighchartsReact from 'highcharts-react-official';
-import Highcharts from 'highcharts/highstock';
+// import HighchartsReact from 'highcharts-react-official';
+// import Highcharts from 'highcharts/highstock';
 import { connect } from 'react-redux';
 import { actions } from '../../store/auth/actions';
 import Header from '../../components/layout/dashboard/Header';
+import Markets from '../../components/layout/dashboard/Markets';
 import styled from 'styled-components';
+import OrderBook from '../../components/layout/dashboard/OrderBook.';
 import TradeHistory from '../../components/layout/dashboard/TradeHistory';
+import OpenOrders from '../../components/layout/dashboard/OpenOrders';
 
 import axios from 'axios';
 
@@ -59,7 +62,7 @@ export class DashboardLayout extends PureComponent {
           time_end: new Date(),
         },
       })
-      .then(({data}) => {
+      .then(({ data }) => {
         this.setState({
           options: {
             series: [
@@ -77,15 +80,17 @@ export class DashboardLayout extends PureComponent {
     return (
       <Styled.Container>
         <Header />
-
+        <Markets />
         <Styled.Body>
-          <Styled.TradingView>
-            <HighchartsReact
-              highcharts={Highcharts}
-              options={this.state.chartOptions}
-              constructorType="stockChart"
-            />{' '}
-          </Styled.TradingView>
+          {/*<Styled.TradingView>*/}
+          {/*  /!*<HighchartsReact*!/*/}
+          {/*    highcharts={Highcharts}*/}
+          {/*    options={this.state.chartOptions}*/}
+          {/*    constructorType="stockChart"*/}
+          {/*  />{' '}*/}
+          {/*</Styled.TradingView>*/}
+          <OrderBook />
+          <OpenOrders />
           <TradeHistory />
         </Styled.Body>
       </Styled.Container>

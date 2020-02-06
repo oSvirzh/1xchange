@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { AuthSection } from './pages/auth';
 import { GlobalStyles } from './styles/global';
 import { Main } from './pages/Main';
+import { Dashboard } from './pages/dashboard/Dashboard';
 import { actions } from './store/auth/actions';
 
 const AppShell = ({ isAuthenticated, getCurrentSession }) => {
@@ -14,7 +15,8 @@ const AppShell = ({ isAuthenticated, getCurrentSession }) => {
   return (
     <>
       <GlobalStyles />
-      {isAuthenticated ? <Main /> : <AuthSection />}
+      <Dashboard />
+      {/*{isAuthenticated ? <Main /> : <AuthSection />}*/}
     </>
   );
 };

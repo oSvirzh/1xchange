@@ -64,7 +64,6 @@ const Styled = {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    margin-bottom: 15px;
     font-weight: 900;
   `,
   Row: styled.div`
@@ -73,6 +72,9 @@ const Styled = {
     flex-wrap: nowrap;
     justify-content: space-between;
     padding: 5px 0;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 16px;
   `,
   Item: styled.div`
     width: 100px;
