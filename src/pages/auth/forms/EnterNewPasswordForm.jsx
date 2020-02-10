@@ -8,6 +8,7 @@ import { actions } from '../../../store/auth/actions';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { CheckList } from '../../../components/elements/list/CheckList';
 import CodeInput from '../../../components/form/CodeInput';
+import { authActions } from "../../../store/rootActions";
 
 const EnterNewPasswordFormLayout = ({
   values,
@@ -75,7 +76,7 @@ const EnterNewPasswordForm = compose([
       auth,
     }),
     {
-      resetPasswordSubmit: actions.resetPasswordSubmit,
+      resetPasswordSubmit: authActions.resetPasswordSubmit,
     }
   ),
   withFormik({

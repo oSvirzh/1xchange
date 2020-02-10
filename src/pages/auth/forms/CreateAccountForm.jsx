@@ -12,11 +12,11 @@ import { CheckList } from '../../../components/elements/list/CheckList';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { Dropdown } from '../../../components/form/Dropdown';
 import { Button } from '../../../components/elements/buttons/Button';
-import { actions } from '../../../store/auth/actions';
 import { Checkbox } from '../../../components/form/Checkbox';
 import { Link } from '../../../components/elements/links/Link';
 import ModalWindow from '../../../components/elements/modal/ModalWindow';
 import { RouteConfig } from '../../../config/routeConfig';
+import { authActions } from "../../../store/rootActions";
 
 const CreateAccountFormComponent = ({
   values,
@@ -166,7 +166,7 @@ const CreateAccountForm = compose([
     ({ auth }) => ({
       auth,
     }),
-    { registerAction: actions.register }
+    { registerAction: authActions.register }
   ),
   withFormik({
     mapPropsToValues: () => ({

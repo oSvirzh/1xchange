@@ -1,16 +1,14 @@
 import React, { PureComponent } from 'react';
-// import HighchartsReact from 'highcharts-react-official';
-// import Highcharts from 'highcharts/highstock';
 import { connect } from 'react-redux';
-import { actions } from '../../store/auth/actions';
+import axios from 'axios';
 import Header from '../../components/layout/dashboard/Header';
-import Markets from '../../components/layout/dashboard/Markets';
+import { Markets } from './components/Markets';
 import styled from 'styled-components';
 import OrderBook from '../../components/layout/dashboard/OrderBook.';
 import TradeHistory from '../../components/layout/dashboard/TradeHistory';
 import OpenOrders from '../../components/layout/dashboard/OpenOrders';
-
-import axios from 'axios';
+import { coinmarketcapActions } from '../../store/rootActions';
+import { TradingView } from './components/TradingView';
 
 const instance = axios.create({
   baseURL: 'https://sandbox-api.coinmarketcap.com/v1',
@@ -20,7 +18,19 @@ const instance = axios.create({
 
 export class DashboardLayout extends PureComponent {
   state = {
-    chartOptions: {
+    data: [
+      [
+        '2019-08-18T23:59:59.999Z',
+        10233.0062966,
+        10487.070244,
+        10119.0946079,
+        10345.8103795,
+      ],
+    ],
+  };
+
+  get chartOptions() {
+    return {
       rangeSelector: {
         selected: 1,
       },
@@ -33,12 +43,7 @@ export class DashboardLayout extends PureComponent {
         {
           type: 'candlestick',
           name: 'AAPL Stock Price',
-          showInNavigator: false,
-          data: [
-            [1517581800000, 166, 166.8, 160.1, 160.5],
-            [1517841000000, 159.1, 163.88, 156, 156.49],
-            [1517927400000, 154.83, 163.72, 154, 163.03],
-          ],
+          data: this.state.data,
           dataGrouping: {
             units: [
               [
@@ -50,30 +55,7 @@ export class DashboardLayout extends PureComponent {
           },
         },
       ],
-    },
-  };
-
-  componentDidMount() {
-    instance
-      .get('/cryptocurrency/ohlcv/historical', {
-        params: {
-          id: 1,
-          time_start: '2019-08-18T00:00:00.000Z',
-          time_end: new Date(),
-        },
-      })
-      .then(({ data }) => {
-        this.setState({
-          options: {
-            series: [
-              {
-                data: [],
-              },
-            ],
-          },
-        });
-      })
-      .catch(console.log);
+    };
   }
 
   render() {
@@ -82,15 +64,11 @@ export class DashboardLayout extends PureComponent {
         <Header />
         <Markets />
         <Styled.Body>
-          {/*<Styled.TradingView>*/}
-          {/*  /!*<HighchartsReact*!/*/}
-          {/*    highcharts={Highcharts}*/}
-          {/*    options={this.state.chartOptions}*/}
-          {/*    constructorType="stockChart"*/}
-          {/*  />{' '}*/}
-          {/*</Styled.TradingView>*/}
           <OrderBook />
-          <OpenOrders />
+          <Styled.TradingView>
+            <TradingView currencyId="1" />
+            <OpenOrders />
+          </Styled.TradingView>
           <TradeHistory />
         </Styled.Body>
       </Styled.Container>
@@ -115,13 +93,15 @@ const Styled = {
     display: flex;
   `,
   TradingView: styled.div`
-    width: 100%;
+    flex: 1 0 auto;
   `,
 };
 
 export const Dashboard = connect(
   (state) => ({
-    user: state.auth.user,
+    quotes: state.coinmarketcap.historical.quotes,
   }),
-  { signOut: actions.signOut }
+  {
+    getHistorical: coinmarketcapActions.getHistorical,
+  }
 )(DashboardLayout);

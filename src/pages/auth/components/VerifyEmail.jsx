@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteConfig } from '../../../config/routeConfig';
-import { actions } from '../../../store/auth/actions';
 import { AuthCode } from './AuthCode';
+import { authActions } from "../../../store/rootActions";
 
 const VerifyEmailLayout = ({ confirmEmail, confirmEmailSubmit, emailConfirmed }) => {
   useEffect(() => {
@@ -23,7 +23,7 @@ const VerifyEmailLayout = ({ confirmEmail, confirmEmailSubmit, emailConfirmed })
 export const VerifyEmail = connect(
   ({auth}) => ({emailConfirmed: auth.emailConfirmed}),
   {
-    confirmEmail: actions.confirmEmail,
-    confirmEmailSubmit: actions.confirmEmailSubmit,
+    confirmEmail: authActions.confirmEmail,
+    confirmEmailSubmit: authActions.confirmEmailSubmit,
   }
 )(VerifyEmailLayout);

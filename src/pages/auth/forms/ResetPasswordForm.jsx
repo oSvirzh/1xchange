@@ -4,8 +4,8 @@ import compose from 'lodash/flowRight';
 import * as yup from 'yup';
 import { Form, withFormik } from 'formik';
 import { Button } from '../../../components/elements/buttons/Button';
-import { actions } from '../../../store/auth/actions';
 import Input from '../../../components/form/Input';
+import { authActions } from "../../../store/rootActions";
 
 const ResetPasswordLayout = ({
   values,
@@ -38,7 +38,7 @@ const ResetPasswordForm = compose([
       auth,
     }),
     {
-      resetPassword: actions.resetPassword,
+      resetPassword: authActions.resetPassword,
     }
   ),
   withFormik({
