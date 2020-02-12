@@ -36,6 +36,8 @@ const Styled = {
   Container: styled.div`
     flex-shrink: 0;
     color: #ffffff;
+    box-shadow: 0px -20px 40px rgba(20, 30, 54, 0.8);
+    z-index: 2;
   `,
   Title: styled.div`
     display: flex;

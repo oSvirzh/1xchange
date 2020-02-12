@@ -2,7 +2,7 @@ import { take, call, put, fork } from 'redux-saga/effects';
 import { ActionTypes } from './actions';
 import Amplify, { Auth } from 'aws-amplify';
 import { mapCustomUserAttr } from '../utils';
-
+//
 // Amplify.configure({
 //   Auth: {
 //     userPoolId: process.env.REACT_APP_USER_POOL_ID,
@@ -195,18 +195,4 @@ export function* handleResetPasswordSubmit() {
       yield put(ActionTypes.resetPasswordSubmit.FAILURE(error));
     }
   }
-}
-
-export default function* rootSaga() {
-  yield fork(handleRegister);
-  yield fork(handleConfirmPhoneNumber);
-  yield fork(handleResendSMS);
-  yield fork(handleVerifyEmail);
-  yield fork(handleVerifyEmailSubmit);
-  yield fork(handleSingIn);
-  yield fork(handleCurrentSession);
-  yield fork(handleUpdateUserAttribute);
-  yield fork(handleSignOut);
-  yield fork(handleResetPassword);
-  yield fork(handleResetPasswordSubmit);
 }

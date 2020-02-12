@@ -8,10 +8,10 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import Input from '../../../components/form/Input';
 import { Button } from '../../../components/elements/buttons/Button';
-import { actions } from '../../../store/auth/actions';
 import { DatePicker } from '../../../components/form/DatePicker';
 import { colors } from '../../../styles/const';
 import { RouteConfig } from '../../../config/routeConfig';
+import { authActions } from '../../../store/rootActions';
 
 const UpdateProfileFormComponent = ({
   values,
@@ -119,7 +119,10 @@ const UpdateProfileForm = compose([
     ({ auth }) => ({
       auth,
     }),
-    { updateUserAttributes: actions.updateUserAttributes, login: actions.login }
+    {
+      updateUserAttributes: authActions.updateUserAttributes,
+      login: authActions.login,
+    }
   ),
   withFormik({
     mapPropsToValues: () => ({

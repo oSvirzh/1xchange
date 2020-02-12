@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
 import styled from 'styled-components';
 import colapsedArrow from '../../../assets/images/colapsed-arrow.svg';
 import { colors } from '../../../styles/const';
-import {Image} from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 
 const OrderBook = () => {
   return (
@@ -18,22 +18,26 @@ const OrderBook = () => {
       <Styled.Body>
         <Styled.Table striped bordered hover>
           <Styled.TableHead>
-          <tr>
-            <th></th>
-            <th>Market Size</th>
-            <th>Price(USD)</th>
-            <th>My size</th>
-          </tr>
+            <tr>
+              <th />
+              <th>Market Size</th>
+              <th>Price(USD)</th>
+              <th>My size</th>
+            </tr>
           </Styled.TableHead>
           <Styled.TableBody>
-          <tr>
-            <td><Styled.Line/></td>
-            <td>2,350.00</td>
-            <td>$2,460.00</td>
-            <td>-</td>
-          </tr>
             <tr>
-              <td><Styled.Line/></td>
+              <td>
+                <Styled.Line />
+              </td>
+              <td>2,350.00</td>
+              <td>$2,460.00</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>
+                <Styled.Line />
+              </td>
               <td>15,350.00</td>
               <td>$5,460.00</td>
               <td>-</td>
@@ -47,13 +51,17 @@ const OrderBook = () => {
         <Styled.Table striped bordered hover>
           <Styled.TableBody>
             <tr>
-              <td><Styled.Line/></td>
+              <td>
+                <Styled.Line />
+              </td>
               <td>2,350.00</td>
               <td>$2,460.00</td>
               <td>-</td>
             </tr>
             <tr>
-              <td><Styled.Line/></td>
+              <td>
+                <Styled.Line />
+              </td>
               <td>15,350.00</td>
               <td>$5,460.00</td>
               <td>-</td>
@@ -69,6 +77,9 @@ const Styled = {
   Container: styled.div`
     flex-shrink: 0;
     color: #ffffff;
+    box-shadow: 0px -20px 40px rgba(20, 30, 54, 0.8);
+    z-index: 2;
+    overflow: hidden;
   `,
   Title: styled.div`
     display: flex;
@@ -98,7 +109,7 @@ const Styled = {
   Line: styled.div`
     height: 15px;
     width: 40px;
-    background: linear-gradient(66.41deg, #1F9202 5.42%, #36CF1D 157.56%);
+    background: linear-gradient(66.41deg, #1f9202 5.42%, #36cf1d 157.56%);
   `,
   Separator: styled.div`
     display: flex;
@@ -132,8 +143,8 @@ const Styled = {
   TableBody: styled.tbody`
     font-size: 10px;
     tr td:first-child {
-    width: 51px;
-    margin: 0;
+      width: 51px;
+      margin: 0;
     }
   `,
   Header: styled.div`
