@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import OrderBook from '../../components/layout/dashboard/OrderBook.';
 import TradeHistory from '../../components/layout/dashboard/TradeHistory';
 import OpenOrders from '../../components/layout/dashboard/OpenOrders';
+import MakeOrder from '../../components/layout/dashboard/MakeOrder';
 
 import axios from 'axios';
 
@@ -84,14 +85,15 @@ export class DashboardLayout extends PureComponent {
         <Styled.Body>
           {/*<Styled.TradingView>*/}
           {/*  /!*<HighchartsReact*!/*/}
-          {/*    highcharts={Highcharts}*/}
+          {/*    highc harts={Highcharts}*/}
           {/*    options={this.state.chartOptions}*/}
           {/*    constructorType="stockChart"*/}
           {/*  />{' '}*/}
           {/*</Styled.TradingView>*/}
           <OrderBook />
           <OpenOrders />
-          <TradeHistory />
+          <MakeOrder />
+          {/*<TradeHistory />*/}
         </Styled.Body>
       </Styled.Container>
     );
