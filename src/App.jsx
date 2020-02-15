@@ -16,7 +16,7 @@ const AppShell = ({ isAuthenticated, getCurrentSession }) => {
     <>
       <GlobalStyles />
       <Dashboard />
-      {/*{isAuthenticated ? <Main /> : <AuthSection />}*/}
+      {isAuthenticated ? <Main /> : <AuthSection />}
     </>
   );
 };
