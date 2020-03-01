@@ -10,24 +10,23 @@ import { Button } from '../../../components/elements/buttons/Button';
 
 class MarketsLayout extends Component {
   get Tabs() {
-    const { currencyMap, markets, currentTab } = this.props;
+    const { currencyMap, markets, currentTab, setCurrentTab } = this.props;
 
     if (currencyMap.length === 0) return;
 
-    return markets.map((item, index) => {
-      console.log('item', item);
+    return markets.map(({ currency }, index) => {
       return (
         <Styled.Market
           key={index}
           modifiers={[index === currentTab && 'active']}
-          //onClick={() => setCurrentTab({ id: currentTab, value: item.id })}
+          onClick={() => setCurrentTab(index)}
         >
           <Styled.MarketRow>
             <Dropdown>
               {index + 1}.
               <Styled.Coin src={coin} alt="coin" />
               <Styled.CoinName id="dropdown-basic">
-                {currencyMap[item].name}
+                {currencyMap[currency].name}
               </Styled.CoinName>
               <Dropdown.Menu>{this.CurrencyList}</Dropdown.Menu>
             </Dropdown>
@@ -42,22 +41,25 @@ class MarketsLayout extends Component {
   }
 
   get CurrencyList() {
-    const { currencyMap, setTabCurrency, currentTab } = this.props;
-    return currencyMap.map((item) => {
-      return (
-        <Dropdown.Item
-          key={item.id}
-          onClick={() =>
-            setTabCurrency({
-              id: currentTab,
-              value: item.id,
-            })
-          }
-        >
-          {item.name}
-        </Dropdown.Item>
-      );
-    });
+    const { currencyMap, updateMarketTab, currentTab } = this.props;
+    if (currencyMap.length > 0)
+      return currencyMap.map(({ id, name }) => {
+        return (
+          <Dropdown.Item
+            key={id}
+            onClick={() =>
+              updateMarketTab({
+                id: currentTab,
+                currency: id,
+              })
+            }
+          >
+            {name}
+          </Dropdown.Item>
+        );
+      });
+
+    return null;
   }
 
   componentDidMount() {
@@ -81,7 +83,7 @@ class MarketsLayout extends Component {
 const Modifiers = {
   active: () => css`
     background: rgba(58, 69, 97, 0.2);
-    //box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
     border-bottom: 2px solid #eda334;
   `,
 };
@@ -156,7 +158,7 @@ export const Markets = connect(
   }),
   {
     getCurrencyMap: coinmarketcapActions.getCurrencyMap,
-    setTabCurrency: coinmarketcapActions.setTabCurrency,
+    updateMarketTab: coinmarketcapActions.updateMarketTab,
     setCurrentTab: coinmarketcapActions.setCurrentTab,
     addMarket: coinmarketcapActions.addMarket,
   }

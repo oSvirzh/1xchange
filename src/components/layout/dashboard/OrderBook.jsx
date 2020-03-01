@@ -1,15 +1,38 @@
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { applyStyleModifiers } from 'styled-components-modifiers';
 import colapsedArrow from '../../../assets/images/colapsed-arrow.svg';
 import { colors } from '../../../styles/const';
 import { Image } from 'react-bootstrap';
 
 const OrderBook = () => {
+  const mock = [
+    { size: '2,350.00', price: '$5,460.00', mySize: '-' },
+    { size: '2,350.00', price: '$5,460.00', mySize: '-' },
+    { size: '2,350.00', price: '$5,460.00', mySize: '-' },
+  ];
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  const elemets = mock.map(({ size, price, mySize }) => (
+    <tr>
+      <Styled.Item>
+        <Styled.Line />
+      </Styled.Item>
+      <Styled.Item modifiers={[!isOpen && 'hidden']}>{size}</Styled.Item>
+      <Styled.Item>{price}</Styled.Item>
+      <Styled.Item modifiers={[!isOpen && 'hidden']}>{mySize}</Styled.Item>
+    </tr>
+  ));
+
   return (
     <Styled.Container>
-      <Styled.Title>
-        <Styled.Sub>
+      <Styled.Title
+        onClick={() => setIsOpen(!isOpen)}
+        modifiers={[!isOpen && 'active']}
+      >
+        <Styled.Sub modifiers={[!isOpen && 'hidden']}>
           <Styled.Button>+</Styled.Button>
           <Styled.Button>-</Styled.Button>
         </Styled.Sub>
@@ -19,58 +42,54 @@ const OrderBook = () => {
         <Styled.Table striped bordered hover>
           <Styled.TableHead>
             <tr>
-              <th />
-              <th>Market Size</th>
-              <th>Price(USD)</th>
-              <th>My size</th>
+              <Styled.HeaderItem />
+              <Styled.HeaderItem modifiers={[!isOpen && 'hidden']}>
+                Market Size
+              </Styled.HeaderItem>
+              <Styled.HeaderItem>Price(USD)</Styled.HeaderItem>
+              <Styled.HeaderItem modifiers={[!isOpen && 'hidden']}>
+                My size
+              </Styled.HeaderItem>
             </tr>
           </Styled.TableHead>
           <Styled.TableBody>
+            {elemets}
             <tr>
-              <td>
-                <Styled.Line />
-              </td>
-              <td>2,350.00</td>
-              <td>$2,460.00</td>
-              <td>-</td>
+              <Styled.Separator colspan="4">
+                <span>USD spread</span>
+                <span>50.0</span>
+              </Styled.Separator>
             </tr>
-            <tr>
-              <td>
-                <Styled.Line />
-              </td>
-              <td>15,350.00</td>
-              <td>$5,460.00</td>
-              <td>-</td>
-            </tr>
-          </Styled.TableBody>
-        </Styled.Table>
-        <Styled.Separator>
-          <span>USD spread</span>
-          <span>50.0</span>
-        </Styled.Separator>
-        <Styled.Table striped bordered hover>
-          <Styled.TableBody>
-            <tr>
-              <td>
-                <Styled.Line />
-              </td>
-              <td>2,350.00</td>
-              <td>$2,460.00</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>
-                <Styled.Line />
-              </td>
-              <td>15,350.00</td>
-              <td>$5,460.00</td>
-              <td>-</td>
-            </tr>
+            {elemets}
           </Styled.TableBody>
         </Styled.Table>
       </Styled.Body>
     </Styled.Container>
   );
+};
+
+const Modifiers = {
+  Title: {
+    active: () => css`
+      &:after {
+        transform: rotate(180deg);
+      }
+    `,
+  },
+  Item: {
+    hidden: () => css`
+      font-size: 0;
+      width: auto;
+    `,
+  },
+  Sub: {
+    hidden: () => css`
+      margin: 0;
+      width: 0;
+      overflow: hidden;
+      flex-wrap: nowrap;
+    `,
+  },
 };
 
 const Styled = {
@@ -99,21 +118,24 @@ const Styled = {
       background-repeat: no-repeat;
       background-image: url("${colapsedArrow}");
     }
+    
+    ${applyStyleModifiers(Modifiers.Title)};
   `,
   Sub: styled.p`
+    display: flex;
     font-size: 12px;
     line-height: 15px;
     margin-right: 84px;
     margin-bottom: 0;
+
+    ${applyStyleModifiers(Modifiers.Sub)};
   `,
   Line: styled.div`
     height: 15px;
     width: 40px;
     background: linear-gradient(66.41deg, #1f9202 5.42%, #36cf1d 157.56%);
   `,
-  Separator: styled.div`
-    display: flex;
-    justify-content: space-between;
+  Separator: styled.td`
     padding: 5px 35px;
     background-color: ${colors.blue};
     font-weight: 600;
@@ -134,9 +156,7 @@ const Styled = {
     background: #22305a;
     height: 100%;
   `,
-  Table: styled(Table)`
-    width: 270px;
-  `,
+  Table: styled(Table)``,
   TableHead: styled.thead`
     font-size: 12px;
   `,
@@ -147,27 +167,11 @@ const Styled = {
       margin: 0;
     }
   `,
-  Header: styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    font-weight: 900;
+  Item: styled.td`
+    ${applyStyleModifiers(Modifiers.Item)};
   `,
-  Row: styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding: 5px 0;
-  `,
-  Item: styled.div`
-    width: 100px;
-    flex: 1 1 auto;
-    :not(:first-child) {
-      margin-left: 15px;
-    }
+  HeaderItem: styled.th`
+    ${applyStyleModifiers(Modifiers.Item)};
   `,
 };
 

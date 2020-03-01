@@ -12,7 +12,11 @@ import {
   handleVerifyEmail,
   handleVerifyEmailSubmit,
 } from './auth/sagas';
-import { handleGetHistorical, handleCurrencyMap } from './coinmarketcap/sagas';
+import {
+  handleGetHistoricalOHLCV,
+  handleGetHistoricalQuotes,
+  handleCurrencyMap,
+} from './coinmarketcap/sagas';
 
 export default function* rootSaga() {
   yield fork(handleRegister);
@@ -27,6 +31,7 @@ export default function* rootSaga() {
   yield fork(handleResetPassword);
   yield fork(handleResetPasswordSubmit);
 
-  yield fork(handleGetHistorical);
+  yield fork(handleGetHistoricalOHLCV);
+  yield fork(handleGetHistoricalQuotes);
   yield fork(handleCurrencyMap);
 }

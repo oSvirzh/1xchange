@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
 import styled from 'styled-components';
 import colapsedArrow from '../../../assets/images/colapsed-arrow.svg';
 import cross from '../../../assets/images/dashboard/cross.svg';
@@ -8,36 +8,38 @@ const OpenOrders = () => {
   return (
     <Styled.Container>
       <Styled.Title>
-        <Styled.Sub>
-          Cancel all
-        </Styled.Sub>
+        <Styled.Sub>Cancel all</Styled.Sub>
         Open orders
       </Styled.Title>
       <Styled.Body>
         <Styled.Table striped bordered hover>
           <Styled.TableHead>
-          <tr>
-            <th>Type</th>
-            <th>Size</th>
-            <th>Price(USD)</th>
-            <th>Filled</th>
-            <th></th>
-          </tr>
+            <tr>
+              <th>Type</th>
+              <th>Size</th>
+              <th>Price(USD)</th>
+              <th>Filled</th>
+              <th />
+            </tr>
           </Styled.TableHead>
           <Styled.TableBody>
-          <tr>
-            <td>Buy</td>
-            <td>0.021325</td>
-            <td>$2,350.00</td>
-            <td>30%</td>
-            <td><img src={cross} alt="close trade"/></td>
-          </tr>
+            <tr>
+              <td>Buy</td>
+              <td>0.021325</td>
+              <td>$2,350.00</td>
+              <td>30%</td>
+              <td>
+                <img src={cross} alt="close trade" />
+              </td>
+            </tr>
             <tr>
               <td>Buy</td>
               <td>0.032425</td>
               <td>$22,350.00</td>
               <td>50%</td>
-              <td><img src={cross} alt="close trade"/></td>
+              <td>
+                <img src={cross} alt="close trade" />
+              </td>
             </tr>
           </Styled.TableBody>
         </Styled.Table>
@@ -48,7 +50,8 @@ const OpenOrders = () => {
 
 const Styled = {
   Container: styled.div`
-    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
     color: #ffffff;
   `,
   Title: styled.div`
@@ -75,6 +78,7 @@ const Styled = {
     line-height: 15px;
     margin-right: 84px;
     margin-bottom: 0;
+    cursor: pointer;
   `,
   Body: styled.div`
     padding: 10px 15px;

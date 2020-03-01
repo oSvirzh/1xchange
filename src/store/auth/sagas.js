@@ -1,8 +1,8 @@
-import { take, call, put, fork } from 'redux-saga/effects';
+import { take, call, put } from 'redux-saga/effects';
 import { ActionTypes } from './actions';
 import Amplify, { Auth } from 'aws-amplify';
 import { mapCustomUserAttr } from '../utils';
-//
+
 // Amplify.configure({
 //   Auth: {
 //     userPoolId: process.env.REACT_APP_USER_POOL_ID,
