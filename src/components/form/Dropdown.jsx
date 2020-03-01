@@ -27,7 +27,7 @@ const DropdownCmp = ({
     ));
   // TODO create specify dropdown for Country list
   return (
-    <FormItem
+    <Styled.FormItem
       {...props}
       append={
         <Styled.Dropdown>
@@ -44,6 +44,9 @@ const DropdownCmp = ({
 };
 
 const Styled = {
+  FormItem: styled(FormItem)`
+    width: 100%;
+  `,
   Dropdown: styled(Dropdown)`
     width: 100%;
   `,
