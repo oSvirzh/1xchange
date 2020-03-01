@@ -42,12 +42,17 @@ const Footer = () => {
 
 const Styled = {
   Footer: styled.footer`
-    margin-right: 50px;
-    margin-left: 50px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 50px;
     display: flex;
     align-items: flex-start;
+    background: linear-gradient(
+      356.09deg,
+      #101728 -48.91%,
+      #11192b 36.39%,
+      #15213d 74.69%,
+      #0c1834 119.39%
+    );
+    box-shadow: 0px 20px 40px rgba(16, 22, 40, 0.8);
   `,
   MenuWrapper: styled.div`
     display: flex;

@@ -1,0 +1,9 @@
+.btn-primary:focus,
+.btn-primary:hover,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+* {
+  transition: 0.2s;
+}

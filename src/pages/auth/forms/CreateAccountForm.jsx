@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import compose from 'lodash/flowRight';
 import * as yup from 'yup';
 import { Form, withFormik } from 'formik';
-import { findIndex, has } from 'lodash';
+import { findIndex } from 'lodash';
+import { useHistory } from 'react-router-dom';
 
 import Input from '../../../components/form/Input';
 import PhoneInput from '../../../components/form/PhoneInput';
@@ -11,16 +12,11 @@ import { CheckList } from '../../../components/elements/list/CheckList';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { Dropdown } from '../../../components/form/Dropdown';
 import { Button } from '../../../components/elements/buttons/Button';
-import { actions } from '../../../store/auth/actions';
 import { Checkbox } from '../../../components/form/Checkbox';
 import { Link } from '../../../components/elements/links/Link';
 import ModalWindow from '../../../components/elements/modal/ModalWindow';
-import { useHistory } from 'react-router-dom';
 import { RouteConfig } from '../../../config/routeConfig';
-import {
-  NotificationContainer,
-  NotificationManager,
-} from 'react-notifications';
+import { authActions } from '../../../store/rootActions';
 
 const CreateAccountFormComponent = ({
   values,
@@ -170,7 +166,7 @@ const CreateAccountForm = compose([
     ({ auth }) => ({
       auth,
     }),
-    { registerAction: actions.register }
+    { registerAction: authActions.register }
   ),
   withFormik({
     mapPropsToValues: () => ({

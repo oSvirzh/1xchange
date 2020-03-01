@@ -7,19 +7,20 @@ import Advantages from './advantages/Advantages';
 import Offers from './offers/Offers';
 import Footer from './footer/Footer';
 import Start from './start/Start';
+import background from '../../../assets/images/landing/background.png';
 import '../../../styles/styles.scss';
 
 const LandingLayout = () => {
   return (
-      <Styled.LandingLayout>
-        <Header/>
-        <Intro/>
-        <Trade/>
-        <Advantages/>
-        <Offers/>
-        <Start/>
-        <Footer/>
-      </Styled.LandingLayout>
+    <Styled.LandingLayout>
+      <Header />
+      <Intro />
+      <Trade />
+      <Advantages />
+      <Offers />
+      <Start />
+      <Footer />
+    </Styled.LandingLayout>
   );
 };
 
@@ -34,6 +35,8 @@ const Styled = {
       #15213d 58.69%,
       #0c1834 131.65%
     );
+    background-image: url(${background});
+    background-size: contain;
   `,
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteConfig } from '../../../config/routeConfig';
-import { actions } from '../../../store/auth/actions';
+import { authActions } from '../../../store/rootActions';
 import { AuthCode } from './AuthCode';
 
 const VerifyPhoneNumberLayout = ({
@@ -38,8 +38,8 @@ export const VerifyPhoneNumber = connect(
     authData: state.auth.register,
   }),
   {
-    login: actions.login,
-    resendSMS: actions.resendSMS,
-    confirmPhoneNumber: actions.confirmPhoneNumber,
+    login: authActions.login,
+    resendSMS: authActions.resendSMS,
+    confirmPhoneNumber: authActions.confirmPhoneNumber,
   }
 )(VerifyPhoneNumberLayout);

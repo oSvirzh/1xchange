@@ -1,18 +1,18 @@
-import { take, call, put, fork } from 'redux-saga/effects';
+import { take, call, put } from 'redux-saga/effects';
 import { ActionTypes } from './actions';
 import Amplify, { Auth } from 'aws-amplify';
 import { mapCustomUserAttr } from '../utils';
 
-Amplify.configure({
-  Auth: {
-    userPoolId: process.env.REACT_APP_USER_POOL_ID, //us-east-1_ZaTGWgiz8
-    userPoolWebClientId: process.env.REACT_APP_CLIENT_ID, //4hudkmk15t7d2hpntbfusurq7u
-    cookieStorage: {
-      domain: 'localhost',
-      secure: false,
-    },
-  },
-});
+// Amplify.configure({
+//   Auth: {
+//     userPoolId: process.env.REACT_APP_USER_POOL_ID,
+//     userPoolWebClientId: process.env.REACT_APP_CLIENT_ID,
+//     cookieStorage: {
+//       domain: process.env.REACT_APP_DOMAIN,
+//       secure: false,
+//     },
+//   },
+// });
 
 const cognitoSignUp = ({ email, password, phoneNumber, country }) =>
   Auth.signUp({
@@ -195,18 +195,4 @@ export function* handleResetPasswordSubmit() {
       yield put(ActionTypes.resetPasswordSubmit.FAILURE(error));
     }
   }
-}
-
-export default function* rootSaga() {
-  yield fork(handleRegister);
-  yield fork(handleConfirmPhoneNumber);
-  yield fork(handleResendSMS);
-  yield fork(handleVerifyEmail);
-  yield fork(handleVerifyEmailSubmit);
-  yield fork(handleSingIn);
-  yield fork(handleCurrentSession);
-  yield fork(handleUpdateUserAttribute);
-  yield fork(handleSignOut);
-  yield fork(handleResetPassword);
-  yield fork(handleResetPasswordSubmit);
 }

@@ -5,11 +5,13 @@ import { get } from 'lodash';
 import * as yup from 'yup';
 import { Form, withFormik } from 'formik';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import Input from '../../../components/form/Input';
 import { Button } from '../../../components/elements/buttons/Button';
-import { actions } from '../../../store/auth/actions';
 import { DatePicker } from '../../../components/form/DatePicker';
 import { colors } from '../../../styles/const';
+import { RouteConfig } from '../../../config/routeConfig';
+import { authActions } from '../../../store/rootActions';
 
 const UpdateProfileFormComponent = ({
   values,
@@ -26,17 +28,17 @@ const UpdateProfileFormComponent = ({
   setFieldValue,
   login,
 }) => {
-  useEffect(() => {
-    // login({
-    //   email: 'alexserzhov@gmail.com',
-    //   password: 'Dniwe123.',
-    //   nonLogin: true,
-    // });
-  }, []);
+  const history = useHistory();
 
   useEffect(() => {
     if (auth.error) setErrors({ [auth.error.type]: auth.error });
   }, [auth.error]);
+
+  useEffect(() => {
+    if (auth.isDataUpdated) {
+      history.push(RouteConfig.dashboard);
+    }
+  }, [auth.isDataUpdated]);
 
   return (
     <>
@@ -57,10 +59,7 @@ const UpdateProfileFormComponent = ({
           name="birthdate"
           value={values.birthdate}
           dateChange={(value) => setFieldValue('birthdate', value)}
-          error={
-            auth.error.birthdate === 'birthdate' &&
-            (errors.birthdate ? errors.birthdate : error)
-          }
+          error={errors.birthdate ? errors.birthdate : error}
         />
         <Styled.Code>
           <Input
@@ -120,7 +119,10 @@ const UpdateProfileForm = compose([
     ({ auth }) => ({
       auth,
     }),
-    { updateUserAttributes: actions.updateUserAttributes, login: actions.login }
+    {
+      updateUserAttributes: authActions.updateUserAttributes,
+      login: authActions.login,
+    }
   ),
   withFormik({
     mapPropsToValues: () => ({

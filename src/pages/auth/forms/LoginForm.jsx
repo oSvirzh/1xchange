@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import compose from 'lodash/flowRight';
-import { has } from 'lodash';
 import * as yup from 'yup';
 import { Form, withFormik } from 'formik';
 import styled from 'styled-components';
 import { InputGroup } from 'react-bootstrap';
-import {
-  NotificationContainer,
-  NotificationManager,
-} from 'react-notifications';
 
 import { Button } from '../../../components/elements/buttons/Button';
-import { actions } from '../../../store/auth/actions';
 import Input from '../../../components/form/Input';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { Checkbox } from '../../../components/form/Checkbox';
 import { LinkWhite } from '../../../components/elements/links/Link';
 import { RouteConfig } from '../../../config/routeConfig';
+import { authActions } from '../../../store/rootActions';
 
 const LoginFormLayout = ({
   values,
@@ -74,7 +69,7 @@ const LoginForm = compose([
       auth,
     }),
     {
-      login: actions.login,
+      login: authActions.login,
     }
   ),
   withFormik({
