@@ -11,10 +11,12 @@ const initial = {
     emailConfirmed: false,
     isLoading: false,
     isAuthenticated: false,
+    singIn: false,
     passwordReset: false,
-    isRegister: true,
+    isRegister: false,
     isDataUpdated: false,
     passwordResetSubmit: false,
+    notifications: {},
   },
 };
 
@@ -51,7 +53,7 @@ const authReducer = createReducer(
           errorType: errorCodes[code] || 'global',
           message,
         },
-        isAuthenticated: false,
+        singIn: false,
         loading: false,
       });
     },
@@ -61,14 +63,14 @@ const authReducer = createReducer(
           ...payload.attributes,
           country: JSON.parse(payload.attributes['custom:country']),
         },
-        isAuthenticated: payload.nonLogin ? false : true,
+        singIn: payload.nonLogin ? false : true,
         loading: false,
       });
     },
     [ActionTypes.getCurrentSession.FAILURE]: (state, payload) => {
       return Object.assign({}, state, {
         user: {},
-        isAuthenticated: false,
+        singIn: false,
         isLoading: true,
       });
     },
@@ -180,6 +182,7 @@ const authReducer = createReducer(
       return Object.assign({}, state, {
         isDataUpdated: true,
         loading: false,
+        notifications: { message: 'Updated successfully!' },
       });
     },
   },

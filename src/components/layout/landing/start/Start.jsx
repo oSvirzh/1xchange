@@ -1,17 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../styles/const';
-import {
-  Button,
-} from '../../../../components/elements/buttons/Button';
-import logo from '../../../../assets/images/logo.svg';
-// import '../../../src/styles/styles.scss';
+import { Button } from '../../../elements/buttons/Button';
+import { RouteConfig } from '../../../../config/routeConfig';
 
 const Start = () => {
   return (
     <Styled.Wrapper>
-      <Styled.Title>Start trading on 1xchange today</Styled.Title>
-      <Button>Get started</Button>
+      <Styled.Title>Start trading on Finxflo today</Styled.Title>
+      <Button to={RouteConfig.register}>Get started</Button>
     </Styled.Wrapper>
   );
 };

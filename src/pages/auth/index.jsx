@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 import { EnterNewPassword } from './components/EnterNewPassword';
 import LandingLayout from '../../components/layout/landing/LandingLayout';
+import AboutLayout from '../../components/layout/landing/AboutLayout';
 
 const AuthSectionLayout = ({ error }) => {
   useEffect(() => {
@@ -28,6 +29,7 @@ const AuthSectionLayout = ({ error }) => {
           path={RouteConfig.forgotPasswordConfirm}
           component={EnterNewPassword}
         />
+        <Route path={RouteConfig.about} component={AboutLayout} />
         <Route path={RouteConfig.root} component={LandingLayout} />
         <Redirect to={RouteConfig.root} />
       </Switch>

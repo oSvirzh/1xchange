@@ -3,16 +3,16 @@ import { ActionTypes } from './actions';
 import Amplify, { Auth } from 'aws-amplify';
 import { mapCustomUserAttr } from '../utils';
 
-// Amplify.configure({
-//   Auth: {
-//     userPoolId: process.env.REACT_APP_USER_POOL_ID,
-//     userPoolWebClientId: process.env.REACT_APP_CLIENT_ID,
-//     cookieStorage: {
-//       domain: process.env.REACT_APP_DOMAIN,
-//       secure: false,
-//     },
-//   },
-// });
+Amplify.configure({
+  Auth: {
+    userPoolId: process.env.REACT_APP_USER_POOL_ID,
+    userPoolWebClientId: process.env.REACT_APP_CLIENT_ID,
+    cookieStorage: {
+      domain: process.env.REACT_APP_DOMAIN,
+      secure: false,
+    },
+  },
+});
 
 const cognitoSignUp = ({ email, password, phoneNumber, country }) =>
   Auth.signUp({
@@ -20,7 +20,7 @@ const cognitoSignUp = ({ email, password, phoneNumber, country }) =>
     password: password,
     attributes: {
       email: email,
-      phone_number: country.code + phoneNumber,
+      phone_number: country.value + phoneNumber,
       'custom:country': JSON.stringify(country),
     },
   });
@@ -48,6 +48,9 @@ const cognitoResetPassword = (payload) => Auth.forgotPassword(payload);
 
 const cognitoResetPasswordSubmit = ({ username, code, password }) =>
   Auth.forgotPasswordSubmit(username, code, password);
+
+const cognitoChangePassword = ({ user, oldPassword, newPassword }) =>
+  Auth.changePassword(user, oldPassword, newPassword);
 
 export function* handleRegister() {
   while (true) {
@@ -153,6 +156,24 @@ export function* handleUpdateUserAttribute() {
       yield put(ActionTypes.updateUserAttributes.SUCCESS(result));
     } catch (error) {
       yield put(ActionTypes.updateUserAttributes.FAILURE(error));
+    }
+  }
+}
+
+export function* handleChangePassword() {
+  while (true) {
+    try {
+      const { payload } = yield take(
+        `${ActionTypes.changeUserPassword.REQUEST}`
+      );
+      let user = yield Auth.currentAuthenticatedUser();
+      const result = yield call(cognitoChangePassword, {
+        user,
+        ...payload,
+      });
+      yield put(ActionTypes.changeUserPassword.SUCCESS(result));
+    } catch (error) {
+      yield put(ActionTypes.changeUserPassword.FAILURE(error));
     }
   }
 }

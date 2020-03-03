@@ -1,5 +1,6 @@
 const RouteConfig = {
   root: '/',
+  about: '/about',
 
   register: '/register',
   verifyEmail: '/register/verify-email',
@@ -10,6 +11,12 @@ const RouteConfig = {
   forgotPasswordConfirm: '/enter-new-password',
 
   dashboard: '/dashboard',
+
+  settings: '/settings',
+  myProfile: '/settings/profile',
+  preferences: '/settings/preferences',
+  security: '/settings/security',
+  accountActivity: '/settings/activity',
 };
 
 /**

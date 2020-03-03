@@ -4,7 +4,6 @@ import compose from 'lodash/flowRight';
 import * as yup from 'yup';
 import { Form, withFormik } from 'formik';
 import { Button } from '../../../components/elements/buttons/Button';
-import { actions } from '../../../store/auth/actions';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { CheckList } from '../../../components/elements/list/CheckList';
 import CodeInput from '../../../components/form/CodeInput';

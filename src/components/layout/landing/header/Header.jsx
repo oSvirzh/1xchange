@@ -1,20 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../styles/const';
-import { Button } from '../../../../components/elements/buttons/Button';
-import logo from '../../../../assets/images/logo.svg';
+import { Button } from '../../../elements/buttons/Button';
+import logo from '../../../../assets/images/logo.png';
 import { RouteConfig } from '../../../../config/routeConfig';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <Styled.Header>
-      <img src={logo} alt="logo" />
-      <Styled.Menu>
-        <Styled.MenuItem>Markets</Styled.MenuItem>
-        <Styled.MenuItem>View Exchange</Styled.MenuItem>
-        <Styled.MenuItem>Help</Styled.MenuItem>
-        <Styled.MenuItem>Fees</Styled.MenuItem>
-      </Styled.Menu>
+      <Link to={RouteConfig.root}>
+        <img src={logo} alt="logo" />
+      </Link>
+      {/*<Styled.Menu>*/}
+      {/*  <Styled.MenuItem>Markets</Styled.MenuItem>*/}
+      {/*  <Styled.MenuItem>View Exchange</Styled.MenuItem>*/}
+      {/*  <Styled.MenuItem>Help</Styled.MenuItem>*/}
+      {/*  <Styled.MenuItem>Fees</Styled.MenuItem>*/}
+      {/*</Styled.Menu>*/}
       <Styled.ButtonGroup>
         <Button cleanTopMargin reverted to={RouteConfig.login}>
           Log In
@@ -33,6 +36,10 @@ const Styled = {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    & img {
+      max-width: 120px;
+    }
   `,
   Menu: styled.ul`
     display: flex;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import compose from 'lodash/flowRight';
 import * as yup from 'yup';
@@ -13,6 +13,7 @@ import { Checkbox } from '../../../components/form/Checkbox';
 import { LinkWhite } from '../../../components/elements/links/Link';
 import { RouteConfig } from '../../../config/routeConfig';
 import { authActions } from '../../../store/rootActions';
+import { useHistory } from 'react-router-dom';
 
 const LoginFormLayout = ({
   values,
@@ -24,6 +25,14 @@ const LoginFormLayout = ({
   error,
   auth,
 }) => {
+  const history = useHistory();
+
+  useEffect(() => {
+    if (auth.singIn) {
+      history.push(RouteConfig.dashboard);
+    }
+  }, [auth.singIn]);
+
   return (
     <Form onSubmit={handleSubmit}>
       <Input
