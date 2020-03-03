@@ -15,6 +15,7 @@ const initial = {
     isRegister: true,
     isDataUpdated: false,
     passwordResetSubmit: false,
+    notifications: {},
   },
 };
 
@@ -180,6 +181,7 @@ const authReducer = createReducer(
       return Object.assign({}, state, {
         isDataUpdated: true,
         loading: false,
+        notifications: { message: 'Updated successfully!' },
       });
     },
   },
