@@ -5,7 +5,7 @@ import { MyProfile } from './MyProfile';
 import { Preferences } from './Preferences';
 import { AccountActivity } from './AccountActivity';
 import { Security } from './Security';
-import Header from '../../components/layout/dashboard/Header';
+import { Header } from '../../components/layout/dashboard/Header';
 import Menu from '../../components/layout/profile/Menu';
 import styled from 'styled-components';
 import { colors } from '../../styles/const';

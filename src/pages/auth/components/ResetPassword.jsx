@@ -8,9 +8,7 @@ import {
 } from '../../../components/elements/buttons/Button';
 import { ButtonBack } from '../../../components/elements/buttons/ButtonBack';
 import { ResetPasswordForm } from '../forms/ResetPasswordForm';
-import { Success } from './Success';
 import { RouteConfig } from '../../../config/routeConfig';
-import { actions } from '../../../store/auth/actions';
 import LayoutAuth from '../../../components/layout/auth/LayoutAuth';
 import { LoginSidebar } from '../../../components/layout/auth/LoginSidebar';
 import FormWrapper from '../сomponents/FormWrapper';
@@ -29,7 +27,7 @@ const ResetPasswordLayout = ({ reseted }) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (reseted) history.push(RouteConfig.forgotPasswordConfirmZ);
+    if (reseted) history.push(RouteConfig.forgotPasswordConfirm);
   }, [reseted]);
 
   return (

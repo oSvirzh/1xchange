@@ -11,6 +11,8 @@ import fourSections from '../../../assets/images/dashboard/four-sections.png';
 import { connect } from 'react-redux';
 import { actions } from '../../../store/auth/actions';
 import { Button } from '../../elements/buttons/Button';
+import { Link } from 'react-router-dom';
+import { RouteConfig } from '../../../config/routeConfig';
 
 const HeaderLayout = ({ signOut }) => {
   const [showPopover, setShowPopover] = useState(false);
@@ -20,23 +22,27 @@ const HeaderLayout = ({ signOut }) => {
       <Styled.Logo>
         <img src={logo} alt="logo" />
       </Styled.Logo>
-      <Styled.Tabs>
-        <Styled.Tab>
-          <img src={oneSection} alt="one market" />
-          <Styled.TabText>1 market</Styled.TabText>
-        </Styled.Tab>
-        <Styled.Tab>
-          <img src={twoSections} alt="two market" />
-          <Styled.TabText>2 markets</Styled.TabText>
-        </Styled.Tab>
-        <Styled.Tab>
-          <img src={fourSections} alt="four market" />
-          <Styled.TabText>4 markets</Styled.TabText>
-        </Styled.Tab>
-      </Styled.Tabs>
+      {/*<Styled.Tabs>*/}
+      {/*  <Styled.Tab>*/}
+      {/*    <img src={oneSection} alt="one market" />*/}
+      {/*    <Styled.TabText>1 market</Styled.TabText>*/}
+      {/*  </Styled.Tab>*/}
+      {/*  <Styled.Tab>*/}
+      {/*    <img src={twoSections} alt="two market" />*/}
+      {/*    <Styled.TabText>2 markets</Styled.TabText>*/}
+      {/*  </Styled.Tab>*/}
+      {/*  <Styled.Tab>*/}
+      {/*    <img src={fourSections} alt="four market" />*/}
+      {/*    <Styled.TabText>4 markets</Styled.TabText>*/}
+      {/*  </Styled.Tab>*/}
+      {/*</Styled.Tabs>*/}
       <Styled.Menu>
-        <Styled.MenuItem>My orders</Styled.MenuItem>
-        <Styled.MenuItem>My wallets</Styled.MenuItem>
+        <Styled.MenuItem>
+          <Link to={RouteConfig.dashboard}>Dashboard</Link>
+        </Styled.MenuItem>
+        <Styled.MenuItem>
+          <Link to={RouteConfig.settings}>Settings</Link>
+        </Styled.MenuItem>
         <Styled.Alert src={alert} />
         <Styled.UserInfo>
           <Styled.AvatarButton onClick={() => setShowPopover(!showPopover)}>
@@ -98,6 +104,10 @@ const Styled = {
   MenuItem: styled.li`
     font-size: 18px;
     line-height: 23px;
+
+    & a {
+      color: ${colors.white};
+    }
 
     &:not(:first-child) {
       margin-left: 50px;

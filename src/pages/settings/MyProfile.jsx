@@ -4,12 +4,9 @@ import Title from '../../components/elements/typography/Title';
 import styled from 'styled-components';
 import { Button } from '../../components/elements/buttons/Button';
 import { colors } from '../../styles/const';
-import Input from '../../components/form/Input';
-import { Dropdown } from '../../components/form/Dropdown';
 import Holder from '../../components/form/Holder';
-import PasswordInput from '../../components/form/PasswordInput';
 import { PersonalInformationForm } from './forms/PersonalInformationForm';
-// import LabelInput from "../../components/form/LabelInput";
+import { connect } from 'react-redux';
 
 const countries = [
   { label: 'Ukraine', value: 'UA', code: '+380' },
@@ -17,7 +14,8 @@ const countries = [
   { label: 'Singapur', value: 'SG', code: '+65' },
 ];
 
-const MyProfile = () => {
+const MyProfileLayout = ({user}) => {
+  const {email, phone_number} = user;
   return (
     <>
       <Title>Contact Information</Title>
@@ -27,12 +25,11 @@ const MyProfile = () => {
           <Styled.AvatarButton cleanTopMargin>Upload</Styled.AvatarButton>
         </Styled.AvatarWrapper>
         <Styled.Contact>
-          {/*<LabelInput>Hello</LabelInput>*/}
           <Styled.ContactRow>
-            <Holder label="Email address">test@test.com</Holder>
+            <Holder label="Email address">{email}</Holder>
           </Styled.ContactRow>
           <Styled.ContactRow>
-            <Holder label="Phone number">+380 000000000</Holder>
+            <Holder label="Phone number">{phone_number}</Holder>
           </Styled.ContactRow>
         </Styled.Contact>
       </Styled.Avatar>
@@ -110,4 +107,6 @@ const Styled = {
   `,
 };
 
-export { MyProfile };
+export const MyProfile = connect(({ auth }) => ({
+  user: auth.user,
+}))(MyProfileLayout);

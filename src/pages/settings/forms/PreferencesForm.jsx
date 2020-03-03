@@ -6,18 +6,12 @@ import { Form, withFormik } from 'formik';
 import { Button } from '../../../components/elements/buttons/Button';
 import { authActions } from '../../../store/rootActions';
 import { Dropdown } from '../../../components/form/Dropdown';
+import { timezones } from '../../../config/timezones';
+import { currencies } from "../../../config/currencies";
 
-const localCurrencyList = [
-  { label: 'Ukraine', value: 'UA', code: '+380' },
-  { label: 'UAE', value: 'UAE', code: '+971' },
-  { label: 'Singapur', value: 'SG', code: '+65' },
-];
+const localCurrencyList = currencies;
 
-const timezonesList = [
-  { label: 'Ukraine', value: 'UA', code: '+380' },
-  { label: 'UAE', value: 'UAE', code: '+971' },
-  { label: 'Singapur', value: 'SG', code: '+65' },
-];
+const timezonesList = timezones;
 
 const PreferencesFormLayout = ({ values, handleSubmit, setFieldValue }) => {
   return (

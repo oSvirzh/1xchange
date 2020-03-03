@@ -12,12 +12,9 @@ import { colors } from '../../../styles/const';
 import { RouteConfig } from '../../../config/routeConfig';
 import { authActions } from '../../../store/rootActions';
 import { Dropdown } from '../../../components/form/Dropdown';
+import { countriesList } from '../../../config/listOfCountries';
 
-const countries = [
-  { label: 'Ukraine', value: 'UA', code: '+380' },
-  { label: 'UAE', value: 'UAE', code: '+971' },
-  { label: 'Singapur', value: 'SG', code: '+65' },
-];
+const countries = countriesList;
 
 const PersonalInformationFormLayout = ({
   values,
@@ -32,7 +29,6 @@ const PersonalInformationFormLayout = ({
   auth,
   setErrors,
   setFieldValue,
-  login,
 }) => {
   const history = useHistory();
 
@@ -153,20 +149,24 @@ const PersonalInformationForm = compose([
   connect(
     ({ auth }) => ({
       auth,
+      user: auth.user,
     }),
     {
       updateUserAttributes: authActions.updateUserAttributes,
     }
   ),
   withFormik({
-    mapPropsToValues: () => ({
-      fullName: '',
-      birthdate: '',
-      zipCode: '',
-      region: '',
-      city: '',
-      address: '',
-      country: { label: 'Choose country', value: '' },
+    mapPropsToValues: ({ user }) => ({
+      fullName: user['custom:fullName'] || '',
+      birthdate: user['custom:birthdate'] || '',
+      zipCode: user['custom:zipCode'] || '',
+      region: user['custom:region'] || '',
+      city: user['custom:city'] || '',
+      address: user['custom:address'] || '',
+      country: JSON.parse(user['custom:country']) || {
+        label: 'Choose country',
+        value: '',
+      },
     }),
     validationSchema: yup.object().shape({
       fullName: yup.string(),

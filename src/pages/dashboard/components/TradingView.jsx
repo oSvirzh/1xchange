@@ -184,7 +184,7 @@ export class TradingViewLayout extends PureComponent {
           <Styled.CoinPeriod>24h volume</Styled.CoinPeriod>
           <SmallDropdown
             options={this.chartTypes}
-            value={this.chartTypes[2]}
+            value={this.chartTypes[1]}
             onChange={this.onChangeTabSeries}
           />
           <Styled.ChartType>Market chart</Styled.ChartType>

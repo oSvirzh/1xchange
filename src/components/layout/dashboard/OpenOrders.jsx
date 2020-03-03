@@ -52,6 +52,8 @@ const Styled = {
   Container: styled.div`
     flex-shrink: 0;
     color: #ffffff;
+    display: flex;
+    flex-direction: column;
   `,
   Title: styled.div`
     display: flex;

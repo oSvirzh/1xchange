@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../components/layout/dashboard/Header';
+import { Header } from '../../components/layout/dashboard/Header';
 import { Markets } from './components/Markets';
 import styled from 'styled-components';
 import OrderBook from '../../components/layout/dashboard/OrderBook';
@@ -15,7 +15,7 @@ export class DashboardLayout extends PureComponent {
     return (
       <>
         <Header />
-        <Modal isShowed />
+        <Modal />
         <Markets />
         <Styled.Body>
           <OrderBook />
