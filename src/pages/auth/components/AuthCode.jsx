@@ -33,9 +33,9 @@ const AuthCodeLayout = ({
       <VerifyWrapper>
         <h1 className="title">{title}</h1>
         <AuthForm resend={resend} confirm={confirm} />
-        {/*<ButtonGroup>*/}
-        {/*  <ButtonBack onClick={history.goBack}>Go Back</ButtonBack>*/}
-        {/*</ButtonGroup>*/}
+        <ButtonGroup>
+          <ButtonBack onClick={history.goBack}>Go Back</ButtonBack>
+        </ButtonGroup>
       </VerifyWrapper>
     </>
   );
