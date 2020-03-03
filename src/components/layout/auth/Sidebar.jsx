@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from '../../../assets/images/logo.svg';
+import logo from '../../../assets/images/logo.png';
 import styled, { css } from 'styled-components';
 import { applyStyleModifiers } from 'styled-components-modifiers';
 import { colors } from '../../../styles/const';
 
 const Sidebar = () => (
   <Styled.Sidebar>
-    <img src={logo} alt="1xchange logo" />
+    <img src={logo} alt="fxf logo" />
     <Styled.Steps>
       <Styled.Item>
         <Styled.Number number="1" modifiers="active" />
@@ -64,6 +64,10 @@ const Styled = {
     max-width: 500px;
     width: 100%;
     padding: 40px;
+
+    img {
+      max-width: 120px;
+    }
   `,
   Item: styled.li`
     display: flex;

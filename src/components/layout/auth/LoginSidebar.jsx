@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../../assets/images/logoLarge.svg';
+import logo from '../../../assets/images/logo.png';
 import styled from 'styled-components';
 
 const Styled = {
@@ -22,7 +22,7 @@ const Styled = {
 
 const LoginSidebar = () => (
   <Styled.Sidebar>
-    <img width="209" src={logo} alt="1xchange logo" />
+    <img width="209" src={logo} alt="fxf logo" />
   </Styled.Sidebar>
 );
 
