@@ -10,6 +10,12 @@ const RouteConfig = {
   forgotPasswordConfirm: '/enter-new-password',
 
   dashboard: '/dashboard',
+
+  settings: '/settings',
+  myProfile: '/settings/profile',
+  preferences: '/settings/preferences',
+  security: '/settings/security',
+  accountActivity: '/settings/activity',
 };
 
 /**

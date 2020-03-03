@@ -12,6 +12,7 @@ export const ActionTypes = {
   signOut: createAsyncActionTypes('SIGN_OUT'),
   resetPassword: createAsyncActionTypes('RESET_PASSWORD'),
   resetPasswordSubmit: createAsyncActionTypes('RESET_PASSWORD_SUBMIT'),
+  changeUserPassword: createAsyncActionTypes('CHANGE_USER_PASSWORD'),
 };
 
 export const actions = {
@@ -26,4 +27,5 @@ export const actions = {
   signOut: ActionTypes.signOut.REQUEST,
   resetPassword: ActionTypes.resetPassword.REQUEST,
   resetPasswordSubmit: ActionTypes.resetPasswordSubmit.REQUEST,
+  changeUserPassword: ActionTypes.changeUserPassword.REQUEST,
 };

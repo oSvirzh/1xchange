@@ -13,7 +13,7 @@ import MakeOrder from '../../components/layout/dashboard/MakeOrder';
 export class DashboardLayout extends PureComponent {
   render() {
     return (
-      <Styled.Container>
+      <>
         <Header />
         <Modal isShowed />
         <Markets />
@@ -28,24 +28,12 @@ export class DashboardLayout extends PureComponent {
           </Styled.TradingView>
           <TradeHistory />
         </Styled.Body>
-      </Styled.Container>
+      </>
     );
   }
 }
 
 const Styled = {
-  Container: styled.div`
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(
-      325.95deg,
-      #101728 -143.03%,
-      #11192b -3.81%,
-      #15213d 58.69%,
-      #0c1834 131.65%
-    );
-    background-size: contain;
-  `,
   Body: styled.div`
     display: flex;
   `,

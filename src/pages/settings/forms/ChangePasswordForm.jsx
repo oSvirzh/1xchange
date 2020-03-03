@@ -6,10 +6,9 @@ import { Form, withFormik } from 'formik';
 import { Button } from '../../../components/elements/buttons/Button';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { CheckList } from '../../../components/elements/list/CheckList';
-import CodeInput from '../../../components/form/CodeInput';
 import { authActions } from '../../../store/rootActions';
 
-const EnterNewPasswordFormLayout = ({
+const ChangePasswordLayout = ({
   values,
   touched,
   errors,
@@ -27,21 +26,21 @@ const EnterNewPasswordFormLayout = ({
   ];
   return (
     <Form onSubmit={handleSubmit}>
-      <CodeInput
-        label="Authentication code"
-        placeholder="0000000"
-        value={values.code}
-        name="code"
+      <PasswordInput
+        label="Current password"
+        placeholder="Please enter your current password"
+        value={values.oldPassword}
+        name="oldPassword"
         onChange={handleChange}
         onBlur={handleBlur}
         error={
-          (touched.code || auth.error.type === 'code') &&
-          (errors.code ? errors.code : error)
+          (touched.oldPassword || auth.error.type === 'oldPassword') &&
+          (errors.oldPassword ? errors.oldPassword : error)
         }
       />
       <PasswordInput
         label="Password"
-        placeholder="Please enter your password"
+        placeholder="Please enter your new password"
         value={values.password}
         name="password"
         onChange={handleChange}
@@ -69,23 +68,31 @@ const EnterNewPasswordFormLayout = ({
   );
 };
 
-const EnterNewPasswordForm = compose([
+const ChangePassworForm = compose([
   connect(
     ({ auth }) => ({
       auth,
     }),
     {
-      resetPasswordSubmit: authActions.resetPasswordSubmit,
+      changeUserPassword: authActions.changeUserPassword,
     }
   ),
   withFormik({
     mapPropsToValues: () => ({
-      code: '',
+      oldPassword: '',
       password: '',
       confirmPassword: '',
     }),
     validationSchema: yup.object().shape({
       code: yup.string().required(),
+      oldPassword: yup
+        .string()
+        .min(8, 'Password should be minimum 8 characters')
+        // .matches(
+        //   /^[a-z0-9]+$/i,
+        //   'Password should be a combination of alphabets and numbers.'
+        // )
+        .required(),
       password: yup
         .string()
         .min(8, 'Password should be minimum 8 characters')
@@ -102,14 +109,14 @@ const EnterNewPasswordForm = compose([
         }),
     }),
     handleSubmit: (values, { setSubmitting, props }) => {
-      props.resetPasswordSubmit({
-        ...values,
-        username: props.auth.passwordReset,
+      props.changeUserPassword({
+        oldPassword: values.oldPassword,
+        newPassword: values.password,
       });
 
       setSubmitting(false);
     },
   }),
-])(EnterNewPasswordFormLayout);
+])(ChangePasswordLayout);
 
-export { EnterNewPasswordForm };
+export { ChangePassworForm };
