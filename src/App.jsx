@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { AuthSection } from './pages/auth';
+import { AuthSection } from './pages/auth';
 import { GlobalStyles } from './styles/global';
-// import { Main } from './pages/Main';
-// import { Dashboard } from './pages/dashboard/Dashboard';
+import { Main } from './pages/Main';
 import { actions } from './store/auth/actions';
-import Settings from "./pages/settings";
 
 const AppShell = ({ isAuthenticated, getCurrentSession }) => {
   useEffect(() => {
@@ -16,8 +14,7 @@ const AppShell = ({ isAuthenticated, getCurrentSession }) => {
   return (
     <>
       <GlobalStyles />
-      <Settings />
-      {/*{isAuthenticated ? <Main /> : <AuthSection />}*/}
+      {isAuthenticated ? <Main /> : <AuthSection />}
     </>
   );
 };
