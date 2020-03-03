@@ -5,14 +5,17 @@ import { Button } from '../buttons/Button';
 import ModalHeader from 'react-bootstrap/ModalHeader';
 import { colors } from '../../../styles/const';
 
-const ModalWindow = ({ isShowed, onAgree }) => {
+const ModalWindow = ({ isShowed, onAgree, onClose, content, title }) => {
   const [show, setShow] = useState(isShowed);
 
   useEffect(() => {
     setShow(isShowed);
   }, [isShowed]);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    onClose();
+    setShow(false);
+  };
 
   const handleAgree = () => {
     onAgree();
@@ -28,38 +31,15 @@ const ModalWindow = ({ isShowed, onAgree }) => {
         onHide={handleClose}
       >
         <Styled.ModalHeader closeButton>
-          <Styled.ModalTitle>Terms of Use</Styled.ModalTitle>
+          <Styled.ModalTitle>{title}</Styled.ModalTitle>
         </Styled.ModalHeader>
-        <Styled.ModalBody>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p>
-            Sed ut perspiciatis unde omnis iste natus error sit
-            voluptatemaccusantium doloremque laudantium, totam rem aperiam,
-            eaque ipsa quae ab illo inventore veritatis et quasi architecto
-            beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-            voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-            magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-            quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-            adipisci velit, sed quia non numquam eius modi tempora incidunt ut
-            labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
-            minima veniam, quis nostrum exercitationem ullam corporis suscipit
-            laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-            vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
-            molestiae consequatur.
-          </p>
-        </Styled.ModalBody>
+        <Styled.ModalBody>{content}</Styled.ModalBody>
         <Styled.ModalFooter>
-          <Button variant="primary" onClick={handleAgree}>
-            Agree
-          </Button>
+          {onAgree && (
+            <Button variant="primary" onClick={handleAgree}>
+              Agree
+            </Button>
+          )}
         </Styled.ModalFooter>
       </Modal>
     </>

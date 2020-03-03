@@ -20,13 +20,13 @@ const VerifyWrapper = styled.div`
   }
 `;
 
-export const Success = ({ message, to }) => {
+export const Success = ({ message, to, buttonText }) => {
   return (
     <>
       <VerifyWrapper>
         <img src={okIcon} width="90px" alt="checked" />
         <h1 className="title">{message}</h1>
-        <Button to={to}>Continue</Button>
+        <Button to={to}>{buttonText || 'Continue'}</Button>
       </VerifyWrapper>
     </>
   );
