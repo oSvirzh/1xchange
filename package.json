@@ -84,21 +84,5 @@
     "styledComponents": {
       "pure": true
     }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{css,scss,md,json}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{js,jsx}": [
-      "prettier --write",
-      "eslint .",
-      "git add"
-    ]
   }
 }

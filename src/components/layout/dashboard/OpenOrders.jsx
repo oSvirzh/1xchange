@@ -50,8 +50,7 @@ const OpenOrders = () => {
 
 const Styled = {
   Container: styled.div`
-    display: flex;
-    flex-direction: column;
+    flex-shrink: 0;
     color: #ffffff;
   `,
   Title: styled.div`
@@ -78,7 +77,6 @@ const Styled = {
     line-height: 15px;
     margin-right: 84px;
     margin-bottom: 0;
-    cursor: pointer;
   `,
   Body: styled.div`
     padding: 10px 15px;
