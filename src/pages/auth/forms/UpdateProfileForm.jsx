@@ -34,12 +34,6 @@ const UpdateProfileFormComponent = ({
     if (auth.error) setErrors({ [auth.error.type]: auth.error });
   }, [auth.error]);
 
-  useEffect(() => {
-    if (auth.isDataUpdated) {
-      history.push(RouteConfig.dashboard);
-    }
-  }, [auth.isDataUpdated]);
-
   return (
     <>
       <Form onSubmit={handleSubmit}>

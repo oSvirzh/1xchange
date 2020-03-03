@@ -23,7 +23,7 @@ export const actions = {
   login: ActionTypes.singIn.REQUEST,
   getCurrentSession: ActionTypes.getCurrentSession.REQUEST,
   updateUserAttributes: ActionTypes.updateUserAttributes.REQUEST,
-  signOut: ActionTypes.signOut.REQUEST,
   resetPassword: ActionTypes.resetPassword.REQUEST,
   resetPasswordSubmit: ActionTypes.resetPasswordSubmit.REQUEST,
+  signOut: ActionTypes.signOut.REQUEST,
 };
