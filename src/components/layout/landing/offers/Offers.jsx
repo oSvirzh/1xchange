@@ -9,26 +9,31 @@ import libra from '../../../../assets/images/landing/offers/libra.png';
 const Offers = () => {
   return (
     <Styled.Wrapper>
-      <Styled.Title>What exactly are we providing you?</Styled.Title>
+      <Styled.Title>What exactly are we providing to you?</Styled.Title>
       <Styled.Grid>
         <Styled.Item>
           <Styled.ItemImage src={gears} />
-          <Styled.ItemDesc>
-            A Powerful Exchange Aggregation Engine
-          </Styled.ItemDesc>
+          <Styled.ItemDesc>Exchange Aggregation Engine</Styled.ItemDesc>
         </Styled.Item>
         <Styled.Item>
           <Styled.ItemImage src={book} />
-          <Styled.ItemDesc>Consolidated Global Order Book</Styled.ItemDesc>
+          <Styled.ItemDesc>
+            All data aggregation Showing full depth of order book of the crypto
+            markets
+          </Styled.ItemDesc>
         </Styled.Item>
         <Styled.Item>
           <Styled.ItemImage src={libra} />
-          <Styled.ItemDesc>FXF Smart Order Routing</Styled.ItemDesc>
+          <Styled.ItemDesc>
+            Global best bid and offer module will be accompanied by 1X Smart
+            Order Routing which means large orders get global best price
+          </Styled.ItemDesc>
         </Styled.Item>
         <Styled.Item>
           <Styled.ItemImage src={cart} />
           <Styled.ItemDesc>
-            Global Best Bid Best Offer
+            By virtue of the 1X model, there is no need to maintain API
+            information for each exchange you want to trade on.
           </Styled.ItemDesc>
         </Styled.Item>
       </Styled.Grid>

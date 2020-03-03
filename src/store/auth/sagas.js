@@ -3,16 +3,16 @@ import { ActionTypes } from './actions';
 import Amplify, { Auth } from 'aws-amplify';
 import { mapCustomUserAttr } from '../utils';
 
-Amplify.configure({
-  Auth: {
-    userPoolId: process.env.REACT_APP_USER_POOL_ID,
-    userPoolWebClientId: process.env.REACT_APP_CLIENT_ID,
-    cookieStorage: {
-      domain: process.env.REACT_APP_DOMAIN,
-      secure: false,
-    },
-  },
-});
+// Amplify.configure({
+//   Auth: {
+//     userPoolId: process.env.REACT_APP_USER_POOL_ID,
+//     userPoolWebClientId: process.env.REACT_APP_CLIENT_ID,
+//     cookieStorage: {
+//       domain: process.env.REACT_APP_DOMAIN,
+//       secure: false,
+//     },
+//   },
+// });
 
 const cognitoSignUp = ({ email, password, phoneNumber, country }) =>
   Auth.signUp({
@@ -20,7 +20,7 @@ const cognitoSignUp = ({ email, password, phoneNumber, country }) =>
     password: password,
     attributes: {
       email: email,
-      phone_number: country.value + phoneNumber,
+      phone_number: country.code + phoneNumber,
       'custom:country': JSON.stringify(country),
     },
   });

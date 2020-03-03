@@ -1,6 +1,5 @@
 const RouteConfig = {
   root: '/',
-  about: '/about',
 
   register: '/register',
   verifyEmail: '/register/verify-email',
