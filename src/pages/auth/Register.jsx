@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 export const RegisterLayout = ({ isRegister }) => (
   <LayoutAuth renderLeft={<Sidebar />}>
-    {!isRegister && <Redirect to={RouteConfig.verifyEmail} />}
+    {!isRegister && <Redirect to={RouteConfig.register} />}
     <Switch>
       <Route exact path={RouteConfig.register} component={CreateAccount} />
       <Route exact path={RouteConfig.verifyEmail} component={VerifyEmail} />

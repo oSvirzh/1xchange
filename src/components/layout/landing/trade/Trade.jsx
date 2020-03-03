@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../styles/const';
-import threeMarketsScreen from '../../../../assets/images/landing/three-matkets-screen.png';
+import tradeTwoMarkets from '../../../../assets/images/landing/trade-twomarkets.png';
+import tradeGeneral from '../../../../assets/images/landing/trade-general.png';
+import tradeFourMarkets from '../../../../assets/images/landing/trade-fourmarkets.png';
 // import '../../../src/styles/styles.scss';
 
 const Trade = () => {
   return (
     <Styled.TradeWrapper>
       <Styled.ImagesWrapper>
-        <Styled.ImageGeneral src={threeMarketsScreen} alt="" />
+        <Styled.ImageGeneral src={tradeGeneral} alt="" />
+        <Styled.ImageTwomarkets src={tradeTwoMarkets} alt="" />
+        <Styled.ImageFourmarkets src={tradeFourMarkets} alt="" />
       </Styled.ImagesWrapper>
     </Styled.TradeWrapper>
   );
@@ -28,7 +32,7 @@ const Styled = {
     position: absolute;
     left: 0;
     top: 0;
-    width: 1140px;
+    width: 746px;
     height: auto;
   `,
   ImageTwomarkets: styled.img`

@@ -1,20 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../styles/const';
-import { Button } from '../../../../components/elements/buttons/Button';
-import { RouteConfig } from '../../../../config/routeConfig';
+import {
+    Button,
+} from '../../../../components/elements/buttons/Button';
 // import '../../../src/styles/styles.scss';
 
 const Intro = () => {
   return (
     <Styled.Intro>
-      <Styled.IntroTitle>
-        One Account + One Wallet + One Portal = Global BBO
-      </Styled.IntroTitle>
-      {/*<Styled.IntroSubTitle>*/}
-      {/*    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.*/}
-      {/*</Styled.IntroSubTitle>*/}
-      <Button to={RouteConfig.register}>Get started</Button>
+        <Styled.IntroTitle>
+            One account, one portal, one wallet and one exchange
+            is equal Global BBO
+        </Styled.IntroTitle>
+        <Styled.IntroSubTitle>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Styled.IntroSubTitle>
+        <Button>Get started</Button>
     </Styled.Intro>
   );
 };
@@ -28,13 +30,13 @@ const Styled = {
     align-items: center;
     flex-direction: column;
   `,
-  IntroTitle: styled.h1`
+    IntroTitle: styled.h1`
     max-width: 753px;
     font-size: 30px;
     line-height: 38px;
     font-weight: 400;
   `,
-  IntroSubTitle: styled.p`
+    IntroSubTitle: styled.p`
     margin-top: 30px;
     margin-bottom: 0;
     max-width: 530px;

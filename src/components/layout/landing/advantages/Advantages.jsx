@@ -10,27 +10,29 @@ import xcoins from '../../../../assets/images/landing/advantages/1xcoins.png';
 const Advantages = () => {
   return (
     <Styled.Wrapper>
-      <Styled.Title>Unique positioning of Finxflo</Styled.Title>
+      <Styled.Title>Unique positioning of 1xchange</Styled.Title>
       <Styled.Grid>
         <Styled.Item>
           <Styled.ItemImage src={wallet} />
-          <Styled.ItemDesc>1 KYC, 1 Account, 1 Wallet</Styled.ItemDesc>
+          <Styled.ItemDesc>One Wallet, one KYC.</Styled.ItemDesc>
         </Styled.Item>
         <Styled.Item>
           <Styled.ItemImage src={feels} />
-          <Styled.ItemDesc>Lower trading fees</Styled.ItemDesc>
+          <Styled.ItemDesc>
+            Less trading fees, no withdrawal fees, better execution.
+          </Styled.ItemDesc>
         </Styled.Item>
         <Styled.Item>
           <Styled.ItemImage src={phone} />
-          <Styled.ItemDesc>Unique user interface</Styled.ItemDesc>
+          <Styled.ItemDesc>Unique user experience</Styled.ItemDesc>
         </Styled.Item>
         <Styled.Item>
           <Styled.ItemImage src={xcoins} />
-          <Styled.ItemDesc>No withdrawal fees</Styled.ItemDesc>
+          <Styled.ItemDesc>Users pay monthly fees in 1X Coins</Styled.ItemDesc>
         </Styled.Item>
         <Styled.Item>
           <Styled.ItemImage src={global} />
-          <Styled.ItemDesc>Global best execution</Styled.ItemDesc>
+          <Styled.ItemDesc>Global Best Bid Best Offer</Styled.ItemDesc>
         </Styled.Item>
       </Styled.Grid>
     </Styled.Wrapper>
@@ -65,8 +67,6 @@ const Styled = {
     width: 179px;
   `,
   ItemImage: styled.img`
-    max-width: 100%;
-    max-height: 150px;
     display: flex;
     flex-wrap: wrap;
     color: ${colors.white};
