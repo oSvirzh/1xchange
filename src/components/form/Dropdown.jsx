@@ -27,16 +27,16 @@ const DropdownCmp = ({
     ));
   // TODO create specify dropdown for Country list
   return (
-    <FormItem
+    <Styled.FormItem
       {...props}
       append={
         <Styled.Dropdown>
           <Styled.DropdownButton id="dropdown-basic">
             {selected.label}
           </Styled.DropdownButton>
-          <Styled.DropdownMenu>
+          <Dropdown.Menu>
             <Options />
-          </Styled.DropdownMenu>
+          </Dropdown.Menu>
         </Styled.Dropdown>
       }
     />
@@ -44,6 +44,9 @@ const DropdownCmp = ({
 };
 
 const Styled = {
+  FormItem: styled(FormItem)`
+    width: 100%;
+  `,
   Dropdown: styled(Dropdown)`
     width: 100%;
   `,
@@ -60,10 +63,6 @@ const Styled = {
     box-sizing: border-box;
     border-radius: 3px;
     padding: 18px 17px;
-  `,
-  DropdownMenu: styled(Dropdown.Menu)`
-    max-height: 400px;
-    overflow: scroll;
   `,
 };
 

@@ -23,7 +23,7 @@ const VerifyPhoneNumberLayout = ({
   return (
     <AuthCode
       title="Enter verification code from SMS"
-      successMessage="Your number has been verified successfully!"
+      successMessage="Your number verified successfully!"
       to={RouteConfig.verifyEmail}
       resend={resendSMS}
       confirm={confirmPhoneNumber}

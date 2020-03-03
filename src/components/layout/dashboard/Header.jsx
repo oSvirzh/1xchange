@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
-import { Image, Dropdown } from 'react-bootstrap';
-import styled, { css } from 'styled-components';
-import { applyStyleModifiers } from 'styled-components-modifiers';
+import React from 'react';
+import { Image } from 'react-bootstrap';
+import styled from 'styled-components';
 import { colors } from '../../../styles/const';
 import logo from '../../../assets/images/logo.svg';
 import alert from '../../../assets/images/dashboard/alert.png';
 import oneSection from '../../../assets/images/dashboard/one-section.png';
 import twoSections from '../../../assets/images/dashboard/two-sections.png';
 import fourSections from '../../../assets/images/dashboard/four-sections.png';
-import { connect } from 'react-redux';
-import { actions } from '../../../store/auth/actions';
-import { Button } from '../../elements/buttons/Button';
 
-const HeaderLayout = ({ signOut }) => {
-  const [showPopover, setShowPopover] = useState(false);
-
+const Header = () => {
   return (
     <Styled.Header>
       <Styled.Logo>
@@ -38,32 +32,14 @@ const HeaderLayout = ({ signOut }) => {
         <Styled.MenuItem>My orders</Styled.MenuItem>
         <Styled.MenuItem>My wallets</Styled.MenuItem>
         <Styled.Alert src={alert} />
-        <Styled.UserInfo>
-          <Styled.AvatarButton onClick={() => setShowPopover(!showPopover)}>
-            <Styled.Avatar roundedCircle src="https://via.placeholder.com/28" />
-          </Styled.AvatarButton>
-          <Styled.Popover modifiers={!showPopover && 'hidden'}>
-            <Button cleanTopMargin onClick={signOut}>
-              Log Out
-            </Button>
-          </Styled.Popover>
-        </Styled.UserInfo>
+        <Styled.Avatar roundedCircle src="https://via.placeholder.com/28" />
       </Styled.Menu>
     </Styled.Header>
   );
 };
 
-const Modifiers = {
-  Popover: {
-    hidden: () => css`
-      display: none;
-    `,
-  },
-};
-
 const Styled = {
   Header: styled.header`
-    z-index: 5;
     padding: 20px 40px;
     display: flex;
     align-items: center;
@@ -105,38 +81,14 @@ const Styled = {
   `,
   Alert: styled.img`
     margin-left: 40px;
-    height: 28px;
   `,
   Avatar: styled(Image)`
     width: 28px;
     height: 28px;
     border-radius: 100%;
     overflow: hidden;
-  `,
-  AvatarButton: styled(Dropdown.Toggle)`
     margin-left: 30px;
-    background: none;
-    border: none;
-    padding: 0;
-  `,
-  UserInfo: styled.div`
-    position: relative;
-  `,
-  Popover: styled.div`
-    position: absolute;
-    top: calc(100% + 20px);
-    display: flex;
-    justify-content: flex-end;
-    right: 0;
-    background: #11192b;
-    min-width: 300px;
-    padding: 12px 18px;
-
-    ${applyStyleModifiers(Modifiers.Popover)};
   `,
 };
 
-export const Header = connect(
-  (state) => {},
-  { signOut: actions.signOut }
-)(HeaderLayout);
+export default Header;

@@ -17,8 +17,6 @@ import { Link } from '../../../components/elements/links/Link';
 import ModalWindow from '../../../components/elements/modal/ModalWindow';
 import { RouteConfig } from '../../../config/routeConfig';
 import { authActions } from '../../../store/rootActions';
-import { modalTypes } from '../../../config/terms';
-import { countriesList } from '../../../config/listOfCountries';
 
 const CreateAccountFormComponent = ({
   values,
@@ -43,17 +41,18 @@ const CreateAccountFormComponent = ({
     'At least 1 special character',
   ];
 
-  const countries = countriesList;
+  const countries = [
+    { label: 'Ukraine', value: 'UA', code: '+380' },
+    { label: 'UAE', value: 'UAE', code: '+971' },
+    { label: 'Singapur', value: 'SG', code: '+65' },
+  ];
 
   const getCurrentCountryCode = (value) => {
     const currentCountry = findIndex(countries, { value });
-    return currentCountry !== -1 ? countries[currentCountry].value : '';
+    return currentCountry !== -1 ? countries[currentCountry].code : '';
   };
 
   const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState(
-    modalTypes.TERMS_AND_CONDITONS
-  );
 
   useEffect(() => {
     if (auth.error) setErrors({ [auth.error.type]: auth.error.message });
@@ -114,7 +113,7 @@ const CreateAccountFormComponent = ({
         />
         <PhoneInput
           label="Phone number"
-          countryCode={getCurrentCountryCode(values.country.value) || '+65'}
+          countryCode={getCurrentCountryCode(values.country.value) || '+380'}
           placeholder="Number"
           value={values.phoneNumber}
           name="phoneNumber"
@@ -134,24 +133,12 @@ const CreateAccountFormComponent = ({
           name="consent"
           error={errors.consent}
         >
-          I accept Finxflo&#39;s{' '}
-          <Link
-            as="span"
-            onClick={() => {
-              setModalContent(modalTypes.TERMS_AND_CONDITONS);
-              setShowModal(true);
-            }}
-          >
+          I accept 1xchange&#39;s{' '}
+          <Link as="span" onClick={() => setShowModal(true)}>
             Terms of Use
           </Link>{' '}
           and
-          <Link
-            as="span"
-            onClick={() => {
-              setModalContent(modalTypes.PRIVACY_POLICY);
-              setShowModal(true);
-            }}
-          >
+          <Link as="span" onClick={() => setShowModal(true)}>
             {' '}
             Privacy policy
           </Link>
@@ -165,9 +152,6 @@ const CreateAccountFormComponent = ({
         </Button>
         <ModalWindow
           isShowed={showModal}
-          title={modalContent.title}
-          content={modalContent.content}
-          onClose={() => setShowModal(false)}
           onAgree={() => {
             setFieldValue('consent', true);
           }}

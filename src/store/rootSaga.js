@@ -11,8 +11,8 @@ import {
   handleSingIn,
   handleUpdateUserAttribute,
   handleVerifyEmail,
-  handleVerifyEmailSubmit,
-} from './auth/sagas';
+  handleVerifyEmailSubmit
+} from "./auth/sagas";
 import {
   handleGetHistoricalOHLCV,
   handleGetHistoricalQuotes,
