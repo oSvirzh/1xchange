@@ -1,5 +1,6 @@
 import { fork } from 'redux-saga/effects';
 import {
+  handleChangePassword,
   handleConfirmPhoneNumber,
   handleCurrentSession,
   handleRegister,
@@ -34,4 +35,5 @@ export default function* rootSaga() {
   yield fork(handleGetHistoricalOHLCV);
   yield fork(handleGetHistoricalQuotes);
   yield fork(handleCurrencyMap);
+  yield fork(handleChangePassword);
 }

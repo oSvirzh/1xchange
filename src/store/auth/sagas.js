@@ -49,6 +49,9 @@ const cognitoResetPassword = (payload) => Auth.forgotPassword(payload);
 const cognitoResetPasswordSubmit = ({ username, code, password }) =>
   Auth.forgotPasswordSubmit(username, code, password);
 
+const cognitoChangePassword = ({ user, oldPassword, newPassword }) =>
+  Auth.changePassword(user, oldPassword, newPassword);
+
 export function* handleRegister() {
   while (true) {
     try {
@@ -153,6 +156,24 @@ export function* handleUpdateUserAttribute() {
       yield put(ActionTypes.updateUserAttributes.SUCCESS(result));
     } catch (error) {
       yield put(ActionTypes.updateUserAttributes.FAILURE(error));
+    }
+  }
+}
+
+export function* handleChangePassword() {
+  while (true) {
+    try {
+      const { payload } = yield take(
+        `${ActionTypes.changeUserPassword.REQUEST}`
+      );
+      let user = yield Auth.currentAuthenticatedUser();
+      const result = yield call(cognitoChangePassword, {
+        user,
+        ...payload,
+      });
+      yield put(ActionTypes.changeUserPassword.SUCCESS(result));
+    } catch (error) {
+      yield put(ActionTypes.changeUserPassword.FAILURE(error));
     }
   }
 }
